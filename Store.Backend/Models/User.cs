@@ -1,0 +1,19 @@
+﻿namespace WebStore.Models
+{
+    public class User
+    {
+        public int Id { get; set; }
+        public string Email { get; set; }
+        public string Name { get; set; }
+        public string Phone { get; set; }
+        public string PasswordHash { get; set; }
+        public RoleType Role { get; set; }
+        public DateTime RegDate { get; set; }
+
+        public enum RoleType
+        {
+            User,
+            Admin
+        }
+    }
+}
