@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Cryptography.KeyDerivation;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -42,9 +41,10 @@ namespace WebStore.Controllers
             var salt = configuration.GetValue<string>("Secrets:PasswordSalt");
             var newUser = mapper.Map<User>(regModel);
 
-            newUser.PasswordHash = HashPassword(regModel.PasswordHash, salt);
+            newUser.Password = HashPassword(regModel.Password, salt);
             newUser.Role = RoleType.User;
             newUser.RegDate = DateTime.Now;
+            newUser.Phone = "+7" + newUser.Phone;
 
             await dbContext.Users.AddAsync(newUser);
             await dbContext.SaveChangesAsync();
@@ -56,7 +56,7 @@ namespace WebStore.Controllers
         public async Task<IActionResult> Login([FromForm] LogUserViewModel logModel)
         {
             string salt = configuration.GetValue<string>("Secrets:PasswordSalt");
-            string passwordHash = HashPassword(logModel.PasswordHash, salt);
+            string passwordHash = HashPassword(logModel.Password, salt);
 
             var user = await dbContext.Users
                 .AsNoTracking()
@@ -64,12 +64,12 @@ namespace WebStore.Controllers
                 {
                     x.Id,
                     x.Email,
-                    x.PasswordHash,
+                    x.Password,
                     x.Role,
                 })
                 .FirstOrDefaultAsync(e => e.Email == logModel.Email);
 
-            if (user == null || user.PasswordHash != passwordHash) { return BadRequest(error: "Неверный email или пароль."); }
+            if (user == null || user.Password != passwordHash) { return BadRequest(error: "Неверный email или пароль."); }
 
             #region JWT auth
 

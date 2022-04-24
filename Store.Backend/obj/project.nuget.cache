@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "44nD1mb/dCae5sQVxFmXCtJvlQf68GQP8/CCr1SDzgWrsx1+1XcLw2c3k5Cdh7Qf2BBcBqguGTVT5X7ZFMipQA==",
+  "dgSpecHash": "bVjtpkEKCntuJTRXZob1JhWv5t6AmXy3zAUHKMrjqRU1iPC/6QW9sg0YRjp8pqLGjVcedsvGc2bbg2o5GmnPbQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\anivire\\Desktop\\Диплом\\Программа\\Store.Backend\\WebStore.csproj",
+  "projectFilePath": "C:\\Users\\anivire\\Desktop\\Диплом\\prog\\Store.Backend\\WebStore.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\anivire\\.nuget\\packages\\automapper\\11.0.1\\automapper.11.0.1.nupkg.sha512",
     "C:\\Users\\anivire\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\11.0.0\\automapper.extensions.microsoft.dependencyinjection.11.0.0.nupkg.sha512",

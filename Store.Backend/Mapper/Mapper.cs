@@ -9,6 +9,9 @@ namespace WebMessenger.Mapper
         public Mapper()
         {
             CreateMap<User, RegUserViewModel>().ReverseMap();
+            CreateMap<User, LogUserViewModel>().ReverseMap();
+            CreateMap<User, UserViewModel>().ReverseMap();
+            CreateMap<User, EditUserViewModel>().ReverseMap();
         }
     }
 }

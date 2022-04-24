@@ -70,3 +70,147 @@ C:\Users\anivire\Desktop\Диплом\Программа\Store.Backend\obj\Debug
 C:\Users\anivire\Desktop\Диплом\Программа\Store.Backend\obj\Debug\net6.0\ref\WebStore.dll
 C:\Users\anivire\Desktop\Диплом\Программа\Store.Backend\obj\Debug\net6.0\WebStore.pdb
 C:\Users\anivire\Desktop\Диплом\Программа\Store.Backend\obj\Debug\net6.0\WebStore.genruntimeconfig.cache
+C:\Users\anivire\Desktop\Практика последний курс\Программа\Store.Backend\obj\Debug\net6.0\WebStore.csproj.AssemblyReference.cache
+C:\Users\anivire\Desktop\Практика последний курс\Программа\Store.Backend\obj\Debug\net6.0\WebStore.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\anivire\Desktop\Практика последний курс\Программа\Store.Backend\obj\Debug\net6.0\WebStore.AssemblyInfoInputs.cache
+C:\Users\anivire\Desktop\Практика последний курс\Программа\Store.Backend\obj\Debug\net6.0\WebStore.AssemblyInfo.cs
+C:\Users\anivire\Desktop\Практика последний курс\Программа\Store.Backend\obj\Debug\net6.0\WebStore.csproj.CoreCompileInputs.cache
+C:\Users\anivire\Desktop\Практика последний курс\Программа\Store.Backend\obj\Debug\net6.0\WebStore.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\anivire\Desktop\Практика последний курс\Программа\Store.Backend\obj\Debug\net6.0\WebStore.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\anivire\Desktop\Практика последний курс\Программа\Store.Backend\obj\Debug\net6.0\WebStore.dll
+C:\Users\anivire\Desktop\Практика последний курс\Программа\Store.Backend\obj\Debug\net6.0\ref\WebStore.dll
+C:\Users\anivire\Desktop\Практика последний курс\Программа\Store.Backend\obj\Debug\net6.0\WebStore.pdb
+C:\Users\anivire\Desktop\Практика последний курс\Программа\Store.Backend\bin\Debug\net6.0\appsettings.Development.json
+C:\Users\anivire\Desktop\Практика последний курс\Программа\Store.Backend\bin\Debug\net6.0\appsettings.json
+C:\Users\anivire\Desktop\Практика последний курс\Программа\Store.Backend\bin\Debug\net6.0\WebStore.exe
+C:\Users\anivire\Desktop\Практика последний курс\Программа\Store.Backend\bin\Debug\net6.0\WebStore.deps.json
+C:\Users\anivire\Desktop\Практика последний курс\Программа\Store.Backend\bin\Debug\net6.0\WebStore.runtimeconfig.json
+C:\Users\anivire\Desktop\Практика последний курс\Программа\Store.Backend\bin\Debug\net6.0\WebStore.dll
+C:\Users\anivire\Desktop\Практика последний курс\Программа\Store.Backend\bin\Debug\net6.0\ref\WebStore.dll
+C:\Users\anivire\Desktop\Практика последний курс\Программа\Store.Backend\bin\Debug\net6.0\WebStore.pdb
+C:\Users\anivire\Desktop\Практика последний курс\Программа\Store.Backend\bin\Debug\net6.0\AutoMapper.dll
+C:\Users\anivire\Desktop\Практика последний курс\Программа\Store.Backend\bin\Debug\net6.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+C:\Users\anivire\Desktop\Практика последний курс\Программа\Store.Backend\bin\Debug\net6.0\BouncyCastle.Crypto.dll
+C:\Users\anivire\Desktop\Практика последний курс\Программа\Store.Backend\bin\Debug\net6.0\Google.Protobuf.dll
+C:\Users\anivire\Desktop\Практика последний курс\Программа\Store.Backend\bin\Debug\net6.0\Humanizer.dll
+C:\Users\anivire\Desktop\Практика последний курс\Программа\Store.Backend\bin\Debug\net6.0\K4os.Compression.LZ4.dll
+C:\Users\anivire\Desktop\Практика последний курс\Программа\Store.Backend\bin\Debug\net6.0\K4os.Compression.LZ4.Streams.dll
+C:\Users\anivire\Desktop\Практика последний курс\Программа\Store.Backend\bin\Debug\net6.0\K4os.Hash.xxHash.dll
+C:\Users\anivire\Desktop\Практика последний курс\Программа\Store.Backend\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\anivire\Desktop\Практика последний курс\Программа\Store.Backend\bin\Debug\net6.0\Microsoft.Data.SqlClient.dll
+C:\Users\anivire\Desktop\Практика последний курс\Программа\Store.Backend\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.dll
+C:\Users\anivire\Desktop\Практика последний курс\Программа\Store.Backend\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Users\anivire\Desktop\Практика последний курс\Программа\Store.Backend\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Design.dll
+C:\Users\anivire\Desktop\Практика последний курс\Программа\Store.Backend\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Relational.dll
+C:\Users\anivire\Desktop\Практика последний курс\Программа\Store.Backend\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.SqlServer.dll
+C:\Users\anivire\Desktop\Практика последний курс\Программа\Store.Backend\bin\Debug\net6.0\Microsoft.Extensions.Caching.Memory.dll
+C:\Users\anivire\Desktop\Практика последний курс\Программа\Store.Backend\bin\Debug\net6.0\Microsoft.Identity.Client.dll
+C:\Users\anivire\Desktop\Практика последний курс\Программа\Store.Backend\bin\Debug\net6.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\anivire\Desktop\Практика последний курс\Программа\Store.Backend\bin\Debug\net6.0\Microsoft.IdentityModel.Logging.dll
+C:\Users\anivire\Desktop\Практика последний курс\Программа\Store.Backend\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.dll
+C:\Users\anivire\Desktop\Практика последний курс\Программа\Store.Backend\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\anivire\Desktop\Практика последний курс\Программа\Store.Backend\bin\Debug\net6.0\Microsoft.IdentityModel.Tokens.dll
+C:\Users\anivire\Desktop\Практика последний курс\Программа\Store.Backend\bin\Debug\net6.0\Microsoft.OpenApi.dll
+C:\Users\anivire\Desktop\Практика последний курс\Программа\Store.Backend\bin\Debug\net6.0\Microsoft.Win32.SystemEvents.dll
+C:\Users\anivire\Desktop\Практика последний курс\Программа\Store.Backend\bin\Debug\net6.0\MySql.Data.dll
+C:\Users\anivire\Desktop\Практика последний курс\Программа\Store.Backend\bin\Debug\net6.0\Ubiety.Dns.Core.dll
+C:\Users\anivire\Desktop\Практика последний курс\Программа\Store.Backend\bin\Debug\net6.0\ZstdNet.dll
+C:\Users\anivire\Desktop\Практика последний курс\Программа\Store.Backend\bin\Debug\net6.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\anivire\Desktop\Практика последний курс\Программа\Store.Backend\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\anivire\Desktop\Практика последний курс\Программа\Store.Backend\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\anivire\Desktop\Практика последний курс\Программа\Store.Backend\bin\Debug\net6.0\System.Configuration.ConfigurationManager.dll
+C:\Users\anivire\Desktop\Практика последний курс\Программа\Store.Backend\bin\Debug\net6.0\System.Drawing.Common.dll
+C:\Users\anivire\Desktop\Практика последний курс\Программа\Store.Backend\bin\Debug\net6.0\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\anivire\Desktop\Практика последний курс\Программа\Store.Backend\bin\Debug\net6.0\System.Runtime.Caching.dll
+C:\Users\anivire\Desktop\Практика последний курс\Программа\Store.Backend\bin\Debug\net6.0\System.Security.Cryptography.ProtectedData.dll
+C:\Users\anivire\Desktop\Практика последний курс\Программа\Store.Backend\bin\Debug\net6.0\System.Security.Permissions.dll
+C:\Users\anivire\Desktop\Практика последний курс\Программа\Store.Backend\bin\Debug\net6.0\System.Windows.Extensions.dll
+C:\Users\anivire\Desktop\Практика последний курс\Программа\Store.Backend\bin\Debug\net6.0\runtimes\unix\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+C:\Users\anivire\Desktop\Практика последний курс\Программа\Store.Backend\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+C:\Users\anivire\Desktop\Практика последний курс\Программа\Store.Backend\bin\Debug\net6.0\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.dll
+C:\Users\anivire\Desktop\Практика последний курс\Программа\Store.Backend\bin\Debug\net6.0\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll
+C:\Users\anivire\Desktop\Практика последний курс\Программа\Store.Backend\bin\Debug\net6.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
+C:\Users\anivire\Desktop\Практика последний курс\Программа\Store.Backend\bin\Debug\net6.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
+C:\Users\anivire\Desktop\Практика последний курс\Программа\Store.Backend\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\Microsoft.Win32.SystemEvents.dll
+C:\Users\anivire\Desktop\Практика последний курс\Программа\Store.Backend\bin\Debug\net6.0\runtimes\unix\lib\netcoreapp3.0\System.Drawing.Common.dll
+C:\Users\anivire\Desktop\Практика последний курс\Программа\Store.Backend\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Drawing.Common.dll
+C:\Users\anivire\Desktop\Практика последний курс\Программа\Store.Backend\bin\Debug\net6.0\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
+C:\Users\anivire\Desktop\Практика последний курс\Программа\Store.Backend\bin\Debug\net6.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+C:\Users\anivire\Desktop\Практика последний курс\Программа\Store.Backend\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Windows.Extensions.dll
+C:\Users\anivire\Desktop\Практика последний курс\Программа\Store.Backend\obj\Debug\net6.0\staticwebassets.build.json
+C:\Users\anivire\Desktop\Практика последний курс\Программа\Store.Backend\obj\Debug\net6.0\staticwebassets.development.json
+C:\Users\anivire\Desktop\Практика последний курс\Программа\Store.Backend\obj\Debug\net6.0\scopedcss\bundle\WebStore.styles.css
+C:\Users\anivire\Desktop\Практика последний курс\Программа\Store.Backend\obj\Debug\net6.0\WebStore.csproj.CopyComplete
+C:\Users\anivire\Desktop\Практика последний курс\Программа\Store.Backend\obj\Debug\net6.0\WebStore.genruntimeconfig.cache
+C:\Users\anivire\Desktop\Диплом\prog\Store.Backend\bin\Debug\net6.0\appsettings.Development.json
+C:\Users\anivire\Desktop\Диплом\prog\Store.Backend\bin\Debug\net6.0\appsettings.json
+C:\Users\anivire\Desktop\Диплом\prog\Store.Backend\bin\Debug\net6.0\WebStore.exe
+C:\Users\anivire\Desktop\Диплом\prog\Store.Backend\bin\Debug\net6.0\WebStore.deps.json
+C:\Users\anivire\Desktop\Диплом\prog\Store.Backend\bin\Debug\net6.0\WebStore.runtimeconfig.json
+C:\Users\anivire\Desktop\Диплом\prog\Store.Backend\bin\Debug\net6.0\WebStore.dll
+C:\Users\anivire\Desktop\Диплом\prog\Store.Backend\bin\Debug\net6.0\ref\WebStore.dll
+C:\Users\anivire\Desktop\Диплом\prog\Store.Backend\bin\Debug\net6.0\WebStore.pdb
+C:\Users\anivire\Desktop\Диплом\prog\Store.Backend\bin\Debug\net6.0\AutoMapper.dll
+C:\Users\anivire\Desktop\Диплом\prog\Store.Backend\bin\Debug\net6.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+C:\Users\anivire\Desktop\Диплом\prog\Store.Backend\bin\Debug\net6.0\BouncyCastle.Crypto.dll
+C:\Users\anivire\Desktop\Диплом\prog\Store.Backend\bin\Debug\net6.0\Google.Protobuf.dll
+C:\Users\anivire\Desktop\Диплом\prog\Store.Backend\bin\Debug\net6.0\Humanizer.dll
+C:\Users\anivire\Desktop\Диплом\prog\Store.Backend\bin\Debug\net6.0\K4os.Compression.LZ4.dll
+C:\Users\anivire\Desktop\Диплом\prog\Store.Backend\bin\Debug\net6.0\K4os.Compression.LZ4.Streams.dll
+C:\Users\anivire\Desktop\Диплом\prog\Store.Backend\bin\Debug\net6.0\K4os.Hash.xxHash.dll
+C:\Users\anivire\Desktop\Диплом\prog\Store.Backend\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\anivire\Desktop\Диплом\prog\Store.Backend\bin\Debug\net6.0\Microsoft.Data.SqlClient.dll
+C:\Users\anivire\Desktop\Диплом\prog\Store.Backend\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.dll
+C:\Users\anivire\Desktop\Диплом\prog\Store.Backend\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Users\anivire\Desktop\Диплом\prog\Store.Backend\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Design.dll
+C:\Users\anivire\Desktop\Диплом\prog\Store.Backend\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Relational.dll
+C:\Users\anivire\Desktop\Диплом\prog\Store.Backend\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.SqlServer.dll
+C:\Users\anivire\Desktop\Диплом\prog\Store.Backend\bin\Debug\net6.0\Microsoft.Extensions.Caching.Memory.dll
+C:\Users\anivire\Desktop\Диплом\prog\Store.Backend\bin\Debug\net6.0\Microsoft.Identity.Client.dll
+C:\Users\anivire\Desktop\Диплом\prog\Store.Backend\bin\Debug\net6.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\anivire\Desktop\Диплом\prog\Store.Backend\bin\Debug\net6.0\Microsoft.IdentityModel.Logging.dll
+C:\Users\anivire\Desktop\Диплом\prog\Store.Backend\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.dll
+C:\Users\anivire\Desktop\Диплом\prog\Store.Backend\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\anivire\Desktop\Диплом\prog\Store.Backend\bin\Debug\net6.0\Microsoft.IdentityModel.Tokens.dll
+C:\Users\anivire\Desktop\Диплом\prog\Store.Backend\bin\Debug\net6.0\Microsoft.OpenApi.dll
+C:\Users\anivire\Desktop\Диплом\prog\Store.Backend\bin\Debug\net6.0\Microsoft.Win32.SystemEvents.dll
+C:\Users\anivire\Desktop\Диплом\prog\Store.Backend\bin\Debug\net6.0\MySql.Data.dll
+C:\Users\anivire\Desktop\Диплом\prog\Store.Backend\bin\Debug\net6.0\Ubiety.Dns.Core.dll
+C:\Users\anivire\Desktop\Диплом\prog\Store.Backend\bin\Debug\net6.0\ZstdNet.dll
+C:\Users\anivire\Desktop\Диплом\prog\Store.Backend\bin\Debug\net6.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\anivire\Desktop\Диплом\prog\Store.Backend\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\anivire\Desktop\Диплом\prog\Store.Backend\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\anivire\Desktop\Диплом\prog\Store.Backend\bin\Debug\net6.0\System.Configuration.ConfigurationManager.dll
+C:\Users\anivire\Desktop\Диплом\prog\Store.Backend\bin\Debug\net6.0\System.Drawing.Common.dll
+C:\Users\anivire\Desktop\Диплом\prog\Store.Backend\bin\Debug\net6.0\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\anivire\Desktop\Диплом\prog\Store.Backend\bin\Debug\net6.0\System.Runtime.Caching.dll
+C:\Users\anivire\Desktop\Диплом\prog\Store.Backend\bin\Debug\net6.0\System.Security.Cryptography.ProtectedData.dll
+C:\Users\anivire\Desktop\Диплом\prog\Store.Backend\bin\Debug\net6.0\System.Security.Permissions.dll
+C:\Users\anivire\Desktop\Диплом\prog\Store.Backend\bin\Debug\net6.0\System.Windows.Extensions.dll
+C:\Users\anivire\Desktop\Диплом\prog\Store.Backend\bin\Debug\net6.0\runtimes\unix\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+C:\Users\anivire\Desktop\Диплом\prog\Store.Backend\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+C:\Users\anivire\Desktop\Диплом\prog\Store.Backend\bin\Debug\net6.0\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.dll
+C:\Users\anivire\Desktop\Диплом\prog\Store.Backend\bin\Debug\net6.0\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll
+C:\Users\anivire\Desktop\Диплом\prog\Store.Backend\bin\Debug\net6.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
+C:\Users\anivire\Desktop\Диплом\prog\Store.Backend\bin\Debug\net6.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
+C:\Users\anivire\Desktop\Диплом\prog\Store.Backend\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\Microsoft.Win32.SystemEvents.dll
+C:\Users\anivire\Desktop\Диплом\prog\Store.Backend\bin\Debug\net6.0\runtimes\unix\lib\netcoreapp3.0\System.Drawing.Common.dll
+C:\Users\anivire\Desktop\Диплом\prog\Store.Backend\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Drawing.Common.dll
+C:\Users\anivire\Desktop\Диплом\prog\Store.Backend\bin\Debug\net6.0\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
+C:\Users\anivire\Desktop\Диплом\prog\Store.Backend\bin\Debug\net6.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+C:\Users\anivire\Desktop\Диплом\prog\Store.Backend\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Windows.Extensions.dll
+C:\Users\anivire\Desktop\Диплом\prog\Store.Backend\obj\Debug\net6.0\WebStore.csproj.AssemblyReference.cache
+C:\Users\anivire\Desktop\Диплом\prog\Store.Backend\obj\Debug\net6.0\WebStore.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\anivire\Desktop\Диплом\prog\Store.Backend\obj\Debug\net6.0\WebStore.AssemblyInfoInputs.cache
+C:\Users\anivire\Desktop\Диплом\prog\Store.Backend\obj\Debug\net6.0\WebStore.AssemblyInfo.cs
+C:\Users\anivire\Desktop\Диплом\prog\Store.Backend\obj\Debug\net6.0\WebStore.csproj.CoreCompileInputs.cache
+C:\Users\anivire\Desktop\Диплом\prog\Store.Backend\obj\Debug\net6.0\WebStore.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\anivire\Desktop\Диплом\prog\Store.Backend\obj\Debug\net6.0\WebStore.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\anivire\Desktop\Диплом\prog\Store.Backend\obj\Debug\net6.0\staticwebassets.build.json
+C:\Users\anivire\Desktop\Диплом\prog\Store.Backend\obj\Debug\net6.0\staticwebassets.development.json
+C:\Users\anivire\Desktop\Диплом\prog\Store.Backend\obj\Debug\net6.0\scopedcss\bundle\WebStore.styles.css
+C:\Users\anivire\Desktop\Диплом\prog\Store.Backend\obj\Debug\net6.0\WebStore.csproj.CopyComplete
+C:\Users\anivire\Desktop\Диплом\prog\Store.Backend\obj\Debug\net6.0\WebStore.dll
+C:\Users\anivire\Desktop\Диплом\prog\Store.Backend\obj\Debug\net6.0\ref\WebStore.dll
+C:\Users\anivire\Desktop\Диплом\prog\Store.Backend\obj\Debug\net6.0\WebStore.pdb
+C:\Users\anivire\Desktop\Диплом\prog\Store.Backend\obj\Debug\net6.0\WebStore.genruntimeconfig.cache

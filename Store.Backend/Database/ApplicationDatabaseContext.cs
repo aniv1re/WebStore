@@ -11,7 +11,7 @@ namespace WebStore.Database
         public DbSet<Order> Orders { get; set; }
         public DbSet<Item> Items { get; set; }
         public DbSet<Brand> Brands { get; set; }
-        public DbSet<Category> Categorys { get; set; }
+        public DbSet<Categories> Categorys { get; set; }
         public DbSet<Manufacture> Manufactures { get; set; }
         public DbSet<Substance> Substances { get; set; }
 

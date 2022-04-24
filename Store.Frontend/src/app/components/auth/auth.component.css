@@ -1,0 +1,218 @@
+input {
+    font-family: 'Montserrat';
+    font-style: normal;
+    color: black;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 22px;
+    border: 1px solid #FF5286;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+input:focus, p-inputtext:focus {
+    background-color: white;
+    border: 1px solid #FF5286;
+    color: black;
+}
+
+input:hover, p-inputtext:hover {
+    border: 1px solid #FF5286;
+}
+
+.invalid-field {
+    border: 2px solid #FF5952 !important;
+}
+
+ :host ::ng-deep .error-toast .p-toast-message {
+    font-family: 'Montserrat';
+    font-size: 14px;
+    font-style: normal;
+    color: black;
+    background: white;
+    border: 3px solid #FF5286;
+    padding: 15px;
+    border-radius: 9px 9px 9px 9px;
+} 
+
+/* :host ::ng-deep .succesfull-toast .p-toast-message {
+    font-family: 'Montserrat';
+    font-size: 14px;
+    font-style: normal;
+    color: white;
+    background: #24202C;
+    border: 3px solid #52FF82;
+    border-radius: 9px 9px 9px 9px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}  */
+
+label, p {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 22px;
+    color: black;
+}
+
+.password {
+    font-size: 18px;
+}
+
+.container{
+    font-family: 'Montserrat', sans-serif;
+    width: 390px;
+    min-height: 600px;
+    height: auto;
+    margin-top: 70px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    background: white;
+    color: black;
+}
+
+.error-block {
+    width: 315px;
+    height: 50px;
+
+    padding-top: 24px;
+    background: #16131C;
+
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    align-content: center;
+    
+
+    border-radius: 9px 9px 9px 9px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+    transition: .3s;
+}
+
+.input-group-text {
+    flex-direction: column;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 30px;
+    width: 50px;
+    border: 1px solid #FF5286;
+    border-radius: 9px;
+    color: white;
+    background: #FF5286;
+}
+
+.small-text {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+}
+
+.marked {
+    padding-left: 5px;
+    padding-top: 3px;
+    font-weight: 600;
+    color: #FF5286;
+}
+
+.marked:hover {
+    cursor: pointer;
+}
+
+.input-group {
+    width: 315px;
+    border: 1px solid #FF5286;;
+    border-radius: 11px;
+}
+
+.form-control {
+    border: 1px solid #FF5286;;
+    border-radius: 9px;
+    color: black;
+    background: white;
+}
+
+.btn {
+    color: black;
+    width: 315px;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 22px;
+    border: 2px solid #FF5286;
+    box-sizing: border-box;
+    border-radius: 10px;
+    box-shadow: none;
+}
+
+.btn-valid {
+    color: #52FF82;
+    border-color: #52FF82;
+}
+
+.btn:hover {
+    color: white;
+    background-color: #FF5286;
+    border-color: #FF5286;
+    box-shadow: none;
+}
+
+.btn:focus, 
+.btn-outline-primary:focus, 
+.btn-primary:not(:disabled):not(.disabled):active:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.btn:active {
+    background-color: #FF5286;
+    border-color: #FF5286;
+}
+
+.btn-back {
+    width: 115px;
+    height: 35px;
+    font-size: 14px;
+    border-radius: 9px;
+    border-color: #FF5286;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    align-content: center;
+    justify-content: center;
+}
+
+.btn-back:hover {
+    color: white;
+}
+
+.welcome_block1 {
+    margin-bottom: 0;
+    padding-left: 4px;
+    font-weight: bold;
+    font-size: 30px;
+    line-height: 10px;
+}
+
+.welcome_block2 {
+    padding-left: 4px;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 28px;
+    line-height: 35px;
+}
+
+.left-mark {
+    width: 10px;
+    height: 50px;
+    background-color: #FF5952;
+    border-radius: 9px 0px 0px 9px;
+}

@@ -7,6 +7,7 @@
         public int ItemId { get; set; }
         public int Count { get; set; }
         public int StatusId { get; set; }
+        public int MapItemId { get; set; }
         public DateTime Date { get; set; }
 
         public enum StatusType

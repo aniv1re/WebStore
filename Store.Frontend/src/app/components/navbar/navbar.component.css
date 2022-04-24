@@ -1,0 +1,154 @@
+a {
+    font-family: 'Montserrat';
+    font-style: normal;
+    color: black;
+    font-weight: 600;
+    font-size: 12px;
+    text-decoration: none;
+}
+
+.nav-link {
+    font-family: 'Montserrat';
+    font-style: normal;
+    color: black;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.form-control {
+    font-family: 'Montserrat';
+    font-style: normal;
+    color: black;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 17px;
+    border-radius: 8px;
+
+    transition-timing-function: linear;
+    transition: .3s;
+
+    outline: none !important;
+    box-shadow: none !important;
+    border: none !important;
+}
+
+.form-control:active,
+.form-control:focus {
+    background-color: #E1F4FF;
+}
+
+
+
+.input-group {
+    padding-top: 5px;
+    height: 30px;
+    width: 800px;
+}
+
+.nav-container {
+    position: flex;
+    display: inline-flex;
+    align-items: center;
+    flex-direction: row;
+    align-content: flex-start;
+    justify-content: center;
+
+    background-color: #FF5286;
+    width: 100%;
+    height: 75px;
+    padding: 3px 0;
+}
+
+.inf-container {
+    position: flex;
+    display: inline-flex;
+    align-items: center;
+    flex-direction: row;
+    align-content: flex-start;
+    justify-content: start;
+    padding-left: 14%;
+
+    height: 50px;
+
+    width: 100%;
+}
+
+.search-btn {
+    color: black;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 17px;
+
+    background-color: white;
+    width: auto;
+    height: 35px;
+    box-sizing: border-box;
+    border-radius: 8px;
+
+    outline: none !important;
+    box-shadow: none !important;
+    border: none !important;
+
+    transition-timing-function: linear;
+    transition: .3s;
+
+    position: flex;
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+
+    padding: 0 15px;
+}
+
+.search-btn:hover {
+    background-color: #E1F4FF;
+}
+
+.btn {
+    color: white;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 17px;
+
+    background-color: #FF5286;
+    min-width: 150px;
+    width: auto;
+    height: 40px;
+
+    border: 1px solid white;
+
+    transition-timing-function: linear;
+    transition: .3s;
+
+    position: flex;
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+
+    padding: 0 20px;
+}
+
+.b-text {
+    padding-left: 5px;
+    padding-top: 19px;
+}
+
+.btn:hover {
+    color: black;
+    background-color: white;
+}
+
+.btn:focus, 
+.btn-outline-primary:focus, 
+.btn-primary:not(:disabled):not(.disabled):active:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\anivire\\Desktop\\Диплом\\Программа\\Store.Backend\\WebStore.csproj": {}
+    "C:\\Users\\anivire\\Desktop\\Диплом\\prog\\Store.Backend\\WebStore.csproj": {}
   },
   "projects": {
-    "C:\\Users\\anivire\\Desktop\\Диплом\\Программа\\Store.Backend\\WebStore.csproj": {
+    "C:\\Users\\anivire\\Desktop\\Диплом\\prog\\Store.Backend\\WebStore.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\anivire\\Desktop\\Диплом\\Программа\\Store.Backend\\WebStore.csproj",
+        "projectUniqueName": "C:\\Users\\anivire\\Desktop\\Диплом\\prog\\Store.Backend\\WebStore.csproj",
         "projectName": "WebStore",
-        "projectPath": "C:\\Users\\anivire\\Desktop\\Диплом\\Программа\\Store.Backend\\WebStore.csproj",
+        "projectPath": "C:\\Users\\anivire\\Desktop\\Диплом\\prog\\Store.Backend\\WebStore.csproj",
         "packagesPath": "C:\\Users\\anivire\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\anivire\\Desktop\\Диплом\\Программа\\Store.Backend\\obj\\",
+        "outputPath": "C:\\Users\\anivire\\Desktop\\Диплом\\prog\\Store.Backend\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

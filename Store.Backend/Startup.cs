@@ -10,6 +10,8 @@ using Microsoft.OpenApi.Models;
 using System.Text;
 using System.Threading.Tasks;
 using WebStore.Database;
+using WebStore.Database.Interfaces;
+using WebStore.Database.Repositories;
 
 namespace WebStore
 {
@@ -45,6 +47,10 @@ namespace WebStore
                });
 
             services.AddHttpContextAccessor();
+
+            services.AddScoped<IItemRepository, ItemRepository>();
+            services.AddScoped<IOrderRepository, OrderRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
 
             services.AddSwaggerGen(opt =>
             {
