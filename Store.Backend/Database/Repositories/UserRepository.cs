@@ -43,28 +43,50 @@ namespace WebStore.Database.Repositories
 
         public async Task EditUser(EditUserViewModel user)
         {
-            User getUser = await dbContext.Users.FirstOrDefaultAsync(x => x.Email == user.Email);
+            User getUser = await dbContext.Users.AsNoTracking().FirstOrDefaultAsync(x => x.Email == user.Email);
 
-            /*getUser = new User
+            if (getUser != null)
             {
-                Id = getUser.Id,
-                Email = getUser.Email,
-                Name = user.Name == "" ? getUser.Name : user.Name,
-                Surname = user.Surname == "" ? getUser.Surname : user.Surname,
-                Password = user.Password == "" ? getUser.Password : user.Password,
-                Phone = user.Phone == "" ? getUser.Phone : user.Phone,
-                RegDate = getUser.RegDate,
-                Role = getUser.Role
-            };
-            */
+                getUser = new User
+                {
+                    Id = getUser.Id,
+                    Email = getUser.Email,
+                    Name = user.Name == getUser.Name ? getUser.Name : user.Name,
+                    Surname = user.Surname == getUser.Surname ? getUser.Surname : user.Surname,
+                    Password = getUser.Password,
+                    Phone = user.Phone == getUser.Phone ? getUser.Phone : user.Phone,
+                    RegDate = getUser.RegDate,
+                    Role = getUser.Role
+                };
+
+                dbContext.Users.Update(getUser);
+                await dbContext.SaveChangesAsync();
+            }          
+        }
+
+        public async Task EditUserPass(EditPassUserViewModel user)
+        {
+            User getUser = await dbContext.Users.AsNoTracking().FirstOrDefaultAsync(x => x.Email == user.Email);
 
             var salt = configuration.GetValue<string>("Secrets:PasswordSalt");
-            getUser = mapper.Map<User>(user);
 
-            getUser.Password = HashPassword(user.Password, salt);
+            if (getUser != null)
+            {
+                getUser = new User
+                {
+                    Id = getUser.Id,
+                    Email = getUser.Email,
+                    Name = getUser.Name,
+                    Surname = getUser.Surname,
+                    Password = HashPassword(user.Password, salt),
+                    Phone = getUser.Phone,
+                    RegDate = getUser.RegDate,
+                    Role = getUser.Role
+                };
 
-            dbContext.Users.Update(getUser);
-            await dbContext.SaveChangesAsync();
+                dbContext.Users.Update(getUser);
+                await dbContext.SaveChangesAsync();
+            }
         }
 
         public async Task DeleteUser(string email)

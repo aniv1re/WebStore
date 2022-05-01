@@ -7,7 +7,7 @@ using WebStore.ViewModels;
 namespace WebStore.Controllers
 {
     [Route("api/[controller]")]
-    /*[Authorize]*/
+    [Authorize]
     [ApiController]
     public class UserController : Controller
     {
@@ -37,6 +37,15 @@ namespace WebStore.Controllers
         public async Task<IActionResult> EditUser([FromForm] EditUserViewModel user)
         {
             await userRepository.EditUser(user);
+            await userRepository.SaveChangesAsync();
+
+            return NoContent();
+        }
+        
+        [HttpPost("edit/userpass/")]
+        public async Task<IActionResult> EditUserPassword([FromForm] EditPassUserViewModel user)
+        {
+            await userRepository.EditUserPass(user);
             await userRepository.SaveChangesAsync();
 
             return NoContent();

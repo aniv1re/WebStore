@@ -15,6 +15,10 @@ import { AccountComponent } from './components/account/account.component';
 import { AuthInterceptor } from './components/guard/auth.interceptor';
 import {InputMaskModule} from 'primeng/inputmask';
 import { IConfig, NgxMaskModule } from 'ngx-mask';
+import { ToastrModule } from 'ngx-toastr';
+import { CategoriesComponent } from './components/categories/categories.component';
+import { FooterComponent } from './components/footer/footer.component';
+import {SkeletonModule} from 'primeng/skeleton';
 
 const maskConfig: Partial<IConfig> = {
   validation: false,
@@ -25,7 +29,9 @@ const maskConfig: Partial<IConfig> = {
     AppComponent,
     NavbarComponent,
     AuthComponent,
-    AccountComponent
+    AccountComponent,
+    CategoriesComponent,
+    FooterComponent
   ],
   imports: [
     CommonModule,
@@ -37,7 +43,9 @@ const maskConfig: Partial<IConfig> = {
     HttpClientModule,
     ToastModule,
     InputMaskModule,
-    NgxMaskModule.forRoot(maskConfig)
+    NgxMaskModule.forRoot(maskConfig),
+    ToastrModule.forRoot(),
+    SkeletonModule
   ],
   providers: [MessageService,
     { 

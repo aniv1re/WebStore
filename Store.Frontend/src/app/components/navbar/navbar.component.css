@@ -1,154 +1,178 @@
-a {
-    font-family: 'Montserrat';
-    font-style: normal;
-    color: black;
-    font-weight: 600;
-    font-size: 12px;
-    text-decoration: none;
-}
+/* @media only screen and (max-width: 1920px) { */
+    *, body {
+        font-family: 'Montserrat', sans-serif;
+        font-style: normal;
+        font-weight: 600;
+    }
+    
+    a {
+        color: black;
+        font-size: 12px;
+        text-decoration: none;
+    }
 
-.nav-link {
-    font-family: 'Montserrat';
-    font-style: normal;
-    color: black;
-    font-weight: bold;
-    font-size: 16px;
-}
+    .nav-link {
+        color: black;
+        font-weight: bold;
+        font-size: 16px;
+    }
 
-.form-control {
-    font-family: 'Montserrat';
-    font-style: normal;
-    color: black;
-    font-weight: 600;
-    font-size: 14px;
-    line-height: 17px;
-    border-radius: 8px;
+    .form-control {       
+        color: black;
+        font-size: 14px;
+        line-height: 17px;
+        border-radius: 8px;
 
-    transition-timing-function: linear;
-    transition: .3s;
+        transition-timing-function: linear;
+        transition: .3s;
 
-    outline: none !important;
-    box-shadow: none !important;
-    border: none !important;
-}
+        outline: none !important;
+        box-shadow: none !important;
+        border: none !important;
+    }
 
-.form-control:active,
-.form-control:focus {
-    background-color: #E1F4FF;
-}
+    .form-control:active,
+    .form-control:focus {
+        background-color: #E1F4FF;
+    }
 
+    .input-group {
+        padding-top: 5px;
+        height: 30px;
+        width: 300px;
+    }
 
+    .nav-container {
+        position: flex;
+        display: inline-flex;
+        align-items: center;
+        flex-direction: row;
+        align-content: flex-start;
+        justify-content: center;
 
-.input-group {
-    padding-top: 5px;
-    height: 30px;
-    width: 800px;
-}
+        padding-left: 14%;
+        background-color: #FF5286;
+        width: 100%;
+        height: 50%;
+        padding: 3px 0;
+    }
 
-.nav-container {
-    position: flex;
-    display: inline-flex;
-    align-items: center;
-    flex-direction: row;
-    align-content: flex-start;
-    justify-content: center;
+    .inf-container {
+        position: flex;
+        display: inline-flex;
+        align-items: center;
+        flex-direction: row;
+        align-content: flex-start;
+        justify-content: start;
+        padding-left: 14%;
 
-    background-color: #FF5286;
-    width: 100%;
-    height: 75px;
-    padding: 3px 0;
-}
+        height: 5%;
+        width: 100%;
+    }
 
-.inf-container {
-    position: flex;
-    display: inline-flex;
-    align-items: center;
-    flex-direction: row;
-    align-content: flex-start;
-    justify-content: start;
-    padding-left: 14%;
+    .search-btn {
+        color: black;
+        font-family: Montserrat;
+        
+        font-size: 14px;
+        line-height: 17px;
 
-    height: 50px;
+        background-color: white;
+        width: auto;
+        height: 35px;
+        box-sizing: border-box;
+        border-radius: 8px;
 
-    width: 100%;
-}
+        outline: none !important;
+        box-shadow: none !important;
+        border: none !important;
 
-.search-btn {
-    color: black;
-    font-family: Montserrat;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 14px;
-    line-height: 17px;
+        transition-timing-function: linear;
+        transition: .3s;
 
-    background-color: white;
-    width: auto;
-    height: 35px;
-    box-sizing: border-box;
-    border-radius: 8px;
+        position: flex;
+        display: inline-flex;
+        flex-direction: row;
+        align-items: center;
+        align-content: center;
+        justify-content: center;
 
-    outline: none !important;
-    box-shadow: none !important;
-    border: none !important;
+        padding: 0 15px;
+    }
 
-    transition-timing-function: linear;
-    transition: .3s;
+    .search-btn:hover {
+        background-color: #E1F4FF;
+    }
 
-    position: flex;
-    display: inline-flex;
-    flex-direction: row;
-    align-items: center;
-    align-content: center;
-    justify-content: center;
+    .btn {
+        color: white;
+        
+        font-size: 14px;
+        line-height: 17px;
 
-    padding: 0 15px;
-}
+        background-color: #FF5286;
+        min-width: 150px;
+        width: auto;
+        height: 40px;
 
-.search-btn:hover {
-    background-color: #E1F4FF;
-}
+        border: 1px solid white;
 
-.btn {
-    color: white;
-    font-family: Montserrat;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 14px;
-    line-height: 17px;
+        transition-timing-function: linear;
+        transition: .3s;
 
-    background-color: #FF5286;
-    min-width: 150px;
-    width: auto;
-    height: 40px;
+        position: flex;
+        display: inline-flex;
+        flex-direction: row;
+        align-items: center;
+        align-content: center;
+        justify-content: center;
 
-    border: 1px solid white;
+        padding: 0 20px;
+    }
 
-    transition-timing-function: linear;
-    transition: .3s;
+    .b-text {
+        padding-left: 5px;
+        padding-top: 19px;
+    }
 
-    position: flex;
-    display: inline-flex;
-    flex-direction: row;
-    align-items: center;
-    align-content: center;
-    justify-content: center;
+    .btn:hover {
+        color: black;
+        background-color: white;
+    }
 
-    padding: 0 20px;
-}
+    .btn:focus, 
+    .btn-outline-primary:focus, 
+    .btn-primary:not(:disabled):not(.disabled):active:focus {
+        outline: none !important;
+        box-shadow: none !important;
+    }
 
-.b-text {
-    padding-left: 5px;
-    padding-top: 19px;
-}
+    .nav {
+        position: sticky;
+    }
 
-.btn:hover {
-    color: black;
-    background-color: white;
-}
-
-.btn:focus, 
-.btn-outline-primary:focus, 
-.btn-primary:not(:disabled):not(.disabled):active:focus {
-    outline: none !important;
-    box-shadow: none !important;
-}
+    .material-icons {
+        font-family: 'Material Icons';
+        font-weight: normal;
+        font-style: normal;
+        font-size: 24px;  /* Preferred icon size */
+        display: inline-block;
+        line-height: 1;
+        text-transform: none;
+        letter-spacing: normal;
+        word-wrap: normal;
+        white-space: nowrap;
+        direction: ltr;
+      
+        /* Support for all WebKit browsers. */
+        -webkit-font-smoothing: antialiased;
+        /* Support for Safari and Chrome. */
+        text-rendering: optimizeLegibility;
+      
+        /* Support for Firefox. */
+        -moz-osx-font-smoothing: grayscale;
+      
+        /* Support for IE. */
+        font-feature-settings: 'liga';
+      }
+/* } */

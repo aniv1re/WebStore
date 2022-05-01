@@ -18,7 +18,11 @@ export class UserService {
   }
 
   editUser(form: FormGroup) {
-    return this.http.post(this.apiUrl + '/api/Auth/user/edit/user', this.getFormData(form));
+    return this.http.post(this.apiUrl + '/api/user/edit/user', this.getFormData(form));
+  }
+  
+  editUserPass(form: FormGroup) {
+    return this.http.post(this.apiUrl + '/api/user/edit/userpass', this.getFormData(form));
   }
 
   private getFormData(form: FormGroup): FormData {

@@ -1,22 +1,22 @@
 <div class="m-left">
     <div class="top-nav-container">
-        <nav aria-label="breadcrumb" class="ms-4">
+        <nav aria-label="breadcrumb" class="ms-2">
             <ol class="breadcrumb">
             <li class="breadcrumb-item"><a routerLink="/auth">Главная</a></li>
             <li class="breadcrumb-item active" aria-current="page">Личный кабинет</li>
             </ol>
         </nav>
 
-        <div class="title-container ms-3">
-            <span class="material-icons" style="font-size: 48px;">chevron_left</span><h2 class="b-h-text" style="color: black">ЛИЧНЫЙ КАБИНЕТ</h2>
+        <div class="title-container">
+            <h2 class="b-h-text ms-2" style="color: black">ЛИЧНЫЙ КАБИНЕТ</h2>
         </div>
 
         <div class="user-nav-container">
             <div class="ms-2">
-                <button class="btn"><span class="material-icons">shopping_cart</span><p class="b-text">Заказы</p></button>
+                <button (click)="orders()" class="btn"><span class="material-icons">shopping_cart</span><p class="b-text">Заказы</p></button>
             </div>
             <div class="ms-2">
-                <button class="btn"><span class="material-icons">person</span><p class="b-text">Личные данные</p></button>
+                <button (click)="authU()" class="btn"><span class="material-icons">person</span><p class="b-text">Личные данные</p></button>
             </div>
             <div class="ms-2">
                 <button (click)="logout()" class="btn"><span class="material-icons">logout</span><p class="b-text">Выход</p></button> 
@@ -24,23 +24,34 @@
         </div>
     </div>
 
-    <div class="account-container">
-        <form [formGroup]="editUserForm" (ngSubmit)="editUser() ">
-            <div *ngIf="user$ | async as userData">
-                <p>Контактные данные</p>
-                <input [value]="userData.email" disabled id="email">
-                <input [placeholder]="userData.phone" formControlName="phone" id="phone">
-                <input [placeholder]="userData.surname" formControlName="surname" id="surname">
-                <input [placeholder]="userData.name" formControlName="name" id="name">
-            </div>
-
-            <div class="change-pass-container mt-3">
-                <p>Изменение пароля</p>
-                <input type="password"  placeholder="Введите новый пароль" formControlName="password">
-                <input type="password"  placeholder="Повторите новый пароль" >
-            </div>
-
-            <button type="submit" class="btn btn-large ms-1 mt-4">Сохранить</button>
-        </form>
+    <div *ngIf="isOrders;else auth">
+        <!-- Заказы -->
     </div>
+
+    <ng-template #auth>
+        <div class="account-container">
+            <form [formGroup]="editUserForm" (ngSubmit)="editUser() ">
+                <div *ngIf="user$ | async as userData">
+                    <p>Контактные данные</p>
+                    <input [placeholder]="userData.email" disabled>
+                    <input [placeholder]="userData.phone" formControlName="phone" id="phone">
+                    <input [placeholder]="userData.surname" formControlName="surname" id="surname">
+                    <input [placeholder]="userData.name" formControlName="name" id="name">
+                </div>
+
+                <button type="submit" class="btn btn-large ms-1 mt-4">Сохранить</button>
+            </form>
+            
+            <form [formGroup]="editPassForm" (ngSubmit)="editPass() ">
+                <div class="change-pass-container ">
+                    <p>Изменение пароля</p>
+                    <input id="email" formControlName="email" class="visually-hidden">
+                    <input type="password"  placeholder="Введите новый пароль" formControlName="password">
+                    <input type="password"  placeholder="Повторите новый пароль" id="pass">
+                </div>
+
+                <button type="submit" class="btn btn-large ms-1 mt-4">Сохранить</button>
+            </form>
+        </div>
+    </ng-template>
 </div>

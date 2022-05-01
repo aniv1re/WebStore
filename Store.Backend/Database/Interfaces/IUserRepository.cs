@@ -7,7 +7,8 @@ namespace WebStore.Database.Interfaces
     {
         Task<UserViewModel> GetUser(string email);
         Task CreateUser(User user);
-        Task EditUser(EditUserViewModel User);
+        Task EditUser(EditUserViewModel user);
+        Task EditUserPass(EditPassUserViewModel user);
         Task DeleteUser(string email);
         Task<int> SaveChangesAsync();
     }

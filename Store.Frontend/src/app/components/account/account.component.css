@@ -15,20 +15,6 @@ input {
     margin: 5px;
 }
 
-.account-container {
-    font-family: 'Montserrat', sans-serif;
-    width: 800px;
-    margin-top: 20px;
-    display: flex;
-    align-items: flex-start;
-    flex-direction: row;
-    align-content: flex-start;
-    justify-content: flex-start;
-    color: black;
-
-    padding-left: 50px;
-}
-
 label, p {
     font-family: 'Montserrat';
     font-style: normal;
@@ -47,19 +33,20 @@ li, ol {
     color: black;
 }
 
-/* .btn {
+
+.account-container {
+    font-family: 'Montserrat', sans-serif;
+    width: 800px;
+    margin-top: 20px;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: row;
+    align-content: flex-start;
+    justify-content: flex-start;
     color: black;
-    width: 315px;
-    font-family: Montserrat;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 18px;
-    line-height: 22px;
-    border: 2px solid #FF5286;
-    box-sizing: border-box;
-    border-radius: 10px;
-    box-shadow: none;
-} */
+
+    margin-left: 10px;
+}
 
 .btn {
     color: white;
@@ -125,7 +112,8 @@ li, ol {
 }
 
 .user-nav-container {
-    margin: 10px;
+    margin-top: 25px;
+    margin-bottom: 25px;
 
     position: flex;
     display: inline-flex;
@@ -152,7 +140,7 @@ li, ol {
     align-content: flex-start;
     justify-content: left;
 
-    padding-left: 30px;
+    
     padding-top: 30px;
 }
 
@@ -162,5 +150,6 @@ li, ol {
 }
 
 .m-left {
-    margin-left: 230px;
+    margin-left: 14%;
+    margin-right: 14%;
 }

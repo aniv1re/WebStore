@@ -12,6 +12,7 @@ namespace WebMessenger.Mapper
             CreateMap<User, LogUserViewModel>().ReverseMap();
             CreateMap<User, UserViewModel>().ReverseMap();
             CreateMap<User, EditUserViewModel>().ReverseMap();
+            CreateMap<User, EditPassUserViewModel>().ReverseMap();
         }
     }
 }
