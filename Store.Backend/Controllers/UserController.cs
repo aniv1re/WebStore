@@ -18,13 +18,13 @@ namespace WebStore.Controllers
             this.userRepository = userRepository;
         }
 
-        [HttpGet("get/user/{email}")]
+        [HttpGet("get/{email}")]
         public async Task<UserViewModel> GetUser([FromRoute] string email)
         {
             return await userRepository.GetUser(email);
         }
 
-        [HttpPost("add/user")]
+        [HttpPost("add")]
         public async Task<IActionResult> CreateUser([FromForm] User user)
         {
             await userRepository.CreateUser(user);
@@ -33,7 +33,7 @@ namespace WebStore.Controllers
             return NoContent();
         }
 
-        [HttpPost("edit/user")]
+        [HttpPost("edit")]
         public async Task<IActionResult> EditUser([FromForm] EditUserViewModel user)
         {
             await userRepository.EditUser(user);
@@ -51,7 +51,7 @@ namespace WebStore.Controllers
             return NoContent();
         }
 
-        [HttpPost("delete/user/{userEmail}")]
+        [HttpPost("delete/{userEmail}")]
         public async Task<IActionResult> DeleteUser([FromRoute] string userEmail)
         {
             await userRepository.DeleteUser(userEmail);

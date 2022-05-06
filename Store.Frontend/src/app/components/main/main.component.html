@@ -1,0 +1,42 @@
+<div class="m-left">
+    <h4 class="mt-4">Новости</h4>
+    <div class="news-container">
+        <div class="d-flex justify-content-center">
+            <div class="spinner-border m-5" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<h4 class="m-left my-4">Популярные товары</h4>
+    <div class="popular-items-container" >
+        <div class="card" *ngFor="let item of items$ | async">
+
+        <div *ngIf="item.image == null; else loadImage">
+            <span class="material-icons mx-3" style="font-size: 96px; padding-left: 90px; padding-bottom: 70px; padding-top: 70px;">image</span>
+        </div>
+
+        <ng-template #loadImage>
+            <img (click)="moveToItem(item.id)" class="picture-card" src="assets\items\{{item.image}}.jpg" width="170x" height="170px">
+        </ng-template>
+
+        <div *ngIf="item.isStock; else outOfStock">
+            <div class="title-card mx-4" >
+                <span class="stock-badge">В наличии</span>
+                <!-- <span class="popular-badge">Популярное</span> -->
+                <p class="p-title">{{item.name}}</p>
+                <p class="p-desc">{{item.itemContent}}</p>
+                
+            </div>
+            <div class="price-card mx-4">
+                <p class="p-price">{{item.price}} ₽</p>
+                <button class="btn"><span class="material-icons">add_shopping_cart</span><p class="b-text">В корзину</p></button>
+            </div>
+        </div>
+
+        <ng-template #outOfStock>
+            
+        </ng-template>
+    </div>
+</div>

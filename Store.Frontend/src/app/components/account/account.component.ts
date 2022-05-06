@@ -21,7 +21,11 @@ export class AccountComponent implements OnInit {
 
   public passwordInputConfirm: string = "";
   
-  constructor(private router: Router, private tokenService: TokenService, private userService: UserService, private toastr: ToastrService, private title: Title) { this.title.setTitle("Добрая аптека - Личный кабинет");}
+  constructor(private router: Router,
+    private tokenService: TokenService,
+    private userService: UserService,
+    private toastr: ToastrService,
+    private title: Title) { this.title.setTitle("Добрая аптека - Личный кабинет");}
 
   editUserForm = new FormGroup({
     name: new FormControl('', [Validators.required]),

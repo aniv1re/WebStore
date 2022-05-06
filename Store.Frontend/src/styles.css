@@ -233,3 +233,15 @@ button.toast-close-button {
     width: 25em;
   }
 }
+
+body::-webkit-scrollbar {
+  width: 0.15rem;
+}
+
+body::-webkit-scrollbar-track {
+  background: white;
+}
+
+body::-webkit-scrollbar-thumb {
+  background: #FF5286;
+}

@@ -18,25 +18,25 @@ namespace WebStore.Controllers
             this.orderRepository = orderRepository;
         }
 
-        [HttpGet("get/order/{orderId}")]
+        [HttpGet("get/{orderId}")]
         public async Task<Order> GetOrder([FromRoute] int orderId)
         {
             return await orderRepository.GetOrder(orderId);
         }
 
-        [HttpGet("get/order/all")]
+        [HttpGet("get/all")]
         public async Task<IEnumerable<Order>> GetAllOrders()
         {
             return await orderRepository.GetAllOrders();
         }
         
-        [HttpGet("get/order/user/{userId}")]
+        [HttpGet("get/user/{userId}")]
         public async Task<IEnumerable<Order>> GetUserOrders([FromRoute] int userId)
         {
             return await orderRepository.GetUserOrders(userId);
         }
         
-        [HttpPost("add/order")]
+        [HttpPost("add")]
         public async Task<IActionResult> CreateOrder([FromForm] Order order)
         {
             await orderRepository.CreateOrder(order);
@@ -45,7 +45,7 @@ namespace WebStore.Controllers
             return NoContent();
         }
         
-        [HttpPost("edit/order")]
+        [HttpPost("edit")]
         public async Task<IActionResult> EditOrder([FromForm] Order order)
         {
             await orderRepository.EditOrder(order);
@@ -54,7 +54,7 @@ namespace WebStore.Controllers
             return NoContent();
         }
         
-        [HttpPost("delete/order")]
+        [HttpPost("delete")]
         public async Task<IActionResult> DeleteOrder([FromForm] Order order)
         {
             await orderRepository.DeleteOrder(order);

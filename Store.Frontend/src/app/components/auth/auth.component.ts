@@ -29,7 +29,10 @@ export class AuthComponent implements OnInit {
     password: new FormControl('', [Validators.required])
   });
 
-  constructor(private authService: AuthService, private router: Router, private messageService: MessageService, private toastr: ToastrService, private title: Title) { this.title.setTitle("Добрая аптека - Вход в аккаунт"); }
+  constructor(private authService: AuthService,
+    private router: Router,
+    private toastr: ToastrService,
+    private title: Title) { this.title.setTitle("Добрая аптека - Вход в аккаунт"); }
 
   ngOnInit(): void {
     if(localStorage.getItem('token') !== null) {

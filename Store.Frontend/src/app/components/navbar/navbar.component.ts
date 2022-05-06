@@ -24,9 +24,9 @@ export class NavbarComponent implements OnInit, DoCheck {
 
   ngDoCheck(): void {
     this.isLogged();
-    if (localStorage.getItem('token') !== null) {
-      this.emailLogged = this.token.email;
-    }
+    // if (localStorage.getItem('token') !== null) {
+    //   this.emailLogged = this.token.email;
+    // }
   }
 
   isLogged(): void {

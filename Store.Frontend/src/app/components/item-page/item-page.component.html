@@ -1,0 +1,51 @@
+<div *ngIf="category$ | async as categoryData">
+    <div *ngIf="item$ | async as itemData">
+        <div class="m-left">
+            <div class="top-nav-container">
+                <nav aria-label="breadcrumb" class="ms-2">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a routerLink="/auth">Главная</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">{{categoryData.name}}</li>
+                        <li class="breadcrumb-item active" aria-current="page">{{itemData.name}}</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+
+
+        <div class="m-left" *ngIf="item$ | async as itemData">
+            <div class="info-small-container mt-3">
+                <div class="image-container">
+                    <img class="picture-card" src="assets\items\{{itemData.image}}.jpg" width="300x" height="300px">
+                    <p class="p-small-desc">Цена действительна только для сайта и может отличаться от цен в аптеках.</p>
+                </div>
+
+                <div class="title-container ">
+                    <p class="p-title">{{itemData.name}}</p>
+                    <p class="p-desc">{{itemData.itemContent}}</p>
+
+                    <div class="badge-container">
+                        <span class="stock-badge">В наличии</span>
+                        <span class="category-badge ms-2">{{categoryData.name}}</span>
+                    </div>
+
+                    <div class="price-container mt-2">
+                        <p class="p-price">{{itemData.price}} ₽</p>
+                    </div> 
+
+                    <div class="count-container">
+                        <button class="btn-reduce" (click)="reduceCount()">-</button>
+                        <input class="count-item-input" [value]="count" readonly>
+                        <button class="btn-add" (click)="addCount()">+</button>
+                        
+                        <button class="btn"><span class="material-icons">add_shopping_cart</span><p class="b-text">В корзину</p></button>
+                    </div>
+                </div>
+
+               <div>
+                   
+               </div>
+            </div>
+        </div>
+    </div>
+</div>

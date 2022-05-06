@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
-import {ToastModule} from 'primeng/toast';
+import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -13,12 +13,15 @@ import { AuthComponent } from './components/auth/auth.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { AccountComponent } from './components/account/account.component';
 import { AuthInterceptor } from './components/guard/auth.interceptor';
-import {InputMaskModule} from 'primeng/inputmask';
+import { InputMaskModule } from 'primeng/inputmask';
 import { IConfig, NgxMaskModule } from 'ngx-mask';
 import { ToastrModule } from 'ngx-toastr';
 import { CategoriesComponent } from './components/categories/categories.component';
 import { FooterComponent } from './components/footer/footer.component';
-import {SkeletonModule} from 'primeng/skeleton';
+import { MainComponent } from './components/main/main.component';
+import { TagModule } from 'primeng/tag';
+import { ItemPageComponent } from './components/item-page/item-page.component';
+import { InputNumberModule } from 'primeng/inputnumber';
 
 const maskConfig: Partial<IConfig> = {
   validation: false,
@@ -31,7 +34,9 @@ const maskConfig: Partial<IConfig> = {
     AuthComponent,
     AccountComponent,
     CategoriesComponent,
-    FooterComponent
+    FooterComponent,
+    MainComponent,
+    ItemPageComponent
   ],
   imports: [
     CommonModule,
@@ -45,7 +50,8 @@ const maskConfig: Partial<IConfig> = {
     InputMaskModule,
     NgxMaskModule.forRoot(maskConfig),
     ToastrModule.forRoot(),
-    SkeletonModule
+    TagModule,
+    InputNumberModule
   ],
   providers: [MessageService,
     { 

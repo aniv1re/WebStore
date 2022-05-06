@@ -14,11 +14,11 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
   getUser(email: string): Observable<User> {
-    return this.http.get<User>(`${this.apiUrl}/api/user/get/user/${email}`);
+    return this.http.get<User>(`${this.apiUrl}/api/user/get/${email}`);
   }
 
   editUser(form: FormGroup) {
-    return this.http.post(this.apiUrl + '/api/user/edit/user', this.getFormData(form));
+    return this.http.post(this.apiUrl + '/api/user/edit', this.getFormData(form));
   }
   
   editUserPass(form: FormGroup) {

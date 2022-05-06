@@ -20,6 +20,7 @@ li, ol {
 ul {
     margin-left: 0;
     padding-left: 0;
+    margin-bottom: 0;
 }
 
 .title-container {
