@@ -9,7 +9,7 @@ import { TokenService } from 'src/app/services/token.service';
 })
 
 export class NavbarComponent implements OnInit, DoCheck {
-  public emailLogged: string = '';
+  public loggedUser: string = '';
   public isUserLogged: boolean | undefined;
   private readonly token: UserToken;
   
@@ -18,14 +18,14 @@ export class NavbarComponent implements OnInit, DoCheck {
   ngOnInit(): void {
     this.isLogged();
     if (localStorage.getItem('token') !== null) {
-      this.emailLogged = this.token.email;
+      this.loggedUser = this.token.email;
     }
   }
 
   ngDoCheck(): void {
     this.isLogged();
     // if (localStorage.getItem('token') !== null) {
-    //   this.emailLogged = this.token.email;
+    //   this.loggedUser = this.token.email;
     // }
   }
 

@@ -1,5 +1,4 @@
-import { HttpErrorResponse } from '@angular/common/http';
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, DoCheck, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
@@ -25,7 +24,9 @@ export class AccountComponent implements OnInit {
     private tokenService: TokenService,
     private userService: UserService,
     private toastr: ToastrService,
-    private title: Title) { this.title.setTitle("Добрая аптека - Личный кабинет");}
+    private title: Title) { 
+      this.title.setTitle("Добрая аптека - Личный кабинет");
+    }
 
   editUserForm = new FormGroup({
     name: new FormControl('', [Validators.required]),
@@ -91,14 +92,10 @@ export class AccountComponent implements OnInit {
     this.getUser();
   }
 
-  getUser(): void {
-    this.userService.getUser(this.tokenService.token.email).toPromise()
-        .then((data: User | undefined) => {
-          if (data) {
-            this.user$.next(data);
-        }
-      })
+  
 
+  getUser(): void {
+    if (this.tokenService.token != null) {
       this.userService.getUser(this.tokenService.token.email).toPromise()
         .then((data: User | undefined) => {
           if (data) {
@@ -115,11 +112,22 @@ export class AccountComponent implements OnInit {
             });
         }
       })
+    }
   }
 
   logout(): void {
+    this.editUserForm .setValue({
+      name: '',
+      surname: '',
+      phone: '',
+      email: '',
+    });
+    this.editPassForm .setValue({
+      email: '',
+      password: ''
+    });
     this.tokenService.remove();
-    this.router.navigateByUrl("");
+    this.router.navigateByUrl("/");
   }
 
   authU(): void {

@@ -20,15 +20,29 @@ namespace WebStore.Controllers
 
 
         [HttpGet("get/{itemId}")]
-        public async Task<Item> GetItem([FromRoute] int itemId)
+        public async Task<ActionResult<Item>> GetItem([FromRoute] int itemId)
         {
-            return await itemRepository.GetItem(itemId);
+            var item = await itemRepository.GetItem(itemId);
+
+            if (item == null) { return NotFound(); } else { return item; }
         }
         
         [HttpGet("get/categorytitle/{id}")]
         public async Task<Category> GetCategory([FromRoute] int id)
         {
             return await itemRepository.GetCategory(id);
+        }
+
+        [HttpGet("get/manufacturetitle/{id}")]
+        public async Task<Manufacture> GetManufacture([FromRoute] int id)
+        {
+            return await itemRepository.GetManufacture(id);
+        }
+
+        [HttpGet("get/substancetitle/{id}")]
+        public async Task<Substance> GetSubstance([FromRoute] int id)
+        {
+            return await itemRepository.GetSubstance(id);
         }
 
         [HttpGet("get/all")]
@@ -53,6 +67,12 @@ namespace WebStore.Controllers
         public async Task<IEnumerable<Item>> GetPopularItems()
         {
             return await itemRepository.GetPopularItems();
+        }
+
+        [HttpGet("get/popularsmall")]
+        public async Task<IEnumerable<Item>> GetPopularSmallItems()
+        {
+            return await itemRepository.GetPopularSmallItems();
         }
 
         [HttpPost("add")]

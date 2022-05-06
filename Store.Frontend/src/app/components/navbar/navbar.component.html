@@ -25,10 +25,10 @@
     <button class="btn mx-2"><span class="material-icons">shopping_cart</span><p class="b-text">Корзина</p></button>
 
     <div *ngIf="isUserLogged; else auth">
-        <button class="btn mx-2" routerLink="/auth"><span class="material-icons">person</span><p class="b-text">Вход</p></button>
+        <button class="btn mx-2" routerLink="/auth/"><span class="material-icons">person</span><p class="b-text">Вход</p></button>
     </div>
 
     <ng-template #auth>
-        <button class="btn mx-2" routerLink="/account"><span class="material-icons">person</span><p class="b-text">{{emailLogged}}</p></button>
+        <button class="btn mx-2" routerLink="/account/"><span class="material-icons">person</span><p class="b-text">{{loggedUser}}</p></button>
     </ng-template>
 </div>

@@ -66,6 +66,8 @@ namespace WebStore.Controllers
                     x.Email,
                     x.Password,
                     x.Role,
+                    // Новый снизу
+                    x.Name
                 })
                 .FirstOrDefaultAsync(e => e.Email == logModel.Email);
 
@@ -74,10 +76,12 @@ namespace WebStore.Controllers
             #region JWT auth
 
             var shared = ArrayPool<Claim>.Shared;
-            var claims = shared.Rent(3);
+            var claims = shared.Rent(4);
             claims[0] = new Claim("email", user.Email);
             claims[1] = new Claim("role", user.Role.ToString());
             claims[2] = new Claim(JwtRegisteredClaimNames.UniqueName, user.Id.ToString());
+            // И тут
+            claims[3] = new Claim("name", user.Name);
 
             var secret = configuration.GetValue<string>("Secrets:JwtSecret");
             var key = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(secret));

@@ -26,6 +26,16 @@ namespace WebStore.Database.Repositories
         {
             return await dbContext.Categories.AsNoTracking().FirstOrDefaultAsync(x => x.Id == id);
         }
+        
+        public async Task<Manufacture> GetManufacture(int id)
+        {
+            return await dbContext.Manufactures.AsNoTracking().FirstOrDefaultAsync(x => x.Id == id);
+        }
+        
+        public async Task<Substance> GetSubstance(int id)
+        {
+            return await dbContext.Substances.AsNoTracking().FirstOrDefaultAsync(x => x.Id == id);
+        }
 
         public async Task<IEnumerable<Item>> GetAllItems()
         {
@@ -45,6 +55,11 @@ namespace WebStore.Database.Repositories
         public async Task<IEnumerable<Item>> GetPopularItems()
         {
             return await dbContext.Items.AsNoTracking().OrderByDescending(x => x.VisitCount).Take(8).ToListAsync();
+        }
+        
+        public async Task<IEnumerable<Item>> GetPopularSmallItems()
+        {
+            return await dbContext.Items.AsNoTracking().OrderByDescending(x => x.VisitCount).Take(4).ToListAsync();
         }
 
         public async Task CreateItem(ItemViewModel item)

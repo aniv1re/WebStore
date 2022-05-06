@@ -21,31 +21,148 @@
                 </div>
 
                 <div class="title-container ">
-                    <p class="p-title">{{itemData.name}}</p>
-                    <p class="p-desc">{{itemData.itemContent}}</p>
+                    <div>
+                        <p class="p-title">{{itemData.name}}</p>
+                        <p class="p-desc">{{itemData.itemContent}}</p>
 
-                    <div class="badge-container">
-                        <span class="stock-badge">В наличии</span>
-                        <span class="category-badge ms-2">{{categoryData.name}}</span>
+                        <div class="badge-container">
+                            <span class="stock-badge">В наличии</span>
+                            <span class="category-badge ms-2">{{categoryData.name}}</span>
+                        </div>
                     </div>
 
-                    <div class="price-container mt-2">
-                        <p class="p-price">{{itemData.price}} ₽</p>
-                    </div> 
+                    <div>
+                        <div class="price-container mt-2">
+                            <p class="p-desc me-2">цена: </p>
+                            <p class="p-price">{{itemData.price}} ₽</p>
+                        </div> 
 
-                    <div class="count-container">
-                        <button class="btn-reduce" (click)="reduceCount()">-</button>
-                        <input class="count-item-input" [value]="count" readonly>
-                        <button class="btn-add" (click)="addCount()">+</button>
-                        
-                        <button class="btn"><span class="material-icons">add_shopping_cart</span><p class="b-text">В корзину</p></button>
+                        <div class="count-container">
+                            <button class="btn-reduce" (click)="reduceCount()">-</button>
+                            <input class="count-item-input" [value]="count" readonly>
+                            <button class="btn-add" (click)="addCount()">+</button>
+                            
+                            <button class="btn"><span class="material-icons">add_shopping_cart</span><p class="b-text">В корзину</p></button>
+                        </div>
                     </div>
                 </div>
 
-               <div>
-                   
-               </div>
+            <div class="medium-info-container">
+                <div *ngIf="manufacture$ | async as manufactureData">
+                    <p class="small-title-inf">Производитель:</p>
+                    <p class="small-bold-inf">{{manufactureData.name}}</p>
+                </div>
+                
+                <div *ngIf="substance$ | async as substanceData">
+                    <p class="small-title-inf">Действующее вещество:</p>
+                    <p class="small-bold-inf">{{substanceData.name}}</p>
+                </div>
+
+                <div *ngIf="itemData.expiryDate != null">
+                    <p class="small-title-inf">Срок годности:</p>
+                    <p class="small-desc-inf">{{itemData.expiryDate}}</p>
+                </div>
+
+                <div *ngIf="itemData.storageCondition != null">
+                    <p class="small-title-inf">Условия хранения:</p>
+                    <p class="small-desc-inf">{{itemData.storageCondition}}</p>
+                </div>
             </div>
+        </div>
+    </div>
+    <div class="ind-container" *ngIf="itemData.indications != null || itemData.contraindications != null">
+        <div class="ind-small-container" *ngIf="itemData.indications != null">
+            <p class="small-title-ind">Показания к применению</p>
+            <p class="small-desc-ind">{{itemData.indications}}</p>
+        </div>
+        
+        <div class="ind-small-container" *ngIf="itemData.contraindications != null">
+            <p class="small-title-ind">Противопоказания</p>
+            <p class="small-desc-ind">{{itemData.contraindications}}</p>
+        </div>
+    </div>
+
+    <div class="instruction-container m-left">
+        <h2 class="my-5">ИНСТРУКЦИЯ</h2>
+
+        <div *ngIf="itemData.description != null">
+            <p class="small-title-ind">Состав:</p>
+            <p class="small-desc-ind">{{itemData.description}}</p>
+        </div>
+
+        <div *ngIf="itemData.indications != null">
+            <p class="small-title-ind">Показания к применению:</p>
+            <p class="small-desc-ind">{{itemData.indications}}</p>
+        </div>
+
+        <div *ngIf="itemData.contraindications != null">
+            <p class="small-title-ind">Противопоказания:</p>
+            <p class="small-desc-ind">{{itemData.contraindications}}</p>
+        </div>
+
+        <div *ngIf="itemData.dosageDescription != null || itemData.usage != null">
+            <p class="small-title-ind">Способ применения и дозы:</p>
+            <p class="small-desc-ind">{{itemData.dosageDescription}}</p>
+            <p class="small-desc-ind">{{itemData.usage}}</p>
+        </div>
+
+        <div *ngIf="itemData.sideEffect != null">
+            <p class="small-title-ind">Побочное действие:</p>
+            <p class="small-desc-ind">{{itemData.sideEffect}}</p>
+        </div>
+
+        <h2 class="my-5">ДОПОЛНИТЕЛЬНАЯ ИНФОРМАЦИЯ</h2>
+
+        <div *ngIf="manufacture$ | async as manufactureData">
+            <p class="small-title-inf">Производитель:</p>
+            <p class="small-bold-inf">{{manufactureData.name}}</p>
+        </div>
+        
+        <div *ngIf="substance$ | async as substanceData">
+            <p class="small-title-inf">Действующее вещество:</p>
+            <p class="small-bold-inf">{{substanceData.name}}</p>
+        </div>
+
+        <div *ngIf="itemData.expiryDate != null">
+            <p class="small-title-inf">Срок годности:</p>
+            <p class="small-desc-inf">{{itemData.expiryDate}}</p>
+        </div>
+
+        <div *ngIf="itemData.storageCondition != null">
+            <p class="small-title-inf">Условия хранения:</p>
+            <p class="small-desc-inf">{{itemData.storageCondition}}</p>
+        </div>
+    </div>
+
+    <h2 class="m-left my-5 ">ПОПУЛЯРНЫЕ ТОВАРЫ</h2>
+        <div class="popular-items-container" >
+            <div class="card" *ngFor="let item of itemsPopular$ | async">
+
+            <div *ngIf="item.image == null; else loadImage">
+                <span class="material-icons mx-3" style="font-size: 96px; padding-left: 90px; padding-bottom: 70px; padding-top: 70px;">image</span>
+            </div>
+
+            <ng-template #loadImage>
+                <img (click)="moveToItem(item.id)" class="picture-card" src="assets\items\{{item.image}}.jpg" width="170x" height="170px">
+            </ng-template>
+
+            <div *ngIf="item.isStock; else outOfStock">
+                <div class="title-card mx-4" >
+                    <span class="stock-badge">В наличии</span>
+                    <!-- <span class="popular-badge">Популярное</span> -->
+                    <p class="p-title">{{item.name}}</p>
+                    <p class="p-desc">{{item.itemContent}}</p>
+                    
+                </div>
+                <div class="price-card mx-4">
+                    <p class="p-price">{{item.price}} ₽</p>
+                    <button class="btn-p"><span class="material-icons">add_shopping_cart</span><p class="b-text">В корзину</p></button>
+                </div>
+            </div>
+
+            <ng-template #outOfStock>
+                
+            </ng-template>
         </div>
     </div>
 </div>

@@ -4,6 +4,8 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { ReplaySubject, Subscription } from 'rxjs';
 import { Category } from 'src/app/models/category';
 import { Item } from 'src/app/models/item';
+import { Manufacture } from 'src/app/models/manufacture';
+import { Substance } from 'src/app/models/substance';
 import { ItemService } from 'src/app/services/item.service';
 
 @Component({
@@ -16,6 +18,9 @@ export class ItemPageComponent implements OnInit {
   public itemId: number = 0;
   public count: number = 1;
   public category$: ReplaySubject<Category> = new ReplaySubject<Category>();
+  public substance$: ReplaySubject<Substance> = new ReplaySubject<Substance>();
+  public manufacture$: ReplaySubject<Manufacture> = new ReplaySubject<Manufacture>();
+  public itemsPopular$: ReplaySubject<Array<Item>> = new ReplaySubject<Array<Item>>();
   private routeSub: Subscription | undefined;
 
   constructor(private router: Router,
@@ -26,12 +31,10 @@ export class ItemPageComponent implements OnInit {
     this.routeSub = this.actRouter.params.subscribe(
       (data: Params) => {
         let id: number = +data['id']
-
         this.itemId = id;
         this.getItem();
       });
   }
-  //getCategoryTitle this.category$ = 
 
   getItem(): void {
     this.itemService.getItem(this.itemId).toPromise()
@@ -44,13 +47,37 @@ export class ItemPageComponent implements OnInit {
             };
           })
         }
+
+        if (data.substanceId && data.substanceId != null) {
+          this.itemService.getSubstanceTitle(data.substanceId).toPromise().then((data: Substance | undefined) => {
+            if (data) {
+              this.substance$.next(data);
+            };
+          })
+        }
+
+        if (data.manufactureId && data.manufactureId != null) {
+          this.itemService.getManufactureTitle(data.manufactureId).toPromise().then((data: Manufacture | undefined) => {
+            if (data) {
+              this.manufacture$.next(data);
+            };
+          })
+        }
+
         this.item$.next(data);
       }
     })
     .catch((data: HttpErrorResponse) => {
-      if(data.status === 404) {
+      if(data.status === 404 || data.status === 204) {
         this.router.navigateByUrl("");
       }
+    });
+
+    this.itemService.getPopularSmallItems().toPromise()
+      .then((data: Item[] | undefined) => {
+        if (data) {
+          this.itemsPopular$.next(data);
+        }
     });
   }
 
@@ -62,5 +89,9 @@ export class ItemPageComponent implements OnInit {
     if (this.count > 1) {
       this.count--;
     }
+  }
+
+  moveToItem(itemId: number): void {
+    this.router.navigateByUrl("catalog/" + itemId);
   }
 }
