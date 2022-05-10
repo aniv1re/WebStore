@@ -5,7 +5,8 @@
                 <nav aria-label="breadcrumb" class="ms-2">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a routerLink="/auth">Главная</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">{{categoryData.name}}</li>
+                        <li class="breadcrumb-item"><a routerLink="/categories">Каталог</a></li>
+                        <li class="breadcrumb-item active" aria-current="page"><a [routerLink]="['/categories/search']" [queryParams]="{'categoriesId':itemData.categoryId, 'sortState':'2'}">{{categoryData.name}}</a></li>
                         <li class="breadcrumb-item active" aria-current="page">{{itemData.name}}</li>
                     </ol>
                 </nav>
@@ -16,7 +17,7 @@
         <div class="m-left" *ngIf="item$ | async as itemData">
             <div class="info-small-container mt-3">
                 <div class="image-container">
-                    <img class="picture-card" src="assets\items\{{itemData.image}}.jpg" width="300x" height="300px">
+                    <p-image class="picture-card" src="assets\items\{{itemData.image}}.jpg" width="300px" [preview]="true"></p-image>
                     <p class="p-small-desc">Цена действительна только для сайта и может отличаться от цен в аптеках.</p>
                 </div>
 

@@ -1,6 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Params, Router } from '@angular/router';
 import { ReplaySubject, Subscription } from 'rxjs';
 import { Category } from 'src/app/models/category';
 import { Item } from 'src/app/models/item';
@@ -23,11 +23,20 @@ export class ItemPageComponent implements OnInit {
   public itemsPopular$: ReplaySubject<Array<Item>> = new ReplaySubject<Array<Item>>();
   private routeSub: Subscription | undefined;
 
+  public navIsFixed: boolean | undefined;
+
   constructor(private router: Router,
     private actRouter: ActivatedRoute,
-    public itemService: ItemService,) { }
+    public itemService: ItemService ) { }
 
   ngOnInit(): void {
+    this.router.events.subscribe((event) => {
+      if (!(event instanceof NavigationEnd)) {
+          return;
+      }
+      window.scrollTo(0, 0)
+    });
+
     this.routeSub = this.actRouter.params.subscribe(
       (data: Params) => {
         let id: number = +data['id']
@@ -93,5 +102,6 @@ export class ItemPageComponent implements OnInit {
 
   moveToItem(itemId: number): void {
     this.router.navigateByUrl("catalog/" + itemId);
+    
   }
 }

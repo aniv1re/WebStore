@@ -8,7 +8,7 @@ import { Title } from '@angular/platform-browser';
 })
 export class CategoriesComponent implements OnInit {
 
-  constructor(private title: Title) { this.title.setTitle("Добрая аптека - Категории товаров"); }
+  constructor(private title: Title) { this.title.setTitle("Добрая аптека - Каталог лекарственных товаров"); }
 
   ngOnInit(): void {
   }

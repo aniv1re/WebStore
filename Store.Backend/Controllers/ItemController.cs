@@ -1,9 +1,15 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Web.Http;
+using WebStore.Database;
 using WebStore.Database.Interfaces;
 using WebStore.Models;
 using WebStore.ViewModels;
+using AuthorizeAttribute = Microsoft.AspNetCore.Authorization.AuthorizeAttribute;
+using HttpGetAttribute = Microsoft.AspNetCore.Mvc.HttpGetAttribute;
+using HttpPostAttribute = Microsoft.AspNetCore.Mvc.HttpPostAttribute;
+using RouteAttribute = Microsoft.AspNetCore.Mvc.RouteAttribute;
 
 namespace WebStore.Controllers
 {
@@ -57,10 +63,10 @@ namespace WebStore.Controllers
             return await itemRepository.SearchWithName(name);
         }
 
-        [HttpGet("get/category/{categoryId}")]
-        public async Task<IEnumerable<Item>> GetItemByCategory([FromRoute] int categoryId)
+        [HttpPost("get/category")]
+        public async Task<IEnumerable<Item>> SearchWithCategory([FromUri] ItemQuery query)
         {
-            return await itemRepository.SearchWithCategory(categoryId);
+            return await itemRepository.SearchWithCategory(query);
         }
         
         [HttpGet("get/popular")]

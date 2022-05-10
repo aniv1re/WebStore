@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
+using System.Web.Http;
 using WebStore.Database.Interfaces;
 using WebStore.Models;
 using WebStore.ViewModels;
@@ -44,12 +46,28 @@ namespace WebStore.Database.Repositories
 
         public async Task<IEnumerable<Item>> SearchWithName(string name)
         { 
-            return await dbContext.Items.AsNoTracking().Where(x => x.Name.StartsWith(name)).ToListAsync(); ;
+            return await dbContext.Items.AsNoTracking().Where(x => x.Name.Contains(name)).ToListAsync();
         }
 
-        public async Task<IEnumerable<Item>> SearchWithCategory(int categoryId)
+        public async Task<IEnumerable<Item>> SearchWithCategory([FromUri] ItemQuery query)
         {
-            return await dbContext.Items.AsNoTracking().Where(x => x.CategoryId == categoryId).ToListAsync(); ;
+            switch (query.SortState)
+            {
+                case SortState.nameAsc:
+                    return await dbContext.Items.AsNoTracking().Where(x => x.CategoryId == query.CategoriesId).OrderBy(x => x.Name).ToListAsync();
+                case SortState.nameDesc:
+                    return await dbContext.Items.AsNoTracking().Where(x => x.CategoryId == query.CategoriesId).OrderByDescending(x => x.Name).ToListAsync();
+                case SortState.priceAsc:
+                    return await dbContext.Items.AsNoTracking().Where(x => x.CategoryId == query.CategoriesId).OrderBy(x => x.Price).ToListAsync();
+                case SortState.priceDesc:
+                    return await dbContext.Items.AsNoTracking().Where(x => x.CategoryId == query.CategoriesId).OrderByDescending(x => x.Price).ToListAsync();
+                case SortState.popularAsc:
+                    return await dbContext.Items.AsNoTracking().Where(x => x.CategoryId == query.CategoriesId).OrderBy(x => x.VisitCount).ToListAsync();
+                case SortState.popularDesc:
+                    return await dbContext.Items.AsNoTracking().Where(x => x.CategoryId == query.CategoriesId).OrderByDescending(x => x.VisitCount).ToListAsync();
+                default:
+                    return await dbContext.Items.AsNoTracking().Where(x => x.CategoryId == query.CategoriesId).OrderBy(x => x.Name).ToListAsync();
+            }
         }
 
         public async Task<IEnumerable<Item>> GetPopularItems()

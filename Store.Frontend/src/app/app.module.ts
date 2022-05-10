@@ -22,6 +22,13 @@ import { MainComponent } from './components/main/main.component';
 import { TagModule } from 'primeng/tag';
 import { ItemPageComponent } from './components/item-page/item-page.component';
 import { InputNumberModule } from 'primeng/inputnumber';
+import { SearchItemsComponent } from './components/search-items/search-items.component';
+import { ImageModule } from 'primeng/image';
+import { SkeletonModule } from 'primeng/skeleton';
+import { SliderModule } from 'primeng/slider';
+import { DropdownModule } from 'primeng/dropdown';
+import { NgpSortModule } from "ngp-sort-pipe";
+import { SearchCategoriesItemsComponent } from './components/search-categories-items/search-categories-items.component';
 
 const maskConfig: Partial<IConfig> = {
   validation: false,
@@ -36,7 +43,9 @@ const maskConfig: Partial<IConfig> = {
     CategoriesComponent,
     FooterComponent,
     MainComponent,
-    ItemPageComponent
+    ItemPageComponent,
+    SearchItemsComponent,
+    SearchCategoriesItemsComponent
   ],
   imports: [
     CommonModule,
@@ -51,7 +60,12 @@ const maskConfig: Partial<IConfig> = {
     NgxMaskModule.forRoot(maskConfig),
     ToastrModule.forRoot(),
     TagModule,
-    InputNumberModule
+    InputNumberModule,
+    ImageModule,
+    SkeletonModule,
+    SliderModule,
+    DropdownModule,
+    NgpSortModule
   ],
   providers: [MessageService,
     { 

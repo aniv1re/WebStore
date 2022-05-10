@@ -1,4 +1,5 @@
-﻿using WebStore.Models;
+﻿using System.Web.Http;
+using WebStore.Models;
 using WebStore.ViewModels;
 
 namespace WebStore.Database.Interfaces
@@ -11,7 +12,7 @@ namespace WebStore.Database.Interfaces
         Task<Substance> GetSubstance(int id);
         Task<IEnumerable<Item>> GetAllItems();
         Task<IEnumerable<Item>> SearchWithName(string name);
-        Task<IEnumerable<Item>> SearchWithCategory(int categoryId);
+        Task<IEnumerable<Item>> SearchWithCategory([FromUri] ItemQuery query);
         Task<IEnumerable<Item>> GetPopularItems();
         Task<IEnumerable<Item>> GetPopularSmallItems();
         Task CreateItem(ItemViewModel item);

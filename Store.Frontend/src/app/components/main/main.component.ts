@@ -15,7 +15,7 @@ export class MainComponent implements OnInit {
 
   constructor(public itemService: ItemService,
     private router: Router,
-    private title: Title) { this.title.setTitle("Добрая аптека - Главная"); }
+    private title: Title) { this.title.setTitle("Добрая аптека - Главная" ); }
 
   ngOnInit(): void {
     this.itemService.getPopularItems().toPromise()

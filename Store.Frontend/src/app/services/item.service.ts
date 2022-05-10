@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs/internal/Observable';
@@ -6,6 +6,7 @@ import { environment } from 'src/environments/environment';
 import { Category } from '../models/category';
 import { Item } from '../models/item';
 import { Manufacture } from '../models/manufacture';
+import { SortState } from '../models/sortState';
 import { Substance } from '../models/substance';
 
 @Injectable({
@@ -38,5 +39,27 @@ export class ItemService {
   
   getManufactureTitle(id: number): Observable<Manufacture> {
     return this.http.get<Manufacture>(`${this.apiUrl}/api/item/get/manufacturetitle/${id}`);
+  }
+
+  // Search
+
+  getItemsByName(name: string): Observable<Item[]> {
+    return this.http.get<Item[]>(`${this.apiUrl}/api/item/get/name/${name}`);
+  }
+  
+  
+  getItemsByCategoriesWithFilter(categoryIdValue: number, sortStateValue: SortState) {
+    let headers = {
+      headers: new HttpHeaders({
+          'Content-Type': 'application/json'
+      })
+    }
+    
+    let obj = {
+      "categoriesId": categoryIdValue,
+      "sortState": sortStateValue
+    };
+
+    return this.http.post(`${this.apiUrl}/api/Item/get/category`, JSON.stringify(obj), headers);
   }
 }

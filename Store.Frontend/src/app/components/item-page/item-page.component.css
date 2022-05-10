@@ -22,8 +22,9 @@ ul {
     margin-bottom: 0;
 }
 
-img {
+img, p-image {
     object-fit: scale-down;
+    cursor: pointer;
 }
 
 .b-h-text {

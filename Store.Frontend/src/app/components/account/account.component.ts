@@ -92,8 +92,6 @@ export class AccountComponent implements OnInit {
     this.getUser();
   }
 
-  
-
   getUser(): void {
     if (this.tokenService.token != null) {
       this.userService.getUser(this.tokenService.token.email).toPromise()

@@ -29,7 +29,7 @@
     </div>
 
     <ng-template #auth>
-        <div class="account-container">
+        <div class="account-container mb-5">
             <form [formGroup]="editUserForm" (ngSubmit)="editUser() ">
                 <div *ngIf="user$ | async as userData">
                     <p>Контактные данные</p>

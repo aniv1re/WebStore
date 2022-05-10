@@ -59,10 +59,6 @@ ul {
     cursor: pointer;
 }
 
-.list-item:hover {
-    color: #FF5286;
-}
-
 .categories-container {
     position: flex;
     display: inline-flex;

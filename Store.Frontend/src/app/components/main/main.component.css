@@ -8,6 +8,7 @@ p {
 
 img {
     object-fit: scale-down;
+    cursor: pointer;
 }
 
 .card {
@@ -127,7 +128,7 @@ img {
     margin-right: 14%;
 }
 
-.stock-badge {
+.stock-badge-card {
     background-color: #ABFFA9;
     padding-left: 8px;
     padding-right: 8px;
