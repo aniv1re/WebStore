@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { ReplaySubject } from 'rxjs';
+import { Cart } from 'src/app/models/cart';
 import { Item } from 'src/app/models/item';
+import { CartService } from 'src/app/services/cart.service';
 import { ItemService } from 'src/app/services/item.service';
 
 @Component({
@@ -15,7 +18,9 @@ export class MainComponent implements OnInit {
 
   constructor(public itemService: ItemService,
     private router: Router,
-    private title: Title) { this.title.setTitle("Добрая аптека - Главная" ); }
+    private title: Title,
+    private cartService: CartService,
+    public toastr: ToastrService) { this.title.setTitle("Добрая аптека - Главная" ); }
 
   ngOnInit(): void {
     this.itemService.getPopularItems().toPromise()
@@ -28,5 +33,15 @@ export class MainComponent implements OnInit {
 
   moveToItem(itemId: number): void {
     this.router.navigateByUrl("catalog/" + itemId);
+  }
+
+  addToCart(itemId: number, count: number): void {
+    var cartItem = new Cart(itemId, count, new Date());
+    this.cartService.addItemToCart(cartItem);
+
+    this.toastr.success('Товар добавлен в корзину!', 'Корзина', {
+      timeOut: 5000,
+      positionClass: 'toast-bottom-right',
+    });
   }
 }

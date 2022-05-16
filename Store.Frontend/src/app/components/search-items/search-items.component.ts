@@ -2,8 +2,11 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, DoCheck, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, NavigationEnd, Params, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { ReplaySubject, Subscription } from 'rxjs';
+import { Cart } from 'src/app/models/cart';
 import { Item } from 'src/app/models/item';
+import { CartService } from 'src/app/services/cart.service';
 import { ItemService } from 'src/app/services/item.service';
 
 @Component({
@@ -24,7 +27,9 @@ export class SearchItemsComponent implements OnInit {
   constructor( private router: Router,
     private actRouter: ActivatedRoute,
     public itemService: ItemService,
-    public title: Title ) {    
+    public title: Title,
+    private cartService: CartService,
+    public toastr: ToastrService ) {    
     this.filters = [
     {name: 'По умолчанию', value: 'default'},
 
@@ -73,5 +78,15 @@ export class SearchItemsComponent implements OnInit {
 
   moveToItem(itemId: number): void {
     this.router.navigateByUrl("catalog/" + itemId);
+  }
+
+  addToCart(itemId: number, count: number): void {
+    var cartItem = new Cart(itemId, count, new Date());
+    this.cartService.addItemToCart(cartItem);
+
+    this.toastr.success('Товар добавлен в корзину!', 'Корзина', {
+      timeOut: 5000,
+      positionClass: 'toast-bottom-right',
+    });
   }
 }

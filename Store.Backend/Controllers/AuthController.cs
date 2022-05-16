@@ -45,11 +45,12 @@ namespace WebStore.Controllers
             newUser.Role = RoleType.User;
             newUser.RegDate = DateTime.Now;
             newUser.Phone = "+7" + newUser.Phone;
+            newUser.IsGuest = false;
 
             await dbContext.Users.AddAsync(newUser);
             await dbContext.SaveChangesAsync();
 
-            return NoContent();
+            return Ok();
         }
 
         [HttpPost("login")]

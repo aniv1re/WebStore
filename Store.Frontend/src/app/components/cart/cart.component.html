@@ -1,0 +1,66 @@
+<div class="m-left">
+    <div class="top-nav-container">
+        <nav aria-label="breadcrumb" class="ms-2">
+            <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a routerLink="">Главная</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Корзина</li>
+            </ol>
+        </nav>
+
+        <div class="title-container">
+            <h2 class="b-h-text ms-2" style="color: black">КОРЗИНА</h2>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="!isEmptyCart; else empty"> 
+    <div class="cart-container m-left">
+        <div *ngIf="totalCartItems != 0">
+            <div class="accept-order-container ms-2 me-4">
+                <div class="search-item-component">
+                    <h5>Итого: {{roudTotalPrice()}}₽</h5>
+                    <button routerLink="order/" class="btn mt-3 large-btn"><span class="material-icons">shopping_basket</span><p class="b-text">Оформить заказ</p></button>
+                    <button (click)="clearCart()" class="btn mt-3 large-btn"><span class="material-icons">delete</span><p class="b-text">Очистить корзину</p></button>
+                </div>
+            </div>
+        </div>
+
+        <div class="items-container">
+            <div class="card" *ngFor="let item of items$">
+                <div *ngIf="item.image == null; else loadImage">
+                    <span class="material-icons mx-3" style="font-size: 96px; padding-left: 90px; padding-bottom: 70px; padding-top: 70px;">image</span>
+                </div>
+        
+                <ng-template #loadImage>
+                    <img (click)="moveToItem(item.id)" class="picture-card" src="assets\items\{{item.image}}.jpg" width="100x" height="100px">
+                </ng-template>
+                
+                <div class="title-card mx-4" >
+                    <p class="p-title">{{item.name}}</p>
+                    <p class="p-desc">{{item.itemContent}}</p>
+                </div>
+
+                <div class="price-card mx-4">
+                    <p class="p-price">{{item.price}} ₽</p>
+                </div>
+
+                <div class="util-card" >
+                    <button class="btn-reduce" (click)="reduceCount(item.id)" >-</button>
+                    <input class="count-item-input" [value]="getCount(item.id)" readonly>
+                    <button class="btn-add" (click)="addCount(item.id)">+</button>
+                </div>
+
+                <button (click)="deleteItemFromCart(item.id)" class="btn-delete"><span class="material-icons mt-1">delete</span></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<ng-template #empty>
+    <div class="empty-panel">
+        <span class="emoji-label">o(TヘTo)</span> 
+        <p>Ваша корзина пуста...</p>
+    </div>
+</ng-template>
+

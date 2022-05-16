@@ -10,6 +10,7 @@
         public string Password { get; set; }
         public RoleType Role { get; set; }
         public DateTime RegDate { get; set; }
+        public bool IsGuest { get; set; }
 
         public enum RoleType
         {

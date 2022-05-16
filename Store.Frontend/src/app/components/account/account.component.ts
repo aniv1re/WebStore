@@ -125,7 +125,9 @@ export class AccountComponent implements OnInit {
       password: ''
     });
     this.tokenService.remove();
-    this.router.navigateByUrl("/");
+
+    this.router.navigateByUrl("/").then(() => {window.location.reload();});
+    
   }
 
   authU(): void {

@@ -66,7 +66,9 @@ export class AuthComponent implements OnInit {
       this.authService.login(this.loginForm).toPromise()
       .then((data: any) => {
         localStorage.setItem('token', data.token);
-        this.router.navigateByUrl('');
+        this.router.navigateByUrl('').then(() => {
+          window.location.reload();
+        });
       }).catch((data: HttpErrorResponse) => {
         if(data.status == 400) {
           this.toastr.error('Неверно указан пароль или email, повторите попытку!', 'Вход', {
@@ -98,16 +100,24 @@ export class AuthComponent implements OnInit {
       });
     }
     else {
-      this.authService.register(this.registerForm).toPromise().then(() => this.registerForm.reset());
+      this.authService.register(this.registerForm).toPromise().then(() => {
+        this.registerForm.reset();
 
-      this.toastr.success('Вы успешно зарегистрировались!', 'Вход', {
-        timeOut: 5000,
-        positionClass: 'toast-bottom-right',
+        this.toastr.success('Вы успешно зарегистрировались!', 'Вход', {
+          timeOut: 5000,
+          positionClass: 'toast-bottom-right',
+        });
+        
+        this.isLogin = !this.isLogin;
+      }).catch((data: HttpErrorResponse) => {
+        if (data.status == 400) {
+          this.toastr.error(data.error, 'Вход', {
+            timeOut: 5000,
+            positionClass: 'toast-bottom-right',
+          });
+        }
       });
-
-      this.isLogin = !this.isLogin;
     }
-    
   }
 
   tooggle(): void {

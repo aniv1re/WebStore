@@ -1,0 +1,276 @@
+p {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 22px;
+}
+
+li, ol {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 22px;
+    color: black;
+    list-style-type: none;    
+}
+
+ul {
+    margin-left: 0;
+    padding-left: 0;
+    margin-bottom: 0;
+}
+
+img {
+    object-fit: scale-down;
+    cursor: pointer;
+}
+
+.b-text {
+    padding-left: 5px;
+    padding-top: 18px;
+    
+}
+
+.title-container {
+    position: flex;
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+}
+
+.top-nav-container {
+    position: flex;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-start;
+    align-content: flex-start;
+    justify-content: left;
+
+    padding-top: 30px;
+}
+
+.m-left {
+    margin-left: 14%;
+    margin-right: 14%;
+}
+
+.b-h-text {
+    padding-top: 10px;
+    font-weight: bold;
+}
+
+.btn {
+    color: white;
+    width: 135px;
+    height: 40px;
+
+    font-style: normal;
+    
+    font-size: 14px;
+    line-height: 22px;
+
+    background-color: #FF5286;
+    box-sizing: border-box;
+    border-radius: 5px;
+    box-shadow: none;
+    outline: none !important;
+
+    transition-timing-function: linear;
+    transition: .3s;
+
+    position: flex;
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+
+    margin-left: 15px;
+}
+
+.btn:hover {
+    color: black;
+    background-color: white;
+    border-color: #FF5286;
+    box-shadow: none;
+    cursor: pointer;
+}
+
+.large-btn {
+    width: 100%;
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+.search-item-component {
+    background-color: #E1F4FF;
+    padding: 20px;
+    width: 305px;
+    height: auto;
+    border-radius: 10px;
+    margin-top: 15px;
+    margin-bottom: 80%;
+}
+
+/*card*/
+
+.card {
+    zoom: 1;
+
+    width: 100%;
+    height: 125px;
+
+    /* margin-left: 15px; */
+    margin-right: 15px;
+    margin-top: 15px;
+
+    border-radius: 5px;
+
+    transition-timing-function: linear;
+    transition: .1s;
+
+    
+    position: flex;
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    align-content: space-between;
+    justify-content: space-between;
+
+    padding: 25px;
+}
+
+.title-card {
+    width: 400px
+}
+
+.cart-container {
+    position: flex;
+    display: inline-flex;
+    flex-direction: row;
+    align-items: flex-start;
+    align-content: flex-start;
+    justify-content: flex-start;
+}
+
+.picture-card {
+    margin: 0;
+}
+
+.p-title {
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 0;
+}
+
+.p-desc {
+    font-weight: 600;
+    font-size: 14px;
+    color: #7D7D7D;
+}
+
+.p-price {
+    font-weight: bold;
+    font-size: 22px;
+
+    padding-top: 10px;
+}
+
+.b-text {
+    padding-left: 5px;
+    padding-top: 19px;
+}
+
+.price-card {
+    width: 100px;
+}
+
+.btn-add {
+    height: 40px;
+    width: 40px;
+    background-color: #E1F4FF;
+    box-sizing: border-box;
+
+    border-radius: 0 5px 5px 0;
+    border: none !important;
+
+    font-weight: bold;
+    font-size: 18px;
+
+    transition-timing-function: linear;
+    transition: .3s;
+}
+
+.btn-delete {
+    height: 40px;
+    width: 40px;
+    background-color: #E1F4FF;
+    box-sizing: border-box;
+
+    border-radius: 5px;
+    border: none !important;
+
+    font-weight: bold;
+    font-size: 18px;
+    margin-left: 10px;
+
+    transition-timing-function: linear;
+    transition: .3s;
+}
+
+.btn-reduce {
+    height: 40px;
+    width: 40px;
+    background-color: #E1F4FF;
+    box-sizing: border-box;
+
+    border-radius: 5px 0 0 5px;
+    border: none !important;
+
+    font-weight: bold;
+    font-size: 18px;
+
+    transition-timing-function: linear;
+    transition: .3s;
+}
+
+.count-item-input {
+    width: 40px;
+    height: 40px;
+    text-align: center;
+
+    outline: none !important;
+    border: none !important;
+
+    background-color: #E1F4FF;
+
+    font-size: 16px;
+}
+
+.btn-add:hover, .btn-reduce:hover, .btn-delete:hover {
+    background-color:  #b0caff;
+}
+
+.emoji-label {
+    font-size: 48px;
+    font-weight: bold;
+}
+
+.empty-panel {
+    height: 400px;
+    width: 100%;
+    position: flex;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+}
+
+.items-container {
+    width: 100%;
+}

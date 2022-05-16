@@ -8,6 +8,8 @@ namespace WebStore.Database.Interfaces
         Task<Order> GetOrder(int id);
         Task<IEnumerable<Order>> GetAllOrders();
         Task<IEnumerable<Order>> GetUserOrders(int userId);
+        Task<IEnumerable<MapItem>> GetItemsLocationPoints(string city);
+        Task<MapItem> GetItemLocationPoint(int id);
         Task CreateOrder(Order order);
         Task EditOrder(Order order);
         Task DeleteOrder(Order order);

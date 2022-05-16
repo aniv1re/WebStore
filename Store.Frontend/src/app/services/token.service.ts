@@ -16,7 +16,6 @@ export class TokenService {
       let token = localStorage.getItem('token');
       if (token !== null) {
         let parseToken = JSON.parse(window.atob(token.split('.')[1]));
-        // console.log(parseToken);
         TokenService.user = new UserToken(+parseToken.unique_name, parseToken.email, parseToken.role, parseToken.name);
       }
     }

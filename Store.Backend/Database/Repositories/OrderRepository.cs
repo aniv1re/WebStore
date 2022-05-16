@@ -27,6 +27,16 @@ namespace WebStore.Database.Repositories
         {
             return await dbContext.Orders.AsNoTracking().Where(x => x.UserId == userId).ToListAsync();
         }
+        
+        public async Task<IEnumerable<MapItem>> GetItemsLocationPoints(string city)
+        {
+            return await dbContext.MapItems.AsNoTracking().Where(x => x.City == city).ToListAsync();
+        }
+        
+        public async Task<MapItem> GetItemLocationPoint(int id)
+        {
+            return await dbContext.MapItems.AsNoTracking().FirstOrDefaultAsync(x => x.Id == id);
+        }
 
         public async Task CreateOrder(Order order)
         {

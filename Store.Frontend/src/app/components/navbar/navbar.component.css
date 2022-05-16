@@ -10,6 +10,10 @@ a {
     text-decoration: none;
 }
 
+li {
+    cursor: pointer;
+}
+
 .nav-link {
     color: black;
     font-weight: bold;

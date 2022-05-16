@@ -2,6 +2,8 @@ import { ChangeDetectionStrategy, Component, DoCheck, OnChanges, OnInit } from '
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { UserToken } from 'src/app/models/userToken';
+import { CartService } from 'src/app/services/cart.service';
+import { LocationService } from 'src/app/services/location.service';
 import { TokenService } from 'src/app/services/token.service';
 
 @Component({
@@ -14,21 +16,39 @@ export class NavbarComponent implements OnInit, DoCheck {
   public loggedUser: string = '';
   public isUserLogged: boolean | undefined;
   public searchText: string | undefined;
+  public cartItemsCount: string = "";
+  public userLocation: string = "";
   private readonly token: UserToken;
   
   constructor(private tokenService: TokenService,
     private toastr: ToastrService,
-    private router: Router) { this.token = tokenService.token; }
+    private router: Router,
+    private cartService: CartService,
+    private locationService: LocationService) { this.token = tokenService.token; }
 
   ngOnInit(): void {
     this.isLogged();
     if (localStorage.getItem('token') !== null) {
       this.loggedUser = this.token.email;
     }
+
+    this.getCartItemsData();
+
+    this.userLocation = this.locationService.getUserLocation() == "" || this.locationService.getUserLocation() == undefined ? "Архангельск" : this.locationService.getUserLocation();
   }
 
   ngDoCheck(): void {
     this.isLogged();
+    this.getCartItemsData();
+  }
+
+  setLocation(location: string): void {
+    this.locationService.setUserLocation(location);
+    window.location.reload();
+  }
+
+  getCartItemsData(): void {
+    this.cartItemsCount = this.cartService.getCartItemsCount();
   }
 
   isLogged(): void {
@@ -53,6 +73,12 @@ export class NavbarComponent implements OnInit, DoCheck {
         window.location.reload();
       });
     }
+  }
+
+  moveToCart(): void {
+    this.router.navigateByUrl("/cart").then(() => {
+      window.location.reload();
+    });
   }
 
 }

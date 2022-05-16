@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs/internal/Observable';
 import { environment } from 'src/environments/environment';
+import { Cart } from '../models/cart';
 import { Category } from '../models/category';
 import { Item } from '../models/item';
 import { Manufacture } from '../models/manufacture';
@@ -47,6 +48,9 @@ export class ItemService {
     return this.http.get<Item[]>(`${this.apiUrl}/api/item/get/name/${name}`);
   }
   
+  getItemById(id: number) {
+    return this.http.get(`${this.apiUrl}/api/item/get/${id}`);
+  }
   
   getItemsByCategoriesWithFilter(categoryIdValue: number, sortStateValue: SortState) {
     let headers = {

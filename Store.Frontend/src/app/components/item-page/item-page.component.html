@@ -43,7 +43,7 @@
                             <input class="count-item-input" [value]="count" readonly>
                             <button class="btn-add" (click)="addCount()">+</button>
                             
-                            <button class="btn"><span class="material-icons">add_shopping_cart</span><p class="b-text">В корзину</p></button>
+                            <button (click)="addToCart(itemData.id, count)" class="btn"><span class="material-icons">add_shopping_cart</span><p class="b-text">В корзину</p></button>
                         </div>
                     </div>
                 </div>

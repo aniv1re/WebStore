@@ -1,0 +1,142 @@
+<div class="m-left">
+    <div class="top-nav-container">
+        <nav aria-label="breadcrumb" class="ms-2">
+            <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a routerLink="">Главная</a></li>
+            <li class="breadcrumb-item"><a routerLink="/cart">Корзина</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Оформление заказа</li>
+            </ol>
+        </nav>
+
+        <div class="title-container">
+            <h2 class="b-h-text ms-2" style="color: black">ОФОРМЛЕНИЕ ЗАКАЗА</h2>
+        </div>
+    </div>
+</div>
+
+<div class="order-container m-left">
+    <div class="set-info-module">
+        <div class="user-module mt-3 ">
+            <h4 class="ms-2">1. Покупатель</h4>
+            <div *ngIf="isLogged; else guest">
+                <div class="ms-2 mt-4">
+                    <p class="mb-1">Вы вошли как:</p>
+                    <button class="btn" routerLink="/account"><span class="material-icons">person</span><p class="b-text">{{user}}</p></button>
+                </div>
+            </div>
+            <ng-template #guest>
+                <div class="edit-data-container ms-2 mt-4">
+                    <div class="guest-logged">
+                        <label for="inputLogin" class="form-label">Имя</label>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text"><span class="material-icons">person</span></span>
+                            <input minlength="3" required type="text" id="inputName" class="form-control" placeholder="Иван">
+                        </div>
+
+                        <label for="inputEmail" class="form-label">Email</label>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">@</span>
+                            <input pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required type="text" id="inputEmail" class="form-control" placeholder="example@gmail.com" aria-label="Email" aria-describedby="basic-addon1">
+                        </div>
+
+                        <label for="inputLogin" class="form-label">Телефон</label>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text"><span class="material-icons">phone</span></span>
+                            <input type="text" [required]="true" id="inputPhone" class="form-control" placeholder="+7(999)999-99-99" mask="(000)000-0000" prefix="+7" [showMaskTyped]="true">
+                        </div>
+                    </div>
+                    <div>
+                        <p-divider layout="vertical">
+                            <b>ИЛИ</b>
+                        </p-divider>
+                    </div>
+                    <div class="person-logged">
+                        <button class="btn" routerLink="/auth"><span class="material-icons">person</span><p class="b-text">Войти в аккаунт</p></button>
+                    </div>
+                </div>
+            </ng-template>
+            
+        </div>
+
+        <div class="items-get-point-module">
+            <h4 class="ms-2 mt-5 mb-4">2. Получение товара</h4>
+
+            <div *ngIf="selectedLocationId != undefined; else emptySelectedLocation">
+                <div *ngIf="selectedLocation$ | async as selectedLocationData">
+                    <div class="ms-2 my-3">
+                        <p-panel header="Выбранный пункт доставки" >
+                            <div class="card">
+                                <div class="card-component">
+                                    <p class="small-text mb-1">Адрес</p>
+                                    <p>{{selectedLocationData.city}}, {{selectedLocationData.address}}</p>
+                                </div>
+
+                                <div class="ms-4 card-component">
+                                    <p class="small-text mb-1">Телефон</p>
+                                    <p>{{selectedLocationData.phone}}</p>
+                                </div>
+            
+                                <div class="ms-4 card-component">
+                                    <p class="small-text mb-1">Время работы</p>
+                                    <p>{{selectedLocationData.workTime}}</p>
+                                </div>
+
+                                <button disabled class="btn ms-4"><span class="material-icons">place</span><p class="b-text">Выбран</p></button>
+                            </div>
+                        </p-panel>
+                    </div>
+                </div>
+            </div>
+            
+            <ng-template #emptySelectedLocation>
+                <div class="ms-2 my-3">
+                    <p-panel header="Выбранный пункт доставки" >
+                        <p class="mt-3">Выберите пункт выдачи товара из списка ниже.</p>
+                    </p-panel>
+                </div>
+            </ng-template>
+
+            <div class="ms-2">
+                <p-panel header="Список пунктов выдачи товара" [toggleable]="true" [collapsed]="true">
+                    <div *ngFor="let location of locationPoints$ | async">
+                        <div class="card">
+                            <div class="card-component">
+                                <p class="small-text mb-1">Адрес</p>
+                                <p>{{location.city}}, {{location.address}}</p>
+                            </div>
+        
+                            <div class="ms-4 card-component">
+                                <p class="small-text mb-1">Телефон</p>
+                                <p>{{location.phone}}</p>
+                            </div>
+        
+                            <div class="ms-4 card-component">
+                                <p class="small-text mb-1">Время работы</p>
+                                <p>{{location.workTime}}</p>
+                            </div>
+        
+                            <button (click)="selectLocation(location.id)" class="btn ms-4"><span class="material-icons">place</span><p class="b-text">Выбрать</p></button>
+                        </div>
+                    </div>
+                </p-panel>
+            </div>
+        </div>
+    </div>
+
+    <div class="items-module ms-3">
+        <div class="order-items">
+            <div *ngFor="let item of items$" class="small-card">
+                    <p class="ms-2 mt-2 mb-0">{{item.name}}</p>
+                    <p class="p-desc ms-2 mt-0 mb-2">{{getCount(item.id)}} x {{item.price}} ₽</p>
+            </div>
+        </div>
+        <div class="confirm-order-component mt-3">
+            
+            <h5 class="mt-3">Итого: <span class="p-title">{{roudTotalPrice()}}₽</span></h5>
+            <button class="btn mb-1 large-btn"><span class="material-icons">shopping_basket</span><p class="b-text">Подтвердить заказ</p></button>
+            <p class="p-desc mt-2">
+                Нажимая кнопку «Оформить заказ», вы даёте свое согласие на обработку ваших персональных данных.
+            </p>
+        </div>
+    </div>
+</div>

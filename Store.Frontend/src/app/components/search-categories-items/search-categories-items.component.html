@@ -43,7 +43,7 @@
             </div>
             <div class="price-card mx-4">
                 <p class="p-price">{{item.price}} ₽</p>
-                <button class="btn"><span class="material-icons">add_shopping_cart</span><p class="b-text">В корзину</p></button>
+                <button (click)="addToCart(item.id, 1)" class="btn"><span class="material-icons">add_shopping_cart</span><p class="b-text">В корзину</p></button>
             </div>
         </div>    
     </div>

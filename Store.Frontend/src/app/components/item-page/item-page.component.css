@@ -146,6 +146,7 @@ img, p-image {
     align-content: center;
     justify-content: center;
     width: 350px;
+    height: 350px;
 }
 
 .title-container {

@@ -29,6 +29,11 @@ import { SliderModule } from 'primeng/slider';
 import { DropdownModule } from 'primeng/dropdown';
 import { NgpSortModule } from "ngp-sort-pipe";
 import { SearchCategoriesItemsComponent } from './components/search-categories-items/search-categories-items.component';
+import { CartComponent } from './components/cart/cart.component';
+import { BadgeModule } from 'primeng/badge';
+import { OrderComponent } from './components/order/order.component';
+import { DividerModule } from 'primeng/divider';
+import { PanelModule } from 'primeng/panel';
 
 const maskConfig: Partial<IConfig> = {
   validation: false,
@@ -45,7 +50,9 @@ const maskConfig: Partial<IConfig> = {
     MainComponent,
     ItemPageComponent,
     SearchItemsComponent,
-    SearchCategoriesItemsComponent
+    SearchCategoriesItemsComponent,
+    CartComponent,
+    OrderComponent
   ],
   imports: [
     CommonModule,
@@ -65,14 +72,19 @@ const maskConfig: Partial<IConfig> = {
     SkeletonModule,
     SliderModule,
     DropdownModule,
-    NgpSortModule
+    NgpSortModule,
+    BadgeModule,
+    DividerModule,
+    PanelModule
   ],
-  providers: [MessageService,
+  providers: [ MessageService,
     { 
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
       multi: true
     }],
+    
+    
   
   bootstrap: [AppComponent]
 })
