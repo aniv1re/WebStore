@@ -5,8 +5,10 @@ import { ToastrService } from 'ngx-toastr';
 import { ReplaySubject } from 'rxjs';
 import { Cart } from 'src/app/models/cart';
 import { Item } from 'src/app/models/item';
+import { News } from 'src/app/models/news';
 import { CartService } from 'src/app/services/cart.service';
 import { ItemService } from 'src/app/services/item.service';
+import { NewsService } from 'src/app/services/news.service';
 
 @Component({
   selector: 'app-main',
@@ -15,20 +17,18 @@ import { ItemService } from 'src/app/services/item.service';
 })
 export class MainComponent implements OnInit {
   public items$: ReplaySubject<Array<Item>> = new ReplaySubject<Array<Item>>();
+  public news$: News[] = [];
 
   constructor(public itemService: ItemService,
     private router: Router,
     private title: Title,
     private cartService: CartService,
-    public toastr: ToastrService) { this.title.setTitle("Добрая аптека - Главная" ); }
+    private toastr: ToastrService,
+    private newsService: NewsService) { this.title.setTitle("Добрая аптека - Главная" ); }
 
   ngOnInit(): void {
-    this.itemService.getPopularItems().toPromise()
-      .then((data: Item[] | undefined) => {
-        if (data) {
-          this.items$.next(data);
-        }
-    });
+    this.loadItems();
+    this.loadNews();
   }
 
   moveToItem(itemId: number): void {
@@ -42,6 +42,25 @@ export class MainComponent implements OnInit {
     this.toastr.success('Товар добавлен в корзину!', 'Корзина', {
       timeOut: 5000,
       positionClass: 'toast-bottom-right',
+    });
+  }
+
+  loadItems(): void {
+    this.itemService.getPopularItems().toPromise()
+    .then((data: Item[] | undefined) => {
+      if (data) {
+        this.items$.next(data);
+      }
+    });
+  }
+
+  loadNews(): void {
+    this.newsService.getLastNews().toPromise()
+    .then((data: News[] | undefined) => {
+      if (data) {
+        this.news$.push(data[0]); 
+        console.log(data) 
+      }
     });
   }
 }

@@ -30,9 +30,20 @@ namespace WebStore.Database.Repositories
                                             Surname = x.Surname,
                                             Email = x.Email,
                                             Phone = x.Phone,
+                                            RoleId = x.Role,
                                             RegDate = x.RegDate 
                                         })
                                         .FirstOrDefaultAsync(x => x.Email == email);
+        }
+
+        public async Task<User> GetUserById(int id)
+        {
+            return await dbContext.Users.AsNoTracking().FirstOrDefaultAsync(x => x.Id == id);
+        }
+
+        public async Task<IEnumerable<User>> GetAllUsers()
+        {
+            return await dbContext.Users.AsNoTracking().ToListAsync();
         }
 
         public async Task CreateUser(User user)

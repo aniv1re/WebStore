@@ -1,0 +1,50 @@
+p {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 22px;
+}
+
+li, ol {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 22px;
+    color: black;
+}
+
+.top-nav-container {
+    position: flex;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-start;
+    align-content: flex-start;
+    justify-content: left;    
+    padding-top: 30px;
+}
+
+.b-h-text {
+    padding-top: 10px;
+    font-weight: bold;
+}
+
+.m-left {
+    margin-left: 14%;
+    margin-right: 14%;
+}
+
+.company-info {
+    position: flex;
+    display: inline-flex;
+    flex-direction: row;
+    align-items: flex-start;
+    align-content: flex-start;
+    justify-content: left;  
+}
+
+.info-module {
+    text-align: justify;
+    width: 250px;
+}

@@ -1,8 +1,16 @@
+import { formatDate } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { ReplaySubject } from 'rxjs';
 import { Cart } from 'src/app/models/cart';
+import { Guest } from 'src/app/models/guest';
 import { MapItem } from 'src/app/models/mapItem';
+import { OrderViewModel, StatusId } from 'src/app/models/orderViewModel';
+import { OrderItem } from 'src/app/models/orderItem';
 import { UserToken } from 'src/app/models/userToken';
+import { AuthService } from 'src/app/services/auth.service';
 import { CartService } from 'src/app/services/cart.service';
 import { ItemService } from 'src/app/services/item.service';
 import { LocationService } from 'src/app/services/location.service';
@@ -17,9 +25,9 @@ import { TokenService } from 'src/app/services/token.service';
 export class OrderComponent implements OnInit {
   public user: string = "";
   public isLogged: boolean = false;
-  private token: UserToken | undefined;
+  private token: UserToken;
   public locationPoints$: ReplaySubject<Array<MapItem>> = new ReplaySubject<Array<MapItem>>();
-  public selectedLocationId: number | undefined;
+  public selectedLocationId: number = 0;
   public selectedLocation$: ReplaySubject<MapItem> = new ReplaySubject<MapItem>();
 
   public items$: any[] = [];
@@ -28,12 +36,20 @@ export class OrderComponent implements OnInit {
   public totalPrice: number = 0;
   public totalItems: number[] = [];
   public totalCartItems: number = 0;
+  public isOrdered: boolean = false;
+  public createdOrderId: number = 0;
+  public orderGivinDate: Date = new Date();
+  public selectLocationStreet: string = "";
+  public createdGuestId: number = 0;
 
   constructor(private tokenService: TokenService,
     private orderService: OrderService,
     private locationService: LocationService,
     private cartService: CartService,
-    private itemService: ItemService) { 
+    private itemService: ItemService,
+    private toastr: ToastrService,
+    private router: Router,
+    private authService: AuthService) { 
     this.token = this.tokenService.token;
 
     if (this.token)
@@ -43,8 +59,13 @@ export class OrderComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getLocations();
-    this.getItems();
+    if (this.cartService.getCartItems().length == 0) {
+      this.router.navigateByUrl("");
+    }
+    else {
+      this.getLocations();
+      this.getItems();
+    }
   }
 
   getLocations(): void {
@@ -62,6 +83,7 @@ export class OrderComponent implements OnInit {
     this.orderService.getLocationById(id).toPromise().then((data: MapItem | undefined) => {
       if (data) {
         this.selectedLocation$.next(data);
+        this.selectLocationStreet = data.address
       }
     })
   }
@@ -94,5 +116,84 @@ export class OrderComponent implements OnInit {
 
   roudTotalPrice(): any {
     return this.totalPrice.toFixed(2);
+  }
+
+
+  createOrder(): void {
+    if (this.selectedLocationId == 0) {
+      this.toastr.error('Выберите пункт выдачи товара, чтобы продолжить!', 'Оформление заказа', {
+        timeOut: 5000,
+        positionClass: 'toast-bottom-right',
+      });
+    }
+    else {
+      if (this.isLogged) {
+        var items: OrderItem[] = [];
+        for (let i = 0; i < this.cartItems.length; i++) {
+          items.push(new OrderItem(this.cartItems[i].idItem, this.cartItems[i].countItem));
+        }
+
+        let ord = new OrderViewModel(this.token?.id, JSON.stringify(items), this.totalPrice, StatusId.checking, this.selectedLocationId, new Date(), false, -1);
+
+        this.orderService.createNewOrder(ord).toPromise().then((data: number | undefined) => {
+          if (data)
+            this.createdOrderId = data;
+        })
+
+        this.orderGivinDate.setDate(this.orderGivinDate.getDate() + 2);
+        
+        this.isOrdered = true;
+        
+        this.cartService.clearCart();
+
+        this.toastr.success ('Заказ успешно оформлен!', 'Оформление заказа', {
+          timeOut: 5000,
+          positionClass: 'toast-bottom-right',
+        });
+      }
+      else {
+        var items: OrderItem[] = [];
+        for (let i = 0; i < this.cartItems.length; i++) {
+          items.push(new OrderItem(this.cartItems[i].idItem, this.cartItems[i].countItem));
+        }
+
+        let guest = new Guest((<HTMLInputElement>document.getElementById("inputName")).value,
+                              (<HTMLInputElement>document.getElementById("inputEmail")).value,
+                              (<HTMLInputElement>document.getElementById("inputPhone")).value);
+
+        this.authService.createGuest(guest).toPromise()
+        .then((data: number | undefined) => {
+          if (data) {
+            this.createdGuestId = data;
+            console.log(data + "data");
+
+            let ord = new OrderViewModel(-1, JSON.stringify(items), this.totalPrice, StatusId.checking, this.selectedLocationId, new Date(), true, data);
+
+            this.orderService.createNewOrder(ord).toPromise()
+            .then((data: number | undefined) => {
+              if (data)
+                this.createdOrderId = data;
+            })
+
+            this.orderGivinDate.setDate(this.orderGivinDate.getDate() + 2);
+            
+            this.isOrdered = true;
+            
+            this.cartService.clearCart();
+
+            this.toastr.success ('Заказ успешно оформлен!', 'Оформление заказа', {
+              timeOut: 5000,
+              positionClass: 'toast-bottom-right',
+            });        
+          }
+        });
+      }
+    }
+  }
+
+  back(): void {
+    this.router.navigateByUrl("").then(() => {
+      window.location.reload();
+    });
   }
 }

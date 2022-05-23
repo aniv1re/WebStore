@@ -23,6 +23,18 @@ namespace WebStore.Controllers
         {
             return await userRepository.GetUser(email);
         }
+        
+        [HttpGet("get/id/{id}")]
+        public async Task<User> GetUserById([FromRoute] int id)
+        {
+            return await userRepository.GetUserById(id);
+        }
+        
+        [HttpGet("get/all")]
+        public async Task<IEnumerable<User>> GetAllUsers()
+        {
+            return await userRepository.GetAllUsers();
+        }
 
         [HttpPost("add")]
         public async Task<IActionResult> CreateUser([FromForm] User user)
@@ -30,7 +42,7 @@ namespace WebStore.Controllers
             await userRepository.CreateUser(user);
             await userRepository.SaveChangesAsync();
 
-            return NoContent();
+            return Ok();
         }
 
         [HttpPost("edit")]
@@ -39,7 +51,7 @@ namespace WebStore.Controllers
             await userRepository.EditUser(user);
             await userRepository.SaveChangesAsync();
 
-            return NoContent();
+            return Ok();
         }
         
         [HttpPost("edit/userpass/")]
@@ -48,7 +60,7 @@ namespace WebStore.Controllers
             await userRepository.EditUserPass(user);
             await userRepository.SaveChangesAsync();
 
-            return NoContent();
+            return Ok();
         }
 
         [HttpPost("delete/{userEmail}")]
@@ -57,7 +69,7 @@ namespace WebStore.Controllers
             await userRepository.DeleteUser(userEmail);
             await userRepository.SaveChangesAsync();
 
-            return NoContent();
+            return Ok();
         }
     }
 }

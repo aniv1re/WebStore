@@ -34,6 +34,9 @@ import { BadgeModule } from 'primeng/badge';
 import { OrderComponent } from './components/order/order.component';
 import { DividerModule } from 'primeng/divider';
 import { PanelModule } from 'primeng/panel';
+import { AdminPanelComponent } from './components/admin-panel/admin-panel.component';
+import { CompanyComponent } from './components/company/company.component';
+import { CarouselModule } from 'primeng/carousel';
 
 const maskConfig: Partial<IConfig> = {
   validation: false,
@@ -52,7 +55,9 @@ const maskConfig: Partial<IConfig> = {
     SearchItemsComponent,
     SearchCategoriesItemsComponent,
     CartComponent,
-    OrderComponent
+    OrderComponent,
+    AdminPanelComponent,
+    CompanyComponent
   ],
   imports: [
     CommonModule,
@@ -75,7 +80,8 @@ const maskConfig: Partial<IConfig> = {
     NgpSortModule,
     BadgeModule,
     DividerModule,
-    PanelModule
+    PanelModule,
+    CarouselModule
   ],
   providers: [ MessageService,
     { 

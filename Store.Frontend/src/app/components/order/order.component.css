@@ -239,6 +239,17 @@ label, p {
     justify-content: space-between;
 }
 
+.success-order-container {
+    height: 400px;
+    width: 100%;
+    position: flex;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+}
+
 .order-container {
     position: flex;
     display: inline-flex;
@@ -246,4 +257,13 @@ label, p {
     align-items: flex-start;
     align-content: flex-start;
     justify-content: flex-start;
+}
+
+.bold-text {
+    font-weight: bold;
+}
+
+.emoji-label {
+    font-size: 48px;
+    font-weight: bold;
 }

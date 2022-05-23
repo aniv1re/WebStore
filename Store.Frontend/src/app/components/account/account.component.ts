@@ -3,8 +3,14 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { ReplaySubject } from 'rxjs';
+import { Observable, ReplaySubject } from 'rxjs';
+import { Item } from 'src/app/models/item';
+import { ItemCount } from 'src/app/models/itemCount';
+import { Order } from 'src/app/models/order';
+import { OrderItem } from 'src/app/models/orderItem';
 import { User } from 'src/app/models/user';
+import { ItemService } from 'src/app/services/item.service';
+import { OrderService } from 'src/app/services/order.service';
 import { TokenService } from 'src/app/services/token.service';
 import { UserService } from 'src/app/services/user.service';
 
@@ -19,12 +25,21 @@ export class AccountComponent implements OnInit {
   public user$: ReplaySubject<User> = new ReplaySubject<User>();
 
   public passwordInputConfirm: string = "";
+
+  public orders$: ReplaySubject<Order[]> = new ReplaySubject<Order[]>();
+  public items$: ItemCount[] = [];
+  public extractedItems$: Item[] = [];
+  public ordersExists: boolean = false;
+
+  public isAdmin: boolean = false;
   
   constructor(private router: Router,
     private tokenService: TokenService,
     private userService: UserService,
     private toastr: ToastrService,
-    private title: Title) { 
+    private title: Title,
+    private orderService: OrderService,
+    private itemService: ItemService) { 
       this.title.setTitle("Добрая аптека - Личный кабинет");
     }
 
@@ -90,6 +105,10 @@ export class AccountComponent implements OnInit {
 
   ngOnInit(): void {
     this.getUser();
+    this.getOrders();
+
+    if (this.tokenService.token.role == 'Admin')
+      this.isAdmin = true;
   }
 
   getUser(): void {
@@ -136,5 +155,56 @@ export class AccountComponent implements OnInit {
 
   orders(): void {
     this.isOrders = true;
+  }
+
+  getOrders(): void {
+    this.orderService.getUserOrders(this.tokenService.token.id).toPromise()
+    .then((data: Order[] | undefined) => {
+      if (data) {
+        if (data.length > 0)
+          this.ordersExists = true;
+        // Все заказы
+        this.orders$.next(data);
+
+        // Вытаскиваем отдельно для каждого заказа массив всех товаров с количеством
+        for (let i = 0; i < data.length; i++) {
+          let extractItemsArray = data[i].items;
+          
+          // Парсим в массив
+          let extractItemsArrayParsed: OrderItem[] = JSON.parse(extractItemsArray);
+          
+          for (let j = 0; j < extractItemsArrayParsed.length; j++) {
+            this.itemService.getItemById(extractItemsArrayParsed[j].itemId)
+            .toPromise()
+            .then((dataItem: any | undefined) => {
+              if (dataItem) {
+                this.items$.push(new ItemCount(i, dataItem, extractItemsArrayParsed[j].count));
+              }
+            });
+          }        
+        }
+      }
+    });
+  }
+
+  getStatus(id: number): string {
+    switch(id){
+      case 2:
+        return 'Проверяется';
+        break;
+      case 4:
+        return 'Принято';
+        break;
+      case 8:
+        return 'Получено';
+        break;
+      default:
+        return 'Проверяется';
+        break;
+    }
+  }
+
+  roudTotalPrice(price: number): any {
+    return price.toFixed(2);
   }
 }

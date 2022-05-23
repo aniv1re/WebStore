@@ -1,16 +1,20 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using WebStore.Database.Interfaces;
 using WebStore.Models;
+using WebStore.ViewModels;
 
 namespace WebStore.Database.Repositories
 {
     public class OrderRepository : IOrderRepository
     {
         private readonly ApplicationDatabaseContext dbContext;
+        private readonly IMapper mapper;
 
-        public OrderRepository(ApplicationDatabaseContext dbContext)
+        public OrderRepository(ApplicationDatabaseContext dbContext, IMapper mapper)
         {
             this.dbContext = dbContext;
+            this.mapper = mapper;
         }
 
         public async Task<Order> GetOrder(int id)
@@ -32,16 +36,25 @@ namespace WebStore.Database.Repositories
         {
             return await dbContext.MapItems.AsNoTracking().Where(x => x.City == city).ToListAsync();
         }
-        
+
+        public async Task<IEnumerable<MapItem>> GetAllLocationPoints()
+        {
+            return await dbContext.MapItems.AsNoTracking().ToListAsync();
+        }
+
         public async Task<MapItem> GetItemLocationPoint(int id)
         {
             return await dbContext.MapItems.AsNoTracking().FirstOrDefaultAsync(x => x.Id == id);
         }
 
-        public async Task CreateOrder(Order order)
+        public async Task<int> CreateOrder(OrderViewModel order)
         {
-            await dbContext.Orders.AddAsync(order);
+            var newOrder = mapper.Map<Order>(order);
+
+            var createdOrder = await dbContext.Orders.AddAsync(newOrder);
             await dbContext.SaveChangesAsync();
+
+            return createdOrder.Entity.Id;
         }
 
         public async Task EditOrder(Order order)

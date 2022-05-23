@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using WebStore.Database.Interfaces;
 using WebStore.Models;
+using WebStore.ViewModels;
 
 namespace WebStore.Controllers
 {
@@ -49,15 +50,17 @@ namespace WebStore.Controllers
         {
             return await orderRepository.GetItemLocationPoint(id);
         }
-
-        [Authorize]
-        [HttpPost("add")]
-        public async Task<IActionResult> CreateOrder([FromForm] Order order)
+        
+        [HttpGet("get/locations/all")]
+        public async Task<IEnumerable<MapItem>> GetAllLocationPoints()
         {
-            await orderRepository.CreateOrder(order);
-            await orderRepository.SaveChangesAsync();
+            return await orderRepository.GetAllLocationPoints();
+        }
 
-            return NoContent();
+        [HttpPost("add")]
+        public async Task<int> CreateOrder([FromBody] OrderViewModel order)
+        {
+            return await orderRepository.CreateOrder(order);
         }
 
         [Authorize]
@@ -67,7 +70,7 @@ namespace WebStore.Controllers
             await orderRepository.EditOrder(order);
             await orderRepository.SaveChangesAsync();
 
-            return NoContent();
+            return Ok();
         }
         
         [HttpPost("delete")]
@@ -76,7 +79,7 @@ namespace WebStore.Controllers
             await orderRepository.DeleteOrder(order);
             await orderRepository.SaveChangesAsync();
 
-            return NoContent();
+            return Ok();
         }
     }
 }

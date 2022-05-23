@@ -2,7 +2,7 @@
     <div class="top-nav-container">
         <nav aria-label="breadcrumb" class="ms-2">
             <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a routerLink="/auth">Главная</a></li>
+            <li class="breadcrumb-item"><a routerLink="">Главная</a></li>
             <li class="breadcrumb-item active" aria-current="page">Личный кабинет</li>
             </ol>
         </nav>
@@ -21,11 +21,47 @@
             <div class="ms-2">
                 <button (click)="logout()" class="btn"><span class="material-icons">logout</span><p class="b-text">Выход</p></button> 
             </div>
+            <div class="ms-2" *ngIf="isAdmin">
+                <button routerLink="/admin/panel" class="btn"><span class="material-icons">admin_panel_settings</span><p class="b-text">Перейти в панель администратора</p></button> 
+            </div>
         </div>
     </div>
 
     <div *ngIf="isOrders;else auth">
-        <!-- Заказы -->
+        <div *ngIf="ordersExists; else emptyOrders">
+            <div class="user-orders-container ms-2">
+                <div class="order-card" *ngFor="let orderData of orders$ | async; let i = index">
+                    <div class="order-module">
+                        <p class="mb-1 order-text">Заказ №{{orderData.id}}</p>
+                        <p class="p-desc order-text mb-0">{{orderData.date| date:'dd.MM.yyyy HH:MM'}}</p>
+                    </div>
+
+                    <div class="order-module ext">
+                        <div *ngFor="let itemData of items$; let j = index">
+                            <div *ngIf="itemData.id == i">
+                                <p class="mb-1 order-text">{{itemData.items.name}} x <span>{{itemData.counts}} шт.</span></p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="order-module">
+                        <p class="mb-1 order-text">Статус заказа</p>
+                        <p class="order-text p-desc">{{getStatus(orderData.statusId)}}</p>
+                    </div>
+                    
+                    <div class="order-module">
+                        <p class="mb-1 order-text">Стоимость заказа</p>
+                        <p class="order-text price-text">{{roudTotalPrice(orderData.price)}}₽</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <ng-template #emptyOrders>
+            <div class="empty-panel">
+                <span class="emoji-label">o(TヘTo)</span> 
+                <p style="font-weight: 600;line-height: 22px;">Не найдено ни одного заказа...</p>
+            </div>
+        </ng-template>
     </div>
 
     <ng-template #auth>

@@ -51,6 +51,7 @@ namespace WebStore
             services.AddScoped<IItemRepository, ItemRepository>();
             services.AddScoped<IOrderRepository, OrderRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<INewsRepository, NewsRepository>();
 
             services.AddSwaggerGen(opt =>
             {

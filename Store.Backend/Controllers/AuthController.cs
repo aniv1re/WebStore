@@ -45,7 +45,6 @@ namespace WebStore.Controllers
             newUser.Role = RoleType.User;
             newUser.RegDate = DateTime.Now;
             newUser.Phone = "+7" + newUser.Phone;
-            newUser.IsGuest = false;
 
             await dbContext.Users.AddAsync(newUser);
             await dbContext.SaveChangesAsync();
@@ -100,6 +99,17 @@ namespace WebStore.Controllers
             #endregion
 
             return Ok(new { token });
+        }
+
+        [HttpPost("create/guest")]
+        public async Task<int> CreateGuest([FromBody] GuestViewModel guest)
+        {
+            var newGuest = mapper.Map<Guest>(guest);
+
+            var createdGuest = await dbContext.Guests.AddAsync(newGuest);
+            await dbContext.SaveChangesAsync();
+
+            return createdGuest.Entity.Id;
         }
 
         public static string HashPassword(string password, string salt)

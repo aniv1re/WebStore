@@ -201,6 +201,10 @@ ul {
     justify-content: center;
 }
 
+.bold-text {
+    font-weight: bold;
+}
+
 img {
     object-fit: scale-down;
     cursor: pointer;

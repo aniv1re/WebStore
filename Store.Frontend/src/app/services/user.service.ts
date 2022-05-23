@@ -4,6 +4,7 @@ import { FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs/internal/Observable';
 import { environment } from 'src/environments/environment';
 import { User } from '../models/user';
+import { UserExt } from '../models/userExt';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +16,14 @@ export class UserService {
 
   getUser(email: string): Observable<User> {
     return this.http.get<User>(`${this.apiUrl}/api/user/get/${email}`);
+  }
+  
+  getUserById(id: number): Observable<UserExt> {
+    return this.http.get<UserExt>(`${this.apiUrl}/api/user/get/id/${id}`);
+  }
+
+  getAllUsers(): Observable<UserExt[]> {
+    return this.http.get<UserExt[]>(`${this.apiUrl}/api/user/get/all`);
   }
 
   editUser(form: FormGroup) {

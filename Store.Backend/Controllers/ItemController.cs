@@ -88,7 +88,7 @@ namespace WebStore.Controllers
             await itemRepository.CreateItem(item);
             await itemRepository.SaveChangesAsync();
 
-            return NoContent();
+            return Ok();
         }
 
         [HttpPost("edit")]
@@ -98,7 +98,7 @@ namespace WebStore.Controllers
             await itemRepository.EditItem(item);
             await itemRepository.SaveChangesAsync();
 
-            return NoContent();
+            return Ok();
         }
 
         [HttpPost("delete")]
@@ -108,7 +108,7 @@ namespace WebStore.Controllers
             await itemRepository.DeleteItem(item);
             await itemRepository.SaveChangesAsync();
 
-            return NoContent();
+            return Ok();
         }
     }
 }

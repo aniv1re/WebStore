@@ -1,0 +1,164 @@
+<div class="m-left">
+    <div class="top-nav-container">
+        <nav aria-label="breadcrumb" class="ms-2">
+            <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a routerLink="">Главная</a></li>
+            <li class="breadcrumb-item"><a routerLink="/account">Личный кабинет</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Панель администратора</li>
+            </ol>
+        </nav>
+
+        <div class="title-container">
+            <h2 class="b-h-text ms-2" style="color: black">ПАНЕЛЬ АДМИНИСТРАТОРА</h2>
+        </div>
+
+        <div class="nav-container ms-2">
+            <button class="btn me-2"><span class="material-icons">feed</span><p class="b-text">Список новостей</p></button>
+            <button (click)="selectItemsList()" class="btn me-2"><span class="material-icons">list_alt</span><p class="b-text">Список товаров</p></button>
+            <button (click)="selectOrdersList()" class="btn me-2"><span class="material-icons">shopping_cart</span><p class="b-text">Список заказов</p></button>
+            <button (click)="selectUsersList()" class="btn me-2"><span class="material-icons">person</span><p class="b-text">Список пользователей</p></button>
+            <button (click)="selectItemLocationsPoint ()" class="btn me-2"><span class="material-icons">place</span><p class="b-text">Список пунктов выдачи товара</p></button>
+        </div>
+    </div>
+</div>
+
+<div class="selected-action m-left mt-5">
+    <div *ngIf="selectedAction == ''">
+        <div class="empty-panel">
+            <span class="emoji-label">(￣▽￣)ノ</span> 
+            <p>Выберите интересующий блок, чтобы продолжить.</p>
+        </div>
+    </div>
+
+    <div *ngIf="selectedAction == 'items'">
+        <button class="btn ms-2 mb-3"><span class="material-icons">add</span><p class="b-text">Добавить новый товар</p></button>
+        <button (click)="refresh()" class="btn ms-2 mb-3"><span class="material-icons">refresh</span><p class="b-text">Обновить список</p></button>
+        <div *ngFor="let itemData of items$ | async">
+            <div class="item-card ms-2">
+                <div class="items-card-module" style="width: 150px;">
+                    <p class="mb-0 p-title">Id товара</p>
+                    <p class="p-desc">{{itemData.id}}</p>
+                </div>
+
+                <div class="items-card-module" style="width: 340px;">
+                    <p class="mb-0 p-title">Название</p>
+                    <p class="p-desc">{{itemData.name}}</p>
+                </div>
+
+                <div class="items-card-module">
+                    <p class="mb-0 p-title">Количество на складе</p>
+                    <p class="p-desc">{{itemData.stockCount}} шт.</p>
+                </div>
+
+                <div class="items-card-module">
+                    <p class="mb-0 p-title">Цена за штуку</p>
+                    <p class="p-desc">{{itemData.price}} ₽</p>
+                </div>
+
+                <button class="btn"><span class="material-icons">edit</span><p class="b-text">Редактировать</p></button>
+                <button class="btn"><span class="material-icons">delete</span><p class="b-text">Удалить</p></button>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="selectedAction == 'orders'">
+        <button (click)="refresh()" class="btn ms-2 mb-3"><span class="material-icons">refresh</span><p class="b-text">Обновить список</p></button>
+        <div *ngFor="let orderData of orders$ | async; let i = index">
+            <div class="item-card ms-2">
+                <div class="items-card-module" style="width: 150px;">
+                    <p class="mb-0 p-title">Номер заказа</p>
+                    <p class="p-desc">{{orderData.id}}</p>
+                </div>
+
+                <div class="items-card-module" style="width: 340px;">
+                    <p class="mb-0 p-title">Содержание заказа</p>
+                    <div *ngFor="let itemsInOrderData of itemsInOrder$; let j = index">
+                        <div *ngIf="itemsInOrderData.id == i">
+                            <p class="mb-0 p-desc">{{itemsInOrderData.items.name}} x <span>{{itemsInOrderData.counts}} шт.</span></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="items-card-module">
+                    <p class="mb-0 p-title">Статус заказа</p>
+                    <p class="p-desc">{{getStatus(orderData.statusId)}}</p>
+                </div>
+
+                <div class="items-card-module">
+                    <p class="mb-0 p-title">Клиент</p>
+                    <div *ngIf="orderData.isGuest == false; else guestOrder"> 
+                        <p class="p-desc">{{getUser(orderData.userId)}}</p>
+                    </div>
+                    <ng-template #guestOrder>
+
+                    </ng-template>
+                </div>
+
+                <button class="btn"><span class="material-icons">edit</span><p class="b-text">Редактировать</p></button>
+                <button class="btn"><span class="material-icons">delete</span><p class="b-text">Удалить</p></button>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="selectedAction == 'users'">
+        <button class="btn ms-2 mb-3"><span class="material-icons">add</span><p class="b-text">Добавить нового пользователя</p></button>
+        <button (click)="refresh()" class="btn ms-2 mb-3"><span class="material-icons">refresh</span><p class="b-text">Обновить список</p></button>
+        <div *ngFor="let userData of users$">
+            <div class="item-card ms-2">
+                <div class="items-card-module" style="width: 150px;">
+                    <p class="mb-0 p-title">Id пользователя</p>
+                    <p class="p-desc">{{userData.id}}</p>
+                </div>
+
+                <div class="items-card-module" style="width: 340px;">
+                    <p class="mb-0 p-title">Имя и фамилия</p>
+                    <p class="p-desc">{{userData.name}} {{userData.surname}} ({{getRole(userData.role)}})</p>
+                </div>
+
+                <div class="items-card-module">
+                    <p class="mb-0 p-title">Email</p>
+                    <p class="p-desc">{{userData.email}}</p>
+                </div>
+
+                <div class="items-card-module">
+                    <p class="mb-0 p-title">Телефон</p>
+                    <p class="p-desc">{{userData.phone}}</p>
+                </div>
+
+                <button class="btn"><span class="material-icons">edit</span><p class="b-text">Редактировать</p></button>
+                <button class="btn"><span class="material-icons">delete</span><p class="b-text">Удалить</p></button>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="selectedAction == 'locations'">
+        <button class="btn ms-2 mb-3"><span class="material-icons">add</span><p class="b-text">Добавить новый пункт выдачи</p></button>
+        <button (click)="refresh()" class="btn ms-2 mb-3"><span class="material-icons">refresh</span><p class="b-text">Обновить список</p></button>
+        <div *ngFor="let locationData of locations$ | async">
+            <div class="item-card ms-2">
+                <div class="items-card-module" style="width: 150px;">
+                    <p class="mb-0 p-title">Id пункта</p>
+                    <p class="p-desc">{{locationData.id}}</p>
+                </div>
+
+                <div class="items-card-module" style="width: 340px;">
+                    <p class="mb-0 p-title">Город и адрес</p>
+                    <p class="p-desc">{{locationData.city}}, {{locationData.address}}</p>
+                </div>
+
+                <div class="items-card-module">
+                    <p class="mb-0 p-title">Телефон</p>
+                    <p class="p-desc">{{locationData.phone}}</p>
+                </div>
+
+                <div class="items-card-module">
+                    <p class="mb-0 p-title">Время работы</p>
+                    <p class="p-desc">{{locationData.workTime}}</p>
+                </div>
+
+                <button class="btn"><span class="material-icons">edit</span><p class="b-text">Редактировать</p></button>
+                <button class="btn"><span class="material-icons">delete</span><p class="b-text">Удалить</p></button>
+            </div>
+        </div>
+    </div>
+</div>
+

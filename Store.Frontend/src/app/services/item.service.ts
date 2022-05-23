@@ -21,6 +21,10 @@ export class ItemService {
   getPopularItems(): Observable<Item[]> {
     return this.http.get<Item[]>(`${this.apiUrl}/api/item/get/popular`);
   }
+
+  getAllItems(): Observable<Item[]> {
+    return this.http.get<Item[]>(`${this.apiUrl}/api/item/get/all`);
+  }
   
   getPopularSmallItems(): Observable<Item[]> {
     return this.http.get<Item[]>(`${this.apiUrl}/api/item/get/popularsmall`);

@@ -27,7 +27,7 @@
                         <p class="p-desc">{{itemData.itemContent}}</p>
 
                         <div class="badge-container">
-                            <span class="stock-badge">В наличии</span>
+                            <span class="stock-badge">В наличии: {{itemData.stockCount}} шт.</span>
                             <span class="category-badge ms-2">{{categoryData.name}}</span>
                         </div>
                     </div>
@@ -149,7 +149,7 @@
 
             <div *ngIf="item.isStock; else outOfStock">
                 <div class="title-card mx-4" >
-                    <span class="stock-badge">В наличии</span>
+                    <span class="stock-badge">В наличии: {{item.stockCount}} шт.</span>
                     <!-- <span class="popular-badge">Популярное</span> -->
                     <p class="p-title">{{item.name}}</p>
                     <p class="p-desc">{{item.itemContent}}</p>
