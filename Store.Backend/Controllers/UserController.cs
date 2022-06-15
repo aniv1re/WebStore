@@ -35,6 +35,18 @@ namespace WebStore.Controllers
         {
             return await userRepository.GetAllUsers();
         }
+        
+        [HttpGet("get/guest/all")]
+        public async Task<IEnumerable<Guest>> GetAllGuests()
+        {
+            return await userRepository.GetAllGuests();
+        }
+        
+        [HttpGet("get/guest/{id}")]
+        public async Task<Guest> GetGuestById([FromRoute] int id)
+        {
+            return await userRepository.GetGuestById(id);
+        }
 
         [HttpPost("add")]
         public async Task<IActionResult> CreateUser([FromForm] User user)
@@ -63,10 +75,10 @@ namespace WebStore.Controllers
             return Ok();
         }
 
-        [HttpPost("delete/{userEmail}")]
-        public async Task<IActionResult> DeleteUser([FromRoute] string userEmail)
+        [HttpPost("delete")]
+        public async Task<IActionResult> DeleteUser([FromBody] int id)
         {
-            await userRepository.DeleteUser(userEmail);
+            await userRepository.DeleteUser(id);
             await userRepository.SaveChangesAsync();
 
             return Ok();

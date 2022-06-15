@@ -10,7 +10,7 @@
         public int MapItemId { get; set; }
         public DateTime Date { get; set; }
         public bool IsGuest { get; set; }
-        public int GuestID { get; set; }
+        public int GuestId { get; set; }
 
         public enum StatusType
         {

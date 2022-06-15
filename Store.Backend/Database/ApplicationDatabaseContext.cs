@@ -17,9 +17,6 @@ namespace WebStore.Database
         public DbSet<Manufacture> Manufactures { get; set; }
         public DbSet<Substance> Substances { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            // Database.EnsureCreated();
-        }
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) { }
     }
 }

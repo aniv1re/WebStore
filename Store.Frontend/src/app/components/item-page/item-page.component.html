@@ -27,7 +27,7 @@
                         <p class="p-desc">{{itemData.itemContent}}</p>
 
                         <div class="badge-container">
-                            <span class="stock-badge">В наличии: {{itemData.stockCount}} шт.</span>
+                            <span class="stock-badge">В наличии</span>
                             <span class="category-badge ms-2">{{categoryData.name}}</span>
                         </div>
                     </div>
@@ -49,14 +49,14 @@
                 </div>
 
             <div class="medium-info-container">
-                <div *ngIf="manufacture$ | async as manufactureData">
+                <div *ngIf="itemData.manufacture != null">
                     <p class="small-title-inf">Производитель:</p>
-                    <p class="small-bold-inf">{{manufactureData.name}}</p>
+                    <p class="small-bold-inf">{{itemData.manufacture}}</p>
                 </div>
                 
-                <div *ngIf="substance$ | async as substanceData">
+                <div *ngIf="itemData.substance != null">
                     <p class="small-title-inf">Действующее вещество:</p>
-                    <p class="small-bold-inf">{{substanceData.name}}</p>
+                    <p class="small-bold-inf">{{itemData.substance}}</p>
                 </div>
 
                 <div *ngIf="itemData.expiryDate != null">
@@ -114,14 +114,14 @@
 
         <h2 class="my-5">ДОПОЛНИТЕЛЬНАЯ ИНФОРМАЦИЯ</h2>
 
-        <div *ngIf="manufacture$ | async as manufactureData">
+        <div *ngIf="itemData.manufacture != null">
             <p class="small-title-inf">Производитель:</p>
-            <p class="small-bold-inf">{{manufactureData.name}}</p>
+            <p class="small-bold-inf">{{itemData.manufacture}}</p>
         </div>
         
-        <div *ngIf="substance$ | async as substanceData">
+        <div *ngIf="itemData.substance != null">
             <p class="small-title-inf">Действующее вещество:</p>
-            <p class="small-bold-inf">{{substanceData.name}}</p>
+            <p class="small-bold-inf">{{itemData.substance}}</p>
         </div>
 
         <div *ngIf="itemData.expiryDate != null">
@@ -149,7 +149,7 @@
 
             <div *ngIf="item.isStock; else outOfStock">
                 <div class="title-card mx-4" >
-                    <span class="stock-badge">В наличии: {{item.stockCount}} шт.</span>
+                    <span class="stock-badge">В наличии</span>
                     <!-- <span class="popular-badge">Популярное</span> -->
                     <p class="p-title">{{item.name}}</p>
                     <p class="p-desc">{{item.itemContent}}</p>

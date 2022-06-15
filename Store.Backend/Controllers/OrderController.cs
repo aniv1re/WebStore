@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using WebStore.Database;
 using WebStore.Database.Interfaces;
 using WebStore.Models;
 using WebStore.ViewModels;
@@ -64,6 +65,15 @@ namespace WebStore.Controllers
         }
 
         [Authorize]
+        [HttpPost("add/location")]
+        public async Task<IActionResult> AddLocation([FromForm] MapItemViewModel location)
+        {
+            await orderRepository.AddLocation(location);
+            
+            return Ok();
+        }
+
+        [Authorize]
         [HttpPost("edit")]
         public async Task<IActionResult> EditOrder([FromForm] Order order)
         {
@@ -73,10 +83,41 @@ namespace WebStore.Controllers
             return Ok();
         }
         
-        [HttpPost("delete")]
-        public async Task<IActionResult> DeleteOrder([FromForm] Order order)
+        [Authorize]
+        [HttpPost("edit/status")]
+        public async Task<IActionResult> EditOrderStatus([System.Web.Http.FromUri] OrderQuery order)
         {
-            await orderRepository.DeleteOrder(order);
+            await orderRepository.EditOrderStatus(order);
+            await orderRepository.SaveChangesAsync();
+
+            return Ok();
+        }
+        
+        [Authorize]
+        [HttpPost("edit/location")]
+        public async Task<IActionResult> EditLocation([FromForm] MapItem location)
+        {
+            await orderRepository.EditLocation(location);
+            await orderRepository.SaveChangesAsync();
+
+            return Ok();
+        }
+
+        [Authorize]
+        [HttpPost("delete")]
+        public async Task<IActionResult> DeleteOrder([FromBody] int orderId)
+        {
+            await orderRepository.DeleteOrder(orderId);
+            await orderRepository.SaveChangesAsync();
+
+            return Ok();
+        }
+
+        [Authorize]
+        [HttpPost("delete/location")]
+        public async Task<IActionResult> DeleteLocation([FromBody] int id)
+        {
+            await orderRepository.DeleteLocation(id);
             await orderRepository.SaveChangesAsync();
 
             return Ok();

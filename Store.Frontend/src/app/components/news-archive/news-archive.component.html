@@ -1,0 +1,30 @@
+<div class="m-left">
+    <div class="top-nav-container">
+        <nav aria-label="breadcrumb" class="ms-2">
+            <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a routerLink="">Главная</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Архив новостей</li>
+            </ol>
+        </nav>
+
+        <div class="title-container">
+            <h2 class="b-h-text ms-2" style="color: black">АРХИВ НОВОСТЕЙ</h2>
+        </div>
+    </div>
+</div>
+
+<div class="m-left">
+    <div class="news-container">
+        <div *ngFor="let newsData of news$">
+            <div class="card">
+                <h5 class="mb-2">{{newsData.title}}</h5>
+                <img routerLink="/news/archive/{{newsData.id}}" src="{{newsData.image}}" >
+                <button routerLink="/news/archive/{{newsData.id}}" style="width: 100%;" class="btn mt-3"><span class="material-icons">feed</span><p class="b-text">Открыть</p></button> 
+                <div class="p-ico mt-3">
+                    <span class="material-icons">event</span>
+                    <p class="ms-1 mb-3">Дата публикации: {{newsData.date | date:'dd.MM.yyyy HH:MM'}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

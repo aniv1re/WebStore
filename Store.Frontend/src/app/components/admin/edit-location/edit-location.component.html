@@ -1,0 +1,56 @@
+<div class="m-left">
+    <div class="top-nav-container">
+        <nav aria-label="breadcrumb" class="ms-2">
+            <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a routerLink="">Главная</a></li>
+            <li class="breadcrumb-item"><a routerLink="/admin/panel">Панель администратора</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Редактировать точку выдачи товара</li>
+            </ol>
+        </nav>
+
+        <div class="title-container">
+            <h2 class="b-h-text ms-2" style="color: black">РЕДАКТИРОВАТЬ ТОЧКУ ВЫДАЧИ ТОВАРА</h2>
+        </div>
+    </div>
+</div>
+
+<div class="location-container m-left mt-5" *ngIf="location$ != undefined">
+    <form [formGroup]="editLocation" (ngSubmit)="saveLocationData()">
+        <div class="ms-2">
+            <label>Id пункта выдачи товара:</label>
+            <div class="input-group mb-3">
+                <span class="input-group-text"><span class="material-icons">tag</span></span>
+                <input disabled required type="text" id="id" class="form-control" value="{{location$.id}}" aria-describedby="basic-addon1">
+            </div>
+        </div>
+
+        <div class="ms-2">
+            <label>Адрес места выдачи:</label>
+            <div class="input-group mb-3">
+                <span class="input-group-text"><span class="material-icons">place</span></span>
+                <input required formControlName="address" type="text" id="address" class="form-control" placeholder="Гайдара 44" aria-describedby="basic-addon1">
+            </div>
+        </div>
+
+        <div class="ms-2">
+            <label>Город:</label>
+            <div class="input-group mb-3">
+                <span class="input-group-text"><span class="material-icons">place</span></span>
+                <input required formControlName="city" type="text" id="city" class="form-control" placeholder="Название города с большой буквы" aria-describedby="basic-addon1">
+            </div>
+        </div>
+
+        <div class="ms-2">
+            <label>Телефон:</label>
+            <div class="input-group mb-3">
+                <span class="input-group-text"><span class="material-icons">phone</span></span>
+                <input required formControlName="phone" type="text" id="phone" class="form-control" placeholder="Номер телефона" aria-describedby="basic-addon1">
+            </div>
+        </div>
+
+        <div class="buttons-module">
+            <button routerLink="/admin/panel" class="btn ms-2 mt-3"><span class="material-icons">arrow_back</span><p class="b-text">Назад</p></button>
+            <button type="submit" class="btn ms-2 mt-3 btn-large"><span class="material-icons">save</span><p class="b-text">Сохранить</p></button>
+        </div>
+    </form>
+</div>

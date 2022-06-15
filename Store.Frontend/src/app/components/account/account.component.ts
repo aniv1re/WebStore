@@ -193,10 +193,10 @@ export class AccountComponent implements OnInit {
         return 'Проверяется';
         break;
       case 4:
-        return 'Принято';
+        return 'Принят в работу';
         break;
       case 8:
-        return 'Получено';
+        return 'Получен';
         break;
       default:
         return 'Проверяется';

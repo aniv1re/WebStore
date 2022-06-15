@@ -10,8 +10,8 @@
         public bool IsStock { get; set; }
         public int StockCount { get; set; }
         public int? CategoryId { get; set; }
-        public int? ManufactureId { get; set; }
-        public int? SubstanceId { get; set; }
+        public string? Manufacture { get; set; }
+        public string? Substance { get; set; }
         public string? DosageDescription { get; set; }
         public bool IsDiscount { get; set; }
         public float? DiscountPrice { get; set; }

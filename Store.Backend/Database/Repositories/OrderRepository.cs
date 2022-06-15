@@ -24,7 +24,7 @@ namespace WebStore.Database.Repositories
 
         public async Task<IEnumerable<Order>> GetAllOrders()
         {
-            return await dbContext.Orders.AsNoTracking().ToListAsync();
+            return await dbContext.Orders.AsNoTracking().OrderByDescending(x => x.StatusId == Order.StatusType.Checking).ToListAsync();
         }
 
         public async Task<IEnumerable<Order>> GetUserOrders(int userId)
@@ -56,6 +56,14 @@ namespace WebStore.Database.Repositories
 
             return createdOrder.Entity.Id;
         }
+        
+        public async Task AddLocation(MapItemViewModel location)
+        {
+            var newLocation = mapper.Map<MapItem>(location);
+
+            await dbContext.MapItems.AddAsync(newLocation);
+            await dbContext.SaveChangesAsync();
+        }
 
         public async Task EditOrder(Order order)
         {
@@ -66,9 +74,33 @@ namespace WebStore.Database.Repositories
             await dbContext.SaveChangesAsync();
         }
         
-        public async Task DeleteOrder(Order order)
+        public async Task EditLocation(MapItem location)
         {
-            dbContext.Orders.Remove(order);
+            MapItem getLocation = await dbContext.MapItems.FirstOrDefaultAsync(x => x.Id == location.Id);
+
+            getLocation = location;
+
+            await dbContext.SaveChangesAsync();
+        }
+
+        public async Task EditOrderStatus(OrderQuery order)
+        {
+            Order selectedOrder = await dbContext.Orders.FirstOrDefaultAsync(x => x.Id == order.Id);
+            selectedOrder.StatusId = order.Status;
+            await dbContext.SaveChangesAsync();
+        }
+
+        public async Task DeleteOrder(int orderId)
+        {
+            Order selectedOrder = await dbContext.Orders.FirstOrDefaultAsync(x => x.Id == orderId);
+            dbContext.Orders.Remove(selectedOrder);
+            await dbContext.SaveChangesAsync();
+        }
+        
+        public async Task DeleteLocation(int id)
+        {
+            MapItem selectedLcoation = await dbContext.MapItems.FirstOrDefaultAsync(x => x.Id == id);
+            dbContext.MapItems.Remove(selectedLcoation);
             await dbContext.SaveChangesAsync();
         }
 

@@ -107,8 +107,20 @@ li, ol {
     align-items: center;
     align-content: flex-start;
     justify-content: flex-start;
-    padding: 15px;
+    padding: 15px; 
+    border: 3px solid #ff52862f;
+    border-radius: 10px;
     margin-bottom: 15px;
+}
+
+.item-card-w {
+    position: flex;
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    align-content: flex-start;
+    justify-content: flex-start;
+    padding: 15px; 
     border: 3px solid #ff52862f;
     border-radius: 10px;
 }
@@ -116,6 +128,10 @@ li, ol {
 .items-card-module {
     margin-right: 15px;
     width: 220px;
+}
+
+.selected-action {
+    min-height: 350px;
 }
 
 .p-desc {
@@ -144,4 +160,58 @@ li, ol {
     align-items: center;
     align-content: center;
     justify-content: center;
+}
+
+.with-warn {
+    position: flex;
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    align-content: flex-start;
+    justify-content: flex-start;
+    margin-bottom: 15px;
+}
+
+.warning {
+    font-weight: 600;
+    font-size: 14px;
+    color: white;
+    background-color: #FF5286;
+    border-radius: 8px;
+    padding: 10px;
+    padding-left: 16px;
+    padding-right: 16px;
+}
+
+.p-new {
+    font-weight: 600;
+    font-size: 14px;
+    color: white;
+    background-color: #f15bb5;
+    border-radius: 5px;
+    padding: 3px;
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+.p-checked {
+    font-weight: 600;
+    font-size: 14px;
+    color: white;
+    background-color: #00bbf9;
+    border-radius: 5px;
+    padding: 3px;
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+.p-accepted {
+    font-weight: 600;
+    font-size: 14px;
+    color: white;
+    background-color: #9b5de5;
+    border-radius: 5px;
+    padding: 3px;
+    padding-left: 8px;
+    padding-right: 8px;
 }

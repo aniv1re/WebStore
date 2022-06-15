@@ -33,7 +33,7 @@
                 <div class="order-card" *ngFor="let orderData of orders$ | async; let i = index">
                     <div class="order-module">
                         <p class="mb-1 order-text">Заказ №{{orderData.id}}</p>
-                        <p class="p-desc order-text mb-0">{{orderData.date| date:'dd.MM.yyyy HH:MM'}}</p>
+                        <p class="p-desc order-text mb-0">{{orderData.date| date:'dd.MM.yyyy HH:mm'}}</p>
                     </div>
 
                     <div class="order-module ext">

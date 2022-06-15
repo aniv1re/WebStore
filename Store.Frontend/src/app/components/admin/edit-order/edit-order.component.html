@@ -1,0 +1,98 @@
+<div class="m-left">
+    <div class="top-nav-container">
+        <nav aria-label="breadcrumb" class="ms-2">
+            <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a routerLink="">Главная</a></li>
+            <li class="breadcrumb-item"><a routerLink="/admin/panel">Панель администратора</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Статус заказа</li>
+            </ol>
+        </nav>
+
+        <div class="title-container">
+            <h2 class="b-h-text ms-2" style="color: black">СТАТУС ЗАКАЗА</h2>
+        </div>
+    </div>
+</div>
+
+<div class="order-container m-left mt-5" *ngIf="order$">
+    <div *ngIf="order$.isGuest; else notGuest" class="ms-2 mb-5">
+        <label>Гость:</label>
+        <div class="input-group mb-3">
+            <span class="input-group-text"><span class="material-icons">person</span></span>
+            <input disabled type="text" class="form-control" value="{{guestData[0]}}" aria-describedby="basic-addon1">
+        </div>
+        <div class="input-group mb-3">
+            <span class="input-group-text"><span class="material-icons">alternate_email</span></span>
+            <input disabled type="text" class="form-control" value="{{guestData[1]}}" aria-describedby="basic-addon1">
+        </div>
+        <div class="input-group mb-3">
+            <span class="input-group-text"><span class="material-icons">phone</span></span>
+            <input disabled type="text" class="form-control" value="{{guestData[2]}}" aria-describedby="basic-addon1">
+        </div>
+    </div>
+    <ng-template #notGuest>
+        <div class="ms-2 mb-5">
+            <label>Пользователь:</label>
+            <div class="input-group mb-3">
+                <span class="input-group-text"><span class="material-icons">person</span></span>
+                <input disabled type="text" class="form-control" value="{{userData[0]}}" aria-describedby="basic-addon1">
+            </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text"><span class="material-icons">alternate_email</span></span>
+                <input disabled type="text" class="form-control" value="{{userData[1]}}" aria-describedby="basic-addon1">
+            </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text"><span class="material-icons">phone</span></span>
+                <input disabled type="text" class="form-control" value="{{userData[2]}}" aria-describedby="basic-addon1">
+            </div>
+        </div>
+    </ng-template>
+
+    <div class="ms-2">
+        <label>Общая цена заказа:</label>
+        <div class="input-group mb-3">
+            <span class="input-group-text"><span class="material-icons">currency_ruble</span></span>
+            <input disabled type="text" class="form-control" value="{{order$.price}} ₽" aria-describedby="basic-addon1">
+        </div>
+    </div>
+    
+    <div class="ms-2">
+        <label>Дата создания заказа:</label>
+        <div class="input-group mb-3">
+            <span class="input-group-text"><span class="material-icons">today</span></span>
+            <input disabled type="text" class="form-control" value="{{order$.date | date:'dd.MM.yyyy HH:mm'}}" aria-describedby="basic-addon1">
+        </div>
+    </div>
+
+    <div class="ms-2 mb-5">
+        <label>Адрес места выдачи:</label>
+        <div class="input-group mb-3">
+            <span class="input-group-text"><span class="material-icons">place</span></span>
+            <input disabled required type="text" class="form-control" value="{{location}}" aria-describedby="basic-addon1">
+        </div>
+    </div>
+
+    <div class="ms-2 mt-4">
+        <table>
+            <tr>
+                <th></th>
+                <th class="top-th">Название товара</th>
+                <th class="top-th">Количество</th>
+            </tr>
+            <tr *ngFor="let itemsInOrderData of itemsInOrder$; let i = index">
+                <td>{{i + 1}}.</td>
+                <td>{{itemsInOrderData.items.name}}</td>
+                <td>{{itemsInOrderData.counts}} шт.</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="ms-2 mt-5">
+        <p>Изменить статус заказа:</p>
+        <p-dropdown style="width: 250%;" [options]="ordersStatus" [(ngModel)]="selectedOrderStatus" name="selectedOrderStatus" placeholder="Выберите статус заказа" optionLabel="name" [showClear]="true"></p-dropdown>
+    </div>
+    <div class="buttons-module">
+        <button routerLink="/admin/panel" class="btn ms-2 mt-3"><span class="material-icons">arrow_back</span><p class="b-text">Назад</p></button>
+        <button (click)="saveStatus()" class="btn ms-2 mt-3 btn-large"><span class="material-icons">save</span><p class="b-text">Сохранить</p></button>
+    </div>
+</div>

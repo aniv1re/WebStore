@@ -1,0 +1,28 @@
+<div *ngIf="news$ != undefined">
+    <div class="m-left">
+        <div class="top-nav-container">
+            <nav aria-label="breadcrumb" class="ms-2">
+                <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a routerLink="">Главная</a></li>
+                <li class="breadcrumb-item"><a routerLink="/news/archive">Архив новостей</a></li>
+                <li class="breadcrumb-item active" aria-current="page">{{news$.title}}</li>
+                </ol>
+            </nav>
+
+            <div class="title-container">
+                <h2 class="b-h-text ms-2" style="color: black">НОВОСТИ</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="news-container m-left">
+        <img src="https://localhost:44383/Image/GetImage?imageName={{news$.image}}" width="98%" class="ms-2 my-3">
+        <h3 class="ms-2 mb-0 mt-3">{{news$.title}}</h3>
+        <div class="p-ico ms-2 mt-2">
+            <span class="material-icons">event</span>
+            <p class="ms-1 mb-3">{{news$.date | date:'dd.MM.yyyy HH:MM'}}</p>
+        </div>
+        <p class="ms-2 mt-3">{{news$.content}}</p>
+        <button routerLink="/news/archive" class="btn mt-3 ms-2"><span class="material-icons">arrow_back</span><p class="b-text">Вернуть в архив новостей</p></button> 
+    </div>
+</div>

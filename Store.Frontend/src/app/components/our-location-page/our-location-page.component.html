@@ -1,0 +1,64 @@
+<div class="m-left">
+    <div class="top-nav-container">
+        <nav aria-label="breadcrumb" class="ms-2">
+            <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a routerLink="">Главная</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Наши аптеки</li>
+            </ol>
+        </nav>
+
+        <div class="title-container">
+            <h2 class="b-h-text ms-2" style="color: black">НАШИ АПТЕКИ</h2>
+        </div>
+    </div>
+</div>
+
+<div class="locations-container m-left mt-5">
+    <div>
+        <div class="search-items-container ">
+            <div class="search-item-component">
+                <h5>Справочная служба</h5>
+                <div class="p-ico">
+                    <span class="material-icons me-1">phone</span>
+                    <p class="mb-0 p-title" style="font-size: 16px; font-weight: bold;"><a style="color: #FF5286" href="tel:88002506521">8 800 250 6521</a></p>
+                </div>
+            </div>
+            <div class="search-item-component mt-3">
+                <h5>Почтовый адрес</h5>
+                <div class="p-ico">
+                    <span class="material-icons me-1">email</span>
+                    <p class="mb-0 p-title" style="font-size: 16px; font-weight: bold;"><a style="color: #FF5286" href="mailto:info@d-apteka.ru">info@d-apteka.ru</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="ms-3">
+        <div *ngFor="let locationData of locations$ | async">
+            <div class="item-card ms-2">
+                <div class="items-card-module" >
+                    <div class="p-ico">
+                        <span class="material-icons me-1">place</span>
+                        <p class="mb-0 p-title">Город и адрес</p>
+                    </div>
+                    <p class="p-desc">{{locationData.city}}, {{locationData.address}}</p>
+                </div>
+
+                <div class="items-card-module" style="width: 150px;">
+                    <div class="p-ico">
+                        <span class="material-icons me-1">phone</span>
+                        <p class="mb-0 p-title">Телефон</p>
+                    </div>  
+                    <p class="p-desc">{{locationData.phone}}</p>
+                </div>
+
+                <div class="items-card-module">
+                    <div class="p-ico">
+                        <span class="material-icons me-1">schedule</span>
+                        <p class="mb-0 p-title">Время работы</p>
+                    </div>  
+                    <p class="p-desc">{{locationData.workTime}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

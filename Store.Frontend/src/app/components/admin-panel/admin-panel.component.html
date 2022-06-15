@@ -13,7 +13,7 @@
         </div>
 
         <div class="nav-container ms-2">
-            <button class="btn me-2"><span class="material-icons">feed</span><p class="b-text">Список новостей</p></button>
+            <button (click)="selectNewsList()" class="btn me-2"><span class="material-icons">feed</span><p class="b-text">Список новостей</p></button>
             <button (click)="selectItemsList()" class="btn me-2"><span class="material-icons">list_alt</span><p class="b-text">Список товаров</p></button>
             <button (click)="selectOrdersList()" class="btn me-2"><span class="material-icons">shopping_cart</span><p class="b-text">Список заказов</p></button>
             <button (click)="selectUsersList()" class="btn me-2"><span class="material-icons">person</span><p class="b-text">Список пользователей</p></button>
@@ -30,8 +30,43 @@
         </div>
     </div>
 
+    <div *ngIf="selectedAction == 'news'">
+        <button routerLink="/admin/panel/create/news" class="btn ms-2 mb-3"><span class="material-icons">add</span><p class="b-text">Добавить новость</p></button>
+        <button (click)="refresh()" class="btn ms-2 mb-3"><span class="material-icons">refresh</span><p class="b-text">Обновить список</p></button>
+        <div *ngFor="let newsData of news$ | async">
+            <div class="item-card ms-2">
+                <div class="items-card-module" style="width: 150px;">
+                    <p class="mb-0 p-title">Id новости</p>
+                    <p class="p-desc">{{newsData.id}}</p>
+                </div>
+
+                <div class="items-card-module" style="width: 150px;">
+                    <p class="mb-0 p-title">Название</p>
+                    <p class="p-desc">{{newsData.title}}</p>
+                </div>
+
+                <div class="items-card-module" style="width: 340px;">
+                    <p class="mb-0 p-title">Содержание</p>
+                    <p class="p-desc">{{newsData.content}}</p>
+                </div>
+
+                <div class="items-card-module" style="width: 340px;">
+                    <p class="mb-0 p-title">Изображение</p>
+                    <img routerLink="/news/archive/{{newsData.id}}" src="{{newsData.image}}" width="85%" style="cursor: pointer;">
+                </div>
+
+                <div class="items-card-module" style="width: 150px;">
+                    <p class="mb-0 p-title">Дата создания новости</p>
+                    <p class="p-desc">{{newsData.date | date:'dd.MM.yyyy HH:mm'}}</p>
+                </div>
+
+                <button (click)="deleteNews(newsData.id)" class="btn"><span class="material-icons">delete</span><p class="b-text">Удалить</p></button>
+            </div>
+        </div>
+    </div>
+
     <div *ngIf="selectedAction == 'items'">
-        <button class="btn ms-2 mb-3"><span class="material-icons">add</span><p class="b-text">Добавить новый товар</p></button>
+        <button routerLink="/admin/panel/create/item" class="btn ms-2 mb-3"><span class="material-icons">add</span><p class="b-text">Добавить новый товар</p></button>
         <button (click)="refresh()" class="btn ms-2 mb-3"><span class="material-icons">refresh</span><p class="b-text">Обновить список</p></button>
         <div *ngFor="let itemData of items$ | async">
             <div class="item-card ms-2">
@@ -55,52 +90,69 @@
                     <p class="p-desc">{{itemData.price}} ₽</p>
                 </div>
 
-                <button class="btn"><span class="material-icons">edit</span><p class="b-text">Редактировать</p></button>
+                <button routerLink="/admin/panel/edit/item/{{itemData.id}}" class="btn"><span class="material-icons">edit</span><p class="b-text">Редактировать</p></button>
                 <button class="btn"><span class="material-icons">delete</span><p class="b-text">Удалить</p></button>
             </div>
         </div>
     </div>
+
     <div *ngIf="selectedAction == 'orders'">
         <button (click)="refresh()" class="btn ms-2 mb-3"><span class="material-icons">refresh</span><p class="b-text">Обновить список</p></button>
-        <div *ngFor="let orderData of orders$ | async; let i = index">
-            <div class="item-card ms-2">
-                <div class="items-card-module" style="width: 150px;">
-                    <p class="mb-0 p-title">Номер заказа</p>
-                    <p class="p-desc">{{orderData.id}}</p>
-                </div>
-
-                <div class="items-card-module" style="width: 340px;">
-                    <p class="mb-0 p-title">Содержание заказа</p>
-                    <div *ngFor="let itemsInOrderData of itemsInOrder$; let j = index">
-                        <div *ngIf="itemsInOrderData.id == i">
-                            <p class="mb-0 p-desc">{{itemsInOrderData.items.name}} x <span>{{itemsInOrderData.counts}} шт.</span></p>
+        <div *ngFor="let orderData of orders$; let i = index">
+            <div class="with-warn">
+                <div class="item-card-w ms-2">
+                    <div class="items-card-module" style="width: 150px;">
+                        <p class="mb-0 p-title">Номер заказа</p>
+                        <p class="p-desc">{{orderData.id}}</p>
+                    </div>
+    
+                    <div class="items-card-module" style="width: 340px;">
+                        <p class="mb-0 p-title">Содержание заказа</p>
+                        <div *ngFor="let itemsInOrderData of itemsInOrder$; let j = index">
+                            <div *ngIf="itemsInOrderData.id == i">
+                                <p class="mb-0 p-desc">{{itemsInOrderData.items.name}} x <span>{{itemsInOrderData.counts}} шт.</span></p>
+                            </div>
                         </div>
                     </div>
-                </div>
-
-                <div class="items-card-module">
-                    <p class="mb-0 p-title">Статус заказа</p>
-                    <p class="p-desc">{{getStatus(orderData.statusId)}}</p>
-                </div>
-
-                <div class="items-card-module">
-                    <p class="mb-0 p-title">Клиент</p>
-                    <div *ngIf="orderData.isGuest == false; else guestOrder"> 
-                        <p class="p-desc">{{getUser(orderData.userId)}}</p>
+    
+                    <div class="items-card-module">
+                        <p class="mb-0 p-title">Статус заказа</p>
+                        <div [ngSwitch]="orderData.statusId">
+                            <div *ngSwitchCase="2">
+                                <span class="p-new">{{getStatus(orderData.statusId)}}</span>
+                            </div>
+                            <div *ngSwitchCase="4">
+                                <span class="p-checked">{{getStatus(orderData.statusId)}}</span>
+                            </div>
+                            <div *ngSwitchCase="8">
+                                <span class="p-accepted">{{getStatus(orderData.statusId)}}</span>
+                            </div>
+                        </div>
                     </div>
-                    <ng-template #guestOrder>
-
-                    </ng-template>
+    
+                    <div class="items-card-module">
+                        <div *ngIf="orderData.isGuest == false"> 
+                            <p class="mb-0 p-title">Клиент </p>
+                            <p class="p-desc">{{getUser(orderData.userId)}}</p>
+                        </div>
+                        <div *ngIf="orderData.isGuest == true"> 
+                            <p class="mb-0 p-title">Гость</p>
+                            <p class="p-desc">{{getGuest(orderData.guestId)}}</p>
+                        </div>
+                    </div>
+    
+                    <button routerLink="/admin/panel/edit/order/{{orderData.id}}" class="btn"><span class="material-icons">pending_actions</span><p class="b-text">Статус</p></button>
+                    <button (click)="deleteOrder(orderData.id)" class="btn"><span class="material-icons">delete</span><p class="b-text">Удалить</p></button>         
                 </div>
-
-                <button class="btn"><span class="material-icons">edit</span><p class="b-text">Редактировать</p></button>
-                <button class="btn"><span class="material-icons">delete</span><p class="b-text">Удалить</p></button>
+    
+                <div *ngIf="orderData.statusId == 2">
+                    <span class="warning ms-3">!</span>
+                </div>    
             </div>
         </div>
     </div>
 
     <div *ngIf="selectedAction == 'users'">
-        <button class="btn ms-2 mb-3"><span class="material-icons">add</span><p class="b-text">Добавить нового пользователя</p></button>
         <button (click)="refresh()" class="btn ms-2 mb-3"><span class="material-icons">refresh</span><p class="b-text">Обновить список</p></button>
         <div *ngFor="let userData of users$">
             <div class="item-card ms-2">
@@ -111,7 +163,15 @@
 
                 <div class="items-card-module" style="width: 340px;">
                     <p class="mb-0 p-title">Имя и фамилия</p>
-                    <p class="p-desc">{{userData.name}} {{userData.surname}} ({{getRole(userData.role)}})</p>
+                    <div [ngSwitch]="userData.role">
+                        <div *ngSwitchCase="0">
+                            <p class="p-desc"><span class="p-accepted">{{getRole(userData.role)}}</span> {{userData.name}} {{userData.surname}}</p>
+                        </div>
+                        <div *ngSwitchCase="1">
+                            <p class="p-desc"><span class="p-new">{{getRole(userData.role)}}</span> {{userData.name}} {{userData.surname}}</p>
+                        </div>
+                    </div>
+                    
                 </div>
 
                 <div class="items-card-module">
@@ -124,14 +184,19 @@
                     <p class="p-desc">{{userData.phone}}</p>
                 </div>
 
-                <button class="btn"><span class="material-icons">edit</span><p class="b-text">Редактировать</p></button>
-                <button class="btn"><span class="material-icons">delete</span><p class="b-text">Удалить</p></button>
+                <button routerLink="/admin/panel/edit/user/{{userData.id}}" class="btn"><span class="material-icons">edit</span><p class="b-text">Редактировать</p></button>
+                <div *ngIf="adminId == userData.id; else notAdm">
+                    <button disabled class="btn"><span class="material-icons">delete</span><p class="b-text">Удалить</p></button>
+                </div>
+                <ng-template #notAdm>
+                    <button (click)="deleteUser(userData.id)" class="btn"><span class="material-icons">delete</span><p class="b-text">Удалить</p></button>
+                </ng-template>
             </div>
         </div>
     </div>
 
     <div *ngIf="selectedAction == 'locations'">
-        <button class="btn ms-2 mb-3"><span class="material-icons">add</span><p class="b-text">Добавить новый пункт выдачи</p></button>
+        <button routerLink="/admin/panel/create/location" class="btn ms-2 mb-3"><span class="material-icons">add</span><p class="b-text">Добавить новый пункт выдачи</p></button>
         <button (click)="refresh()" class="btn ms-2 mb-3"><span class="material-icons">refresh</span><p class="b-text">Обновить список</p></button>
         <div *ngFor="let locationData of locations$ | async">
             <div class="item-card ms-2">
@@ -155,8 +220,8 @@
                     <p class="p-desc">{{locationData.workTime}}</p>
                 </div>
 
-                <button class="btn"><span class="material-icons">edit</span><p class="b-text">Редактировать</p></button>
-                <button class="btn"><span class="material-icons">delete</span><p class="b-text">Удалить</p></button>
+                <button routerLink="/admin/panel/edit/location/{{locationData.id}}" class="btn"><span class="material-icons">edit</span><p class="b-text">Редактировать</p></button>
+                <button (click)="deleteLocation(locationData.id)" class="btn"><span class="material-icons">delete</span><p class="b-text">Удалить</p></button>
             </div>
         </div>
     </div>

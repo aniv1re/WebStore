@@ -1,5 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, NavigationEnd, Params, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { ReplaySubject, Subscription } from 'rxjs';
@@ -20,6 +21,7 @@ export class ItemPageComponent implements OnInit {
   public item$: ReplaySubject<Item> = new ReplaySubject<Item>();
   public itemId: number = 0;
   public count: number = 1;
+  public itemTitle: string = "";
   public category$: ReplaySubject<Category> = new ReplaySubject<Category>();
   public substance$: ReplaySubject<Substance> = new ReplaySubject<Substance>();
   public manufacture$: ReplaySubject<Manufacture> = new ReplaySubject<Manufacture>();
@@ -32,7 +34,9 @@ export class ItemPageComponent implements OnInit {
     private actRouter: ActivatedRoute,
     public itemService: ItemService,
     private cartService: CartService,
-    public toastr: ToastrService ) { }
+    public toastr: ToastrService,
+    private titlePage: Title) { 
+    this.titlePage.setTitle("Добрая аптека - " + this.item$ ); }
 
   ngOnInit(): void {
     this.router.events.subscribe((event) => {
@@ -62,21 +66,21 @@ export class ItemPageComponent implements OnInit {
           })
         }
 
-        if (data.substanceId && data.substanceId != null) {
-          this.itemService.getSubstanceTitle(data.substanceId).toPromise().then((data: Substance | undefined) => {
-            if (data) {
-              this.substance$.next(data);
-            };
-          })
-        }
+        // if (data.substanceId && data.substanceId != null) {
+        //   this.itemService.getSubstanceTitle(data.substanceId).toPromise().then((data: Substance | undefined) => {
+        //     if (data) {
+        //       this.substance$.next(data);
+        //     };
+        //   })
+        // }
 
-        if (data.manufactureId && data.manufactureId != null) {
-          this.itemService.getManufactureTitle(data.manufactureId).toPromise().then((data: Manufacture | undefined) => {
-            if (data) {
-              this.manufacture$.next(data);
-            };
-          })
-        }
+        // if (data.manufactureId && data.manufactureId != null) {
+        //   this.itemService.getManufactureTitle(data.manufactureId).toPromise().then((data: Manufacture | undefined) => {
+        //     if (data) {
+        //       this.manufacture$.next(data);
+        //     };
+        //   })
+        // }
 
         this.item$.next(data);
       }

@@ -24,11 +24,12 @@ export class MainComponent implements OnInit {
     private title: Title,
     private cartService: CartService,
     private toastr: ToastrService,
-    private newsService: NewsService) { this.title.setTitle("Добрая аптека - Главная" ); }
+    private newsService: NewsService) { 
+      this.title.setTitle("Добрая аптека - Главная" ); }
 
   ngOnInit(): void {
-    this.loadItems();
     this.loadNews();
+    this.loadItems();
   }
 
   moveToItem(itemId: number): void {
@@ -58,8 +59,10 @@ export class MainComponent implements OnInit {
     this.newsService.getLastNews().toPromise()
     .then((data: News[] | undefined) => {
       if (data) {
-        this.news$.push(data[0]); 
-        console.log(data) 
+        for (let i = 0; i < data.length; i++) {
+          this.news$.push(data[i]);
+          
+        }
       }
     });
   }

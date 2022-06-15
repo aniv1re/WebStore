@@ -1,8 +1,10 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs/internal/Observable';
 import { environment } from 'src/environments/environment';
+import { Guest } from '../models/guest';
+import { GuestExt } from '../models/guestExt';
 import { User } from '../models/user';
 import { UserExt } from '../models/userExt';
 
@@ -25,6 +27,14 @@ export class UserService {
   getAllUsers(): Observable<UserExt[]> {
     return this.http.get<UserExt[]>(`${this.apiUrl}/api/user/get/all`);
   }
+  
+  getAllGuests(): Observable<GuestExt[]> {
+    return this.http.get<GuestExt[]>(`${this.apiUrl}/api/user/get/guest/all`);
+  }
+
+  getGuest(id: number): Observable<Guest> {
+    return this.http.get<Guest>(`${this.apiUrl}/api/user/get/guest/${id}`);
+  }
 
   editUser(form: FormGroup) {
     return this.http.post(this.apiUrl + '/api/user/edit', this.getFormData(form));
@@ -32,6 +42,12 @@ export class UserService {
   
   editUserPass(form: FormGroup) {
     return this.http.post(this.apiUrl + '/api/user/edit/userpass', this.getFormData(form));
+  }
+  
+  deleteUser(id: number) {
+    console.log(id)
+
+    return this.http.post(this.apiUrl + `/api/user/delete`, id);
   }
 
   private getFormData(form: FormGroup): FormData {

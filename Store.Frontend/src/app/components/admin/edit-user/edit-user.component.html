@@ -1,0 +1,99 @@
+<div class="m-left">
+    <div class="top-nav-container">
+        <nav aria-label="breadcrumb" class="ms-2">
+            <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a routerLink="">Главная</a></li>
+            <li class="breadcrumb-item"><a routerLink="/admin/panel">Панель администратора</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Редактировать пользователя</li>
+            </ol>
+        </nav>
+
+        <div class="title-container">
+            <h2 class="b-h-text ms-2" style="color: black">РЕДАКТИРОВАТЬ ПОЛЬЗОВАТЕЛЯ</h2>
+        </div>
+    </div>
+</div>
+
+<div class="location-container m-left mt-5" *ngIf="user$ != undefined">
+    <form [formGroup]="editPassForm" (ngSubmit)="editPass()" class="mb-5">
+        <div class="change-pass-container ">
+            <p class="ms-2">Изменение пароля</p>
+            <input id="email" formControlName="email" class="visually-hidden">
+
+            <div class="ms-2">
+                <label>Пароль:</label>
+                <div class="input-group mb-3">
+                    <span class="input-group-text"><span class="material-icons">password</span></span>
+                    <input required formControlName="password" type="text" class="form-control" placeholder="Введите новый пароль" aria-describedby="basic-addon1">
+                </div>
+            </div>
+        </div>
+
+        <button type="submit" class="btn ms-2 mt-3 btn-large"><span class="material-icons">done</span><p class="b-text">Изменить</p></button>
+    </form>
+
+    <form [formGroup]="editUser" (ngSubmit)="saveUserData()">
+        <p class="ms-2">Изменение личных данных пользователя</p>
+        <div class="ms-2">
+            <label>Id пользователя:</label>
+            <div class="input-group mb-3">
+                <span class="input-group-text"><span class="material-icons">tag</span></span>
+                <input disabled required type="text" class="form-control" placeholder="{{user$.id}}" aria-describedby="basic-addon1">
+            </div>
+        </div>
+
+        <div class="ms-2">
+            <label>Имя:</label>
+            <div class="input-group mb-3">
+                <span class="input-group-text"><span class="material-icons">person</span></span>
+                <input required formControlName="name" type="text" class="form-control" placeholder="Фамилия пользователя" aria-describedby="basic-addon1">
+            </div>
+        </div>
+
+        <div class="ms-2">
+            <label>Фамилия:</label>
+            <div class="input-group mb-3">
+                <span class="input-group-text"><span class="material-icons">person</span></span>
+                <input required formControlName="surname" type="text" class="form-control" placeholder="Имя пользователя" aria-describedby="basic-addon1">
+            </div>
+        </div>
+        
+        <div class="ms-2">
+            <label>Email:</label>
+            <div class="input-group mb-3">
+                <span class="input-group-text"><span class="material-icons">alternate_email</span></span>
+                <input required formControlName="email" type="text" class="form-control" placeholder="Почтовый адрес" aria-describedby="basic-addon1">
+            </div>
+        </div>
+
+        <div class="ms-2">
+            <label>Роль:</label>
+            <div class="input-group mb-2">
+                <span class="input-group-text"><span class="material-icons">verified_user</span></span>
+                <input required formControlName="role" type="text" class="form-control" placeholder="0: Пользователь, 1: Администратор" aria-describedby="basic-addon1">
+            </div>
+            <p class="p-desc">Информация о ролях: пользователь — 0, администратор — 1</p>
+        </div>
+
+        <div class="ms-2">
+            <label>Телефон:</label>
+            <div class="input-group mb-3">
+                <span class="input-group-text"><span class="material-icons">phone</span></span>
+                <input required formControlName="phone" type="text" class="form-control" placeholder="Номер телефона" aria-describedby="basic-addon1">
+            </div>
+        </div>
+
+        <div class="ms-2">
+            <label>Дата регистрации:</label>
+            <div class="input-group mb-3">
+                <span class="input-group-text"><span class="material-icons">today</span></span>
+                <input disabled type="text" class="form-control" placeholder="{{user$.regDate | date:'dd.MM.yyyy HH:mm'}}" aria-describedby="basic-addon1">
+            </div>
+        </div>
+
+        <div class="buttons-module">
+            <button routerLink="/admin/panel" class="btn ms-2 mt-3"><span class="material-icons">arrow_back</span><p class="b-text">Назад</p></button>
+            <button type="submit" class="btn ms-2 mt-3 btn-large"><span class="material-icons">save</span><p class="b-text">Сохранить</p></button>
+        </div>
+    </form>
+</div>

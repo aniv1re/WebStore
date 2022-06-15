@@ -45,6 +45,16 @@ namespace WebStore.Database.Repositories
         {
             return await dbContext.Users.AsNoTracking().ToListAsync();
         }
+        
+        public async Task<IEnumerable<Guest>> GetAllGuests()
+        {
+            return await dbContext.Guests.AsNoTracking().ToListAsync();
+        }
+
+        public async Task<Guest> GetGuestById(int id)
+        {
+            return await dbContext.Guests.AsNoTracking().FirstOrDefaultAsync(x => x.Id == id);
+        }
 
         public async Task CreateUser(User user)
         {
@@ -100,9 +110,9 @@ namespace WebStore.Database.Repositories
             }
         }
 
-        public async Task DeleteUser(string email)
+        public async Task DeleteUser(int id)
         {
-            User getUser = await dbContext.Users.AsNoTracking().FirstOrDefaultAsync(x => x.Email == email);
+            User getUser = await dbContext.Users.AsNoTracking().FirstOrDefaultAsync(x => x.Id == id);
 
             dbContext.Users.Remove(getUser);
             await dbContext.SaveChangesAsync();

@@ -16,6 +16,7 @@ import { ItemService } from 'src/app/services/item.service';
 import { LocationService } from 'src/app/services/location.service';
 import { OrderService } from 'src/app/services/order.service';
 import { TokenService } from 'src/app/services/token.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-order',
@@ -49,7 +50,9 @@ export class OrderComponent implements OnInit {
     private itemService: ItemService,
     private toastr: ToastrService,
     private router: Router,
-    private authService: AuthService) { 
+    private authService: AuthService,
+    private titlePage: Title) { 
+    this.titlePage.setTitle("Добрая аптека - Оформление заказа" ); 
     this.token = this.tokenService.token;
 
     if (this.token)
@@ -69,7 +72,9 @@ export class OrderComponent implements OnInit {
   }
 
   getLocations(): void {
-    this.orderService.getLocations(this.locationService.getUserLocation()).toPromise()
+    console.log(this.locationService.getUserLocation())
+    this.orderService.getLocations(this.locationService.getUserLocation())
+    .toPromise()
     .then((data: MapItem[] | undefined) => {
       if (data) {
         this.locationPoints$.next(data);
@@ -80,12 +85,14 @@ export class OrderComponent implements OnInit {
   selectLocation(id: number): void {
     this.selectedLocationId = id;
 
-    this.orderService.getLocationById(id).toPromise().then((data: MapItem | undefined) => {
+    this.orderService.getLocationById(id)
+    .toPromise()
+    .then((data: MapItem | undefined) => {
       if (data) {
         this.selectedLocation$.next(data);
-        this.selectLocationStreet = data.address
+        this.selectLocationStreet = data.address;
       }
-    })
+    });
   }
 
   getItems(): void {

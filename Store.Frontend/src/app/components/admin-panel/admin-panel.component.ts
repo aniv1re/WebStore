@@ -1,14 +1,19 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { ReplaySubject } from 'rxjs/internal/ReplaySubject';
+import { Guest } from 'src/app/models/guest';
+import { GuestExt } from 'src/app/models/guestExt';
 import { Item } from 'src/app/models/item';
 import { ItemCount } from 'src/app/models/itemCount';
 import { MapItem } from 'src/app/models/mapItem';
+import { News } from 'src/app/models/news';
 import { Order } from 'src/app/models/order';
 import { OrderItem } from 'src/app/models/orderItem';
-import { User } from 'src/app/models/user';
 import { UserExt } from 'src/app/models/userExt';
 import { ItemService } from 'src/app/services/item.service';
+import { NewsService } from 'src/app/services/news.service';
 import { OrderService } from 'src/app/services/order.service';
 import { TokenService } from 'src/app/services/token.service';
 import { UserService } from 'src/app/services/user.service';
@@ -21,9 +26,12 @@ import { UserService } from 'src/app/services/user.service';
 export class AdminPanelComponent implements OnInit {
   public selectedAction: string = '';
   public items$: ReplaySubject<Item[]> = new ReplaySubject<Item[]>();
-  public orders$: ReplaySubject<Order[]> = new ReplaySubject<Order[]>();
+  public orders$: Order[] = [];
   public locations$: ReplaySubject<MapItem[]> = new ReplaySubject<MapItem[]>();
+  public news$: ReplaySubject<News[]> = new ReplaySubject<News[]>();
   public users$: UserExt[] = [];
+  public guests$: GuestExt[] = [];
+  public adminId: number = -1;
 
   public tempUser: string = "";
 
@@ -31,38 +39,39 @@ export class AdminPanelComponent implements OnInit {
     private router: Router,
     private itemService: ItemService,
     private orderService: OrderService,
-    private userService: UserService) { 
+    private userService: UserService,
+    private newsService: NewsService,
+    private toastr: ToastrService,
+    private title: Title) { 
+    this.title.setTitle("Добрая аптека - Панель администратора" ); 
     if (this.tokenService.token.role != 'Admin')
       this.router.navigateByUrl("");
    }
 
   ngOnInit(): void {
-    this.loadUsers();
     this.loadOrders();
+    this.loadUsers();
+    this.loadGuests();
     this.loadItems();
     this.loadLocations();
+    this.loadNews();
+    this.adminId = this.tokenService.token.id;
   }
 
   getStatus(id: number): string {
     switch(id){
       case 2:
         return 'Проверяется';
-        break;
       case 4:
-        return 'Принято';
-        break;
+        return 'Принят в работу';
       case 8:
-        return 'Получено';
-        break;
+        return 'Получен';
       default:
         return 'Проверяется';
-        break;
     }
   }
 
   getRole(id: number): string {
-    console.log(id);
-    
     if (id == 1) 
       return 'Администратор';
     else 
@@ -74,10 +83,34 @@ export class AdminPanelComponent implements OnInit {
  
     for (let i = 0; i < this.users$.length; i++) {
       if (id == this.users$[i].id)
-        temp = this.users$[i].phone;
+        temp = this.users$[i].phone + " " + this.users$[i].email;
     }
 
     return temp;
+  }
+
+  getGuest(id: number): string {
+    let temp: string = "";
+
+    for (let i = 0; i < this.guests$.length; i++) {
+      if (id == this.guests$[i].id) {
+        temp = this.guests$[i].phone + " " + this.guests$[i].email;
+      }
+    }
+
+    return temp;
+  }
+
+  loadGuests(): void {
+    this.userService.getAllGuests()
+    .toPromise()
+    .then((data: GuestExt[] | undefined) => {
+      if (data) {
+        for (let i = 0; i < data.length; i++) {
+          this.guests$.push(data[i]);
+        }
+      }
+    })
   }
 
   selectItemsList(): void {
@@ -120,7 +153,9 @@ export class AdminPanelComponent implements OnInit {
     .toPromise()
     .then((data: Order[] | undefined) => {
       if (data) {
-        this.orders$.next(data);
+        for (let i = 0; i < data.length; i++) {
+          this.orders$.push(data[i]);
+        }
 
         // Вытаскиваем отдельно для каждого заказа массив всех товаров с количеством
         for (let i = 0; i < data.length; i++) {
@@ -140,11 +175,15 @@ export class AdminPanelComponent implements OnInit {
           }        
         }
       }
-    })
+    });
   }
 
   selectItemLocationsPoint(): void {
     this.selectedAction = 'locations';
+  }
+  
+  selectNewsList(): void {
+    this.selectedAction = 'news';
   }
 
   loadLocations(): void {
@@ -153,24 +192,68 @@ export class AdminPanelComponent implements OnInit {
     .then((data: MapItem[] | undefined) => {
       if (data)
         this.locations$.next(data);
-    })
+    });
+  }
+
+  loadNews(): void {
+    this.newsService.getAllNews()
+    .toPromise()
+    .then((data: News[] | undefined) => {
+      if (data) {
+        this.news$.next(data);
+      }
+    });
   }
 
   refresh(): void {
     window.location.reload();
   }
 
-  // public 
+  deleteLocation(id: number): void {
+    this.orderService.deleteLocationById(id)
+    .toPromise()
+    .then(() => {
+      this.toastr.success('Выбранный пункт выдачи успешно удалён!', 'Удаление данных', {
+        timeOut: 5000,
+        positionClass: 'toast-bottom-right',
+      });
+      window.location.reload();
+    });
+  }
 
-  // orderContains(): void {
-  //   // this.orderService.getUserOrders(this.tokenService.token.id).toPromise()
-  //   // .then((data: Order[] | undefined) => {
-  //   //   if (data) {
-  //   //     // Все заказы
-  //       this.orders$;
+  deleteOrder(id: number): void {
+    this.orderService.deleteOrderById(id)
+    .toPromise()
+    .then(() => {
+      this.toastr.success('Заказ успешно удалён', 'Удаление заказа', {
+        timeOut: 5000,
+        positionClass: 'toast-bottom-right',
+      });
+      window.location.reload();
+    });
+  }
 
-        
-  //     }
-  //   });
-  // }
+  deleteUser(id: number): void {
+    this.userService.deleteUser(id)
+    .toPromise()
+    .then(() => {
+      this.toastr.success('Выбранный пользователь успешно удалён!', 'Удаление данных', {
+        timeOut: 5000,
+        positionClass: 'toast-bottom-right',
+      });
+      window.location.reload();
+    });
+  }
+
+  deleteNews(id: number): void {
+    this.newsService.deleteNewsById(id)
+    .toPromise()
+    .then(() => {
+      this.toastr.success('Выбранная новость успешно удалена!', 'Удаление данных', {
+        timeOut: 5000,
+        positionClass: 'toast-bottom-right',
+      });
+      window.location.reload();
+    });
+  }
 }

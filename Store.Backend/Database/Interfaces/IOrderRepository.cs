@@ -12,8 +12,12 @@ namespace WebStore.Database.Interfaces
         Task<MapItem> GetItemLocationPoint(int id);
         Task<IEnumerable<MapItem>> GetAllLocationPoints();
         Task<int> CreateOrder(OrderViewModel order);
+        Task AddLocation(MapItemViewModel location);
         Task EditOrder(Order order);
-        Task DeleteOrder(Order order);
+        Task EditOrderStatus(OrderQuery order);
+        Task EditLocation(MapItem location);
+        Task DeleteLocation(int id);
+        Task DeleteOrder(int orderId);
         Task<int> SaveChangesAsync();
     }
 }

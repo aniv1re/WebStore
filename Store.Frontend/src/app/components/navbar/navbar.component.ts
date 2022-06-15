@@ -35,6 +35,10 @@ export class NavbarComponent implements OnInit, DoCheck {
     this.getCartItemsData();
 
     this.userLocation = this.locationService.getUserLocation() == "" || this.locationService.getUserLocation() == undefined ? "Архангельск" : this.locationService.getUserLocation();
+
+    if (this.locationService.getUserLocation() == "" || this.locationService.getUserLocation() == undefined) {
+      this.locationService.setUserLocation("Архангельск");
+    }
   }
 
   ngDoCheck(): void {

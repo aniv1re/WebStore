@@ -1,0 +1,44 @@
+<div class="m-left">
+    <div class="top-nav-container">
+        <nav aria-label="breadcrumb" class="ms-2">
+            <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a routerLink="">Главная</a></li>
+            <li class="breadcrumb-item"><a routerLink="/admin/panel">Панель администратора</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Добавить новость</li>
+            </ol>
+        </nav>
+
+        <div class="title-container">
+            <h2 class="b-h-text ms-2" style="color: black">ДОБАВИТЬ НОВОСТЬ</h2>
+        </div>
+    </div>
+</div>
+
+<div class="news-container m-left mt-5">
+    <form [formGroup]="createNews" (ngSubmit)="saveNewsData()">
+        <div class="ms-2">
+            <label>Название новости:</label>
+            <div class="input-group mb-3">
+                <span class="input-group-text"><span class="material-icons">place</span></span>
+                <input required formControlName="title" type="text" class="form-control" placeholder="Название новости" aria-describedby="basic-addon1">
+            </div>
+        </div>
+
+        <div class="ms-2">
+            <p class="mb-1">Содержание новости:</p>
+            <textarea pInputTextarea formControlName="content" [autoResize]="true" rows="15" cols="98" class="mb-3"></textarea>
+        </div>
+
+        <div class="ms-2">
+            <p>Изображение новости:</p>
+            <input type="file" (change)="handleFileInput($event)" #fileInput hidden>
+            <p class="file-name" ></p>
+            <button (click)="fileInput.click()" class="btn mb-3"><span class="material-icons">upload</span><p class="b-text">Загрузить новое изображение</p></button>
+        </div>
+
+        <div class="buttons-module">
+            <button routerLink="/admin/panel" class="btn ms-2 mt-3"><span class="material-icons">arrow_back</span><p class="b-text">Назад</p></button>
+            <button type="submit" class="btn ms-2 mt-3 btn-large"><span class="material-icons">save</span><p class="b-text">Сохранить</p></button>
+        </div>
+    </form>
+</div>

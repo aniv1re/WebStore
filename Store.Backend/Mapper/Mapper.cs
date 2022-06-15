@@ -16,6 +16,8 @@ namespace WebMessenger.Mapper
             CreateMap<Item, ItemViewModel>().ReverseMap();
             CreateMap<Order, OrderViewModel>().ReverseMap();
             CreateMap<Guest, GuestViewModel>().ReverseMap();
+            CreateMap<MapItem, MapItemViewModel>().ReverseMap();
+            CreateMap<News, NewsViewModel>().ReverseMap();
         }
     }
 }
