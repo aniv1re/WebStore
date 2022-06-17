@@ -52,6 +52,8 @@ export class ItemPageComponent implements OnInit {
         this.itemId = id;
         this.getItem();
       });
+
+      this.itemService.incVisitCount(this.itemId);
   }
 
   getItem(): void {
@@ -65,22 +67,6 @@ export class ItemPageComponent implements OnInit {
             };
           })
         }
-
-        // if (data.substanceId && data.substanceId != null) {
-        //   this.itemService.getSubstanceTitle(data.substanceId).toPromise().then((data: Substance | undefined) => {
-        //     if (data) {
-        //       this.substance$.next(data);
-        //     };
-        //   })
-        // }
-
-        // if (data.manufactureId && data.manufactureId != null) {
-        //   this.itemService.getManufactureTitle(data.manufactureId).toPromise().then((data: Manufacture | undefined) => {
-        //     if (data) {
-        //       this.manufacture$.next(data);
-        //     };
-        //   })
-        // }
 
         this.item$.next(data);
       }

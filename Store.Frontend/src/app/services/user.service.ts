@@ -45,8 +45,6 @@ export class UserService {
   }
   
   deleteUser(id: number) {
-    console.log(id)
-
     return this.http.post(this.apiUrl + `/api/user/delete`, id);
   }
 

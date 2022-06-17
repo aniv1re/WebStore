@@ -77,7 +77,7 @@
 
                 <div class="items-card-module" style="width: 340px;">
                     <p class="mb-0 p-title">Название</p>
-                    <p class="p-desc">{{itemData.name}}</p>
+                    <p style="cursor: pointer;" routerLink="/catalog/{{itemData.id}}" class="p-desc">{{itemData.name}}</p>
                 </div>
 
                 <div class="items-card-module">
@@ -91,7 +91,7 @@
                 </div>
 
                 <button routerLink="/admin/panel/edit/item/{{itemData.id}}" class="btn"><span class="material-icons">edit</span><p class="b-text">Редактировать</p></button>
-                <button class="btn"><span class="material-icons">delete</span><p class="b-text">Удалить</p></button>
+                <button (click)="deleteItem(itemData.id)" class="btn"><span class="material-icons">delete</span><p class="b-text">Удалить</p></button>
             </div>
         </div>
     </div>

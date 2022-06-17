@@ -18,7 +18,14 @@ namespace WebStore.Controllers
         [HttpGet("get/last")]
         public async Task<IEnumerable<News>> GetLastNews()
         {
-            return await newsRepository.GetLastNews();
+            var news = await newsRepository.GetLastNews();
+
+            for (int i = 0; i < news.Count; i++)
+            {
+                news[i].Image = $"{Request.Scheme}://{Request.Host}" + $"{Url.Action("GetImage", "Image", new { imageName = news[i].Image })}";
+            }
+
+            return news;
         }
 
         [HttpGet("get/all")]
@@ -28,8 +35,7 @@ namespace WebStore.Controllers
 
             for (int i = 0; i < news.Count; i++)
             {
-                news[i].Image = $"{Request.Scheme}://{Request.Host}" +
-                    $"{Url.Action("GetImage", "Image", new { imageName = news[i].Image })}";
+                news[i].Image = $"{Request.Scheme}://{Request.Host}" + $"{Url.Action("GetImage", "Image", new { imageName = news[i].Image })}";
             }
 
             return news;
@@ -38,7 +44,11 @@ namespace WebStore.Controllers
         [HttpGet("get/byid/{id}")]
         public async Task<News> GetNewsById([FromRoute] int id)
         {
-            return await newsRepository.GetNewsById(id);
+            var news = await newsRepository.GetNewsById(id);
+
+            news.Image = $"{Request.Scheme}://{Request.Host}" + $"{Url.Action("GetImage", "Image", new { imageName = news.Image })}";
+
+            return news;
         }
         
         [HttpPost("create")]

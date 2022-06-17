@@ -63,7 +63,7 @@ export class CreateNewsComponent implements OnInit {
   }
 
   handleFileInput(event: any): void {
-  let image = document.querySelector('.file-name')!;
+    let image = document.querySelector('.file-name')!;
     if(event.target.files[0]) {
       this.image = event.target.files[0];
       image.innerHTML = this.image!.name;

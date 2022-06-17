@@ -24,7 +24,7 @@ namespace WebStore.Database.Repositories
             }
         }
 
-        public async Task<IEnumerable<News>> GetLastNews()
+        public async Task<List<News>> GetLastNews()
         {
             return await dbContext.News.AsNoTracking().OrderByDescending(x => x.Id).Take(3).ToListAsync();
         }

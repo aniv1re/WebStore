@@ -221,6 +221,18 @@ export class AdminPanelComponent implements OnInit {
     });
   }
 
+  deleteItem(id: number): void {
+    this.itemService.deleteItemById(id)
+    .toPromise()
+    .then(() => {
+      this.toastr.success('Выбранный товар успешно удалён!', 'Удаление данных', {
+        timeOut: 5000,
+        positionClass: 'toast-bottom-right',
+      });
+      window.location.reload();
+    });
+  }
+
   deleteOrder(id: number): void {
     this.orderService.deleteOrderById(id)
     .toPromise()

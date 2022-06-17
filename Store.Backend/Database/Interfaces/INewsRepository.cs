@@ -5,7 +5,7 @@ namespace WebStore.Database.Interfaces
 {
     public interface INewsRepository
     {
-        Task<IEnumerable<News>> GetLastNews();
+        Task<List<News>> GetLastNews();
         Task<List<News>> GetAllNews();
         Task<News> GetNewsById(int id);
         Task CreateNews(NewsViewModel news);

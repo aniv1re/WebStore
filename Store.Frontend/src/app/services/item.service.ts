@@ -52,8 +52,8 @@ export class ItemService {
     return this.http.get<Item[]>(`${this.apiUrl}/api/item/get/name/${name}`);
   }
   
-  getItemById(id: number) {
-    return this.http.get(`${this.apiUrl}/api/item/get/${id}`);
+  getItemById(id: number): Observable<Item> {
+    return this.http.get<Item>(`${this.apiUrl}/api/item/get/${id}`);
   }
   
   getItemsByCategoriesWithFilter(categoryIdValue: number, sortStateValue: SortState) {
@@ -69,5 +69,51 @@ export class ItemService {
     };
 
     return this.http.post(`${this.apiUrl}/api/Item/get/category`, JSON.stringify(obj), headers);
+  }
+
+  createItem(form: FormGroup, image: File) {
+    let body = this.getFormData(form);
+    body.append('image', image, image.name);
+    this.http.post(`${this.apiUrl}/api/Item/add`, body).subscribe(
+      (data) => { }
+    );
+  }
+
+  editItem(form: FormGroup) {
+    this.http.post(`${this.apiUrl}/api/Item/edit`, this.getFormData(form)).subscribe(
+      (data) => {});
+  }
+
+  // decreaseItemStock(itemId: number, count: number) {
+  //   let headers = {
+  //     headers: new HttpHeaders({
+  //         'Content-Type': 'application/json'
+  //     })
+  //   }
+
+  //   let obj = {
+  //     itemId: itemId,
+  //     count: count
+  //   }
+
+  //   this.http.post(`${this.apiUrl}/api/Item/decreaseItemStock`, JSON.stringify(obj), headers).subscribe(
+  //     (data) => {});
+  // }
+
+  incVisitCount(itemId: number) {
+    this.http.post(`${this.apiUrl}/api/Item/incVisitCount/`, itemId).subscribe(
+      (data) => {});
+  }
+
+  deleteItemById(id: number) {
+    return this.http.post(`${this.apiUrl}/api/Item/delete/`, id)
+  }
+
+  private getFormData(form: FormGroup): FormData {
+    const formData: FormData = new FormData();
+    Object.keys(form.controls).forEach((key: string) => {
+      formData.append(key, form.controls[key].value);
+    });
+    return formData;
   }
 }

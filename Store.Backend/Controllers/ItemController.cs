@@ -30,9 +30,11 @@ namespace WebStore.Controllers
         {
             var item = await itemRepository.GetItem(itemId);
 
+            item.Image = $"{Request.Scheme}://{Request.Host}" + $"{Url.Action("GetImage", "Image", new { imageName = item.Image })}";
+
             if (item == null) { return NotFound(); } else { return item; }
         }
-        
+
         [HttpGet("get/categorytitle/{id}")]
         public async Task<Category> GetCategory([FromRoute] int id)
         {
@@ -54,31 +56,73 @@ namespace WebStore.Controllers
         [HttpGet("get/all")]
         public async Task<IEnumerable<Item>> GetAllItems()
         {
-            return await itemRepository.GetAllItems();
+            var items = await itemRepository.GetAllItems();
+
+            for (int i = 0; i < items.Count; i++)
+            {
+                items[i].Image = $"{Request.Scheme}://{Request.Host}" + $"{Url.Action("GetImage", "Image", new { imageName = items[i].Image })}";
+            }
+
+            return items;
         }
 
         [HttpGet("get/name/{name}")]
         public async Task<IEnumerable<Item>> GetItemByName([FromRoute] string name)
         {
-            return await itemRepository.SearchWithName(name);
+            var items = await itemRepository.SearchWithName(name);
+
+            for (int i = 0; i < items.Count; i++)
+            {
+                items[i].Image = $"{Request.Scheme}://{Request.Host}" + $"{Url.Action("GetImage", "Image", new { imageName = items[i].Image })}";
+            }
+
+            return items;
         }
 
         [HttpPost("get/category")]
         public async Task<IEnumerable<Item>> SearchWithCategory([FromUri] ItemQuery query)
         {
-            return await itemRepository.SearchWithCategory(query);
+            var items = await itemRepository.SearchWithCategory(query);
+
+            for (int i = 0; i < items.Count; i++)
+            {
+                items[i].Image = $"{Request.Scheme}://{Request.Host}" + $"{Url.Action("GetImage", "Image", new { imageName = items[i].Image })}";
+            }
+
+            return items;
         }
         
         [HttpGet("get/popular")]
         public async Task<IEnumerable<Item>> GetPopularItems()
         {
-            return await itemRepository.GetPopularItems();
+            var items = await itemRepository.GetPopularItems();
+
+            for (int i = 0; i < items.Count; i++)
+            {
+                items[i].Image = $"{Request.Scheme}://{Request.Host}" + $"{Url.Action("GetImage", "Image", new { imageName = items[i].Image })}";
+            }
+
+            return items;
         }
 
         [HttpGet("get/popularsmall")]
         public async Task<IEnumerable<Item>> GetPopularSmallItems()
         {
-            return await itemRepository.GetPopularSmallItems();
+            var items = await itemRepository.GetPopularSmallItems();
+
+            for (int i = 0; i < items.Count; i++)
+            {
+                items[i].Image = $"{Request.Scheme}://{Request.Host}" + $"{Url.Action("GetImage", "Image", new { imageName = items[i].Image })}";
+            }
+
+            return items;
+        }
+
+        [HttpPost("incVisitCount")]
+        public async Task IncVisitCount([Microsoft.AspNetCore.Mvc.FromBody] int itemId)
+        {
+            await itemRepository.IncVisitCount(itemId);
+            await itemRepository.SaveChangesAsync();
         }
 
         [HttpPost("add")]
@@ -93,7 +137,7 @@ namespace WebStore.Controllers
 
         [HttpPost("edit")]
         [Authorize]
-        public async Task<IActionResult> EditItem([FromForm] Item item)
+        public async Task<IActionResult> EditItem([FromForm] EditItemViewModel item)
         {
             await itemRepository.EditItem(item);
             await itemRepository.SaveChangesAsync();
@@ -103,9 +147,9 @@ namespace WebStore.Controllers
 
         [HttpPost("delete")]
         [Authorize]
-        public async Task<IActionResult> DeleteItem([FromForm] Item item)
+        public async Task<IActionResult> DeleteItem([Microsoft.AspNetCore.Mvc.FromBody] int id)
         {
-            await itemRepository.DeleteItem(item);
+            await itemRepository.DeleteItem(id);
             await itemRepository.SaveChangesAsync();
 
             return Ok();

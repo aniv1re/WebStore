@@ -1,1 +1,145 @@
-<p>edit-item works!</p>
+<div class="m-left">
+    <div class="top-nav-container">
+        <nav aria-label="breadcrumb" class="ms-2">
+            <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a routerLink="">Главная</a></li>
+            <li class="breadcrumb-item"><a routerLink="/admin/panel">Панель администратора</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Редактировать товар</li>
+            </ol>
+        </nav>
+
+        <div class="title-container">
+            <h2 class="b-h-text ms-2" style="color: black">РЕДАКТИРОВАТЬ ТОВАР</h2>
+        </div>
+    </div>
+</div>
+
+<div class="item-container m-left">
+    <form [formGroup]="editItem" (ngSubmit)="saveItemData()">
+        <div class="ms-2 mt-5"><h3>Общая информация</h3></div>
+        
+        <div class="ms-2" *ngIf="item$ != null">
+            <p>Изображение товара:</p>
+            <img src="{{item$.image}}" class="mb-3">
+        </div>
+        
+        <div class="ms-2">
+            <label>Id товара:</label>
+            <div class="input-group mb-3">
+                <span class="input-group-text"><span class="material-icons">tag</span></span>
+                <input [disabled]="true" type="text" class="form-control" aria-describedby="basic-addon1" value="{{item$?.id}}">
+            </div>
+        </div>
+
+        <div class="ms-2">
+            <label>Название товара:</label>
+            <div class="input-group mb-3">
+                <span class="input-group-text"><span class="material-icons">description</span></span>
+                <input required formControlName="name" type="text" class="form-control" placeholder="Бромгексин 8 Берлин-Хеми" aria-describedby="basic-addon1">
+            </div>
+        </div>
+
+        <div class="ms-2">
+            <label>Краткое описание товара:</label>
+            <div class="input-group mb-3">
+                <span class="input-group-text"><span class="material-icons">description</span></span>
+                <input required formControlName="itemContent" type="text" class="form-control" placeholder="Таблетки П/О 8МГ №25" aria-describedby="basic-addon1">
+            </div>
+        </div>
+
+        <div class="ms-2">
+            <label>Производитель:</label>
+            <div class="input-group mb-3">
+                <span class="input-group-text"><span class="material-icons">factory</span></span>
+                <input required formControlName="manufacture" type="text" class="form-control" placeholder="БЕРЛИН-ФАРМА ЗАО" aria-describedby="basic-addon1">
+            </div>
+        </div>
+
+        <div class="ms-2">
+            <label>Цена товара:</label>
+            <div class="input-group mb-3">
+                <span class="input-group-text"><span class="material-icons">currency_ruble</span></span>
+                <input required formControlName="price" type="text" class="form-control" placeholder="569.99" aria-describedby="basic-addon1" min="1" max="15999">
+            </div>
+        </div>
+
+        <div class="ms-2">
+            <label>Количество на складе (шт.):</label>
+            <div class="input-group mb-3">
+                <span class="input-group-text"><span class="material-icons">warehouse</span></span>
+                <input required formControlName="stockCount" type="number" class="form-control" placeholder="25" aria-describedby="basic-addon1" min="1" max="999">
+            </div>
+        </div>
+  
+        <div class="ms-2 categories-module mb-3">
+            <label class="mb-1">Категория товара:</label>
+            <p-dropdown [options]="categories" [(ngModel)]="selectedCategory" [ngModelOptions]="{standalone: true}" name="selectedCategory" placeholder="Выберите категорию товара" optionLabel="name" [showClear]="true"></p-dropdown>
+            <input hidden formControlName="categoryId" value="{{itemSelectedCategory()}}">
+        </div>
+
+        <div class="ms-2 mt-5"><h3>Подробная информация</h3></div>
+        <div class="ms-2">
+            <label>Действующее вещество:</label>
+            <div class="input-group mb-3">
+                <span class="input-group-text"><span class="material-icons">description</span></span>
+                <input required formControlName="substance" type="text" class="form-control" placeholder="Бромгексин" aria-describedby="basic-addon1">
+            </div>
+        </div>
+
+        <div class="ms-2">
+            <label>Условия хранения:</label>
+            <div class="input-group mb-3">
+                <span class="input-group-text"><span class="material-icons">description</span></span>
+                <input required formControlName="storageCondition" type="text" class="form-control" placeholder="Хранить при температуре не выше 25ºС" aria-describedby="basic-addon1">
+            </div>
+        </div>
+
+        <div class="ms-2">
+            <label>Срок годности:</label>
+            <div class="input-group mb-3">
+                <span class="input-group-text"><span class="material-icons">description</span></span>
+                <input required formControlName="expiryDate" type="text" class="form-control" placeholder="3 года" aria-describedby="basic-addon1">
+            </div>
+        </div>
+
+        <div class="ms-2">
+            <label>Состав:</label>
+            <div class="input-group mb-3">
+                <textarea pInputTextarea formControlName="description" [autoResize]="true" rows="5" cols="98" class="mb-3" placeholder="Ядро: Действующее вещество: бромгексина гидрохлорид – 8,000 мг. Вспомогательные вещества: лактозы моногидрат, крахмал кукурузный, желатин, кремния диоксид коллоидный, магния стеарат; Оболочка: сахароза, кальция карбонат, магния карбонат, тальк, макрогол 6000, повидон К25, глюкозный сироп, воск карнаубский, титана диоксид (Е171), хинолиновый желтый (Е 104)."></textarea>
+            </div>
+        </div>
+
+        <div class="ms-2">
+            <label>Показания к применению:</label>
+            <div class="input-group mb-3">
+                <textarea pInputTextarea formControlName="indications" [autoResize]="true" rows="5" cols="98" class="mb-3" placeholder="Секретолитическая терапия при острых и хронических бронхолегочных заболеваниях, ассоциированных с нарушением секреции и транспорта мокроты (например, острый и хронический бронхит, бронхоэктаз и др.)."></textarea>
+            </div>
+        </div>
+
+        <div class="ms-2">
+            <label>Противопоказания:</label>
+            <div class="input-group mb-3">
+                <textarea pInputTextarea formControlName="contraindications" [autoResize]="true" rows="5" cols="98" class="mb-3" placeholder="Повышенная чувствительность к бромгексину и другим компонентам препарата; дефицит лактазы, редкая наследственная непереносимость галактозы или фруктозы, синдром глюкозо-галактозная мальабсорбции, сахаразо-изомальтазная недостаточность; язвенная болезнь желудка и двенадцатиперстной кишки (в том числе в анамнезе); беременность (I триместр);"></textarea>
+            </div>
+        </div>
+        
+        <div class="ms-2">
+            <label>Способ применения и дозы:</label>
+            <div class="input-group mb-3">
+                <textarea pInputTextarea formControlName="usage" [autoResize]="true" rows="5" cols="98" class="mb-3" placeholder="Препарат принимают внутрь, после еды, не разжевывая, запивая достаточным количеством жидкости.;"></textarea>
+            </div>
+        </div>
+        
+        <div class="ms-2">
+            <label>Побочное действие:</label>
+            <div class="input-group mb-3">
+                <textarea pInputTextarea formControlName="sideEffect" [autoResize]="true" rows="5" cols="98" class="mb-3" placeholder="Обычно препарат Бромгексин 8 Берлин-Хеми переносится хорошо. Возможные побочные эффекты приведены ниже по нисходящей частоте возникновения: очень часто (> 1/10), часто (< 1/100, < 1/10), нечасто (< 1/1000 < 1/100), редко (< 1/10000 <1/1000), очень редко, включая отдельные сообщения (< 1/10000), неизвестно (не может быть оценена исходя из имеющихся данных)"></textarea>
+            </div>
+        </div>
+
+        <div class="buttons-module">
+            <button routerLink="/admin/panel" class="btn ms-2 mt-3"><span class="material-icons">arrow_back</span><p class="b-text">Назад</p></button>
+            <button type="submit" class="btn ms-2 mt-3 btn-large"><span class="material-icons">save</span><p class="b-text">Сохранить</p></button>
+        </div>
+    </form>
+</div>

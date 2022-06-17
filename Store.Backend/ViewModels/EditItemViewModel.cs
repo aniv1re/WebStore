@@ -1,11 +1,10 @@
 ﻿namespace WebStore.ViewModels
 {
-    public class ItemViewModel
-    {            
+    public class EditItemViewModel
+    {
         public string Name { get; set; }
-        public IFormFile Image { get; set; }
         public string Description { get; set; }
-        public float Price { get; set; }
+        public string Price { get; set; }
         public int StockCount { get; set; }
         public int CategoryId { get; set; }
         public string Manufacture { get; set; }

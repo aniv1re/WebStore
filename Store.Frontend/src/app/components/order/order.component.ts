@@ -138,6 +138,7 @@ export class OrderComponent implements OnInit {
         var items: OrderItem[] = [];
         for (let i = 0; i < this.cartItems.length; i++) {
           items.push(new OrderItem(this.cartItems[i].idItem, this.cartItems[i].countItem));
+          //this.itemService.decreaseItemStock(this.cartItems[i].idItem, this.cartItems[i].countItem);
         }
 
         let ord = new OrderViewModel(this.token?.id, JSON.stringify(items), this.totalPrice, StatusId.checking, this.selectedLocationId, new Date(), false, -1);

@@ -52,6 +52,8 @@ namespace WebStore.Database.Repositories
             var newOrder = mapper.Map<Order>(order);
 
             var createdOrder = await dbContext.Orders.AddAsync(newOrder);
+
+
             await dbContext.SaveChangesAsync();
 
             return createdOrder.Entity.Id;

@@ -7,17 +7,18 @@ namespace WebStore.Database.Interfaces
     public interface IItemRepository
     {
         Task<Item> GetItem(int id);
+        Task IncVisitCount(int itemId);
         Task<Category> GetCategory(int id);
         Task<Manufacture> GetManufacture(int id);
         Task<Substance> GetSubstance(int id);
-        Task<IEnumerable<Item>> GetAllItems();
-        Task<IEnumerable<Item>> SearchWithName(string name);
-        Task<IEnumerable<Item>> SearchWithCategory([FromUri] ItemQuery query);
-        Task<IEnumerable<Item>> GetPopularItems();
-        Task<IEnumerable<Item>> GetPopularSmallItems();
+        Task<List<Item>> GetAllItems();
+        Task<List<Item>> SearchWithName(string name);
+        Task<List<Item>> SearchWithCategory([FromUri] ItemQuery query);
+        Task<List<Item>> GetPopularItems();
+        Task<List<Item>> GetPopularSmallItems();
         Task CreateItem(ItemViewModel item);
-        Task EditItem(Item item);
-        Task DeleteItem(Item item);
+        Task EditItem(EditItemViewModel item);
+        Task DeleteItem(int id);
         Task<int> SaveChangesAsync();
     }
 }
